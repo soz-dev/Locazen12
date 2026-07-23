@@ -1,0 +1,71 @@
+{
+  "name": "Rental",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Nom"
+    },
+    "type": {
+      "type": "string",
+      "title": "Type / Localisation"
+    },
+    "price": {
+      "type": "number",
+      "title": "Prix par nuit (€)"
+    },
+    "beds": {
+      "type": "number",
+      "title": "Chambres"
+    },
+    "baths": {
+      "type": "number",
+      "title": "Salles de bain"
+    },
+    "guests": {
+      "type": "number",
+      "title": "Voyageurs"
+    },
+    "rating": {
+      "type": "number",
+      "title": "Note"
+    },
+    "image": {
+      "type": "string",
+      "title": "Photo (URL)"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Équipements"
+    },
+    "airbnb_url": {
+      "type": "string",
+      "title": "Lien Airbnb"
+    }
+  },
+  "required": [
+    "name",
+    "price"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
