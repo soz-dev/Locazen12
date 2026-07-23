@@ -49,16 +49,6 @@ export default function Hero({
 
       <motion.div style={{ opacity }} className="relative z-10 h-full flex flex-col justify-between px-6 md:px-16 py-20 md:py-28">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: [0.25, 0.1, 0, 1] }}
-        >
-          <h1 className="font-body font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.08em] leading-none">
-            {wordTop}
-          </h1>
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.1, 0, 1] }}
@@ -80,16 +70,6 @@ export default function Hero({
           </motion.a>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0, 1] }}
-          className="self-end"
-        >
-          <h1 className="font-body font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.08em] leading-none">
-            {wordBottom}
-          </h1>
-        </motion.div>
       </motion.div>
 
       <motion.div
