@@ -19,31 +19,29 @@ function wmoEmoji(code) {
   return "⛈️";
 }
 
-function wmoLabel(code) {
-  if (code === 0)  return "Ensoleillé";
-  if (code <= 2)   return "Peu nuageux";
-  if (code === 3)  return "Couvert";
-  if (code <= 48)  return "Brouillard";
-  if (code <= 55)  return "Bruine";
-  if (code <= 65)  return "Pluie";
-  if (code <= 75)  return "Neige";
-  if (code <= 82)  return "Averses";
-  if (code <= 86)  return "Averses de neige";
-  return "Orage";
-}
-
-const JOURS = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-const MOIS  = ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"];
-
-function labelDate(dateStr, i) {
-  if (i === 0) return "Aujourd'hui";
-  if (i === 1) return "Demain";
-  const d = new Date(dateStr + "T12:00:00");
-  return `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`;
+function wmoKey(code) {
+  if (code === 0)  return "wmo_0";
+  if (code <= 2)   return "wmo_1";
+  if (code === 3)  return "wmo_3";
+  if (code <= 48)  return "wmo_48";
+  if (code <= 55)  return "wmo_55";
+  if (code <= 65)  return "wmo_65";
+  if (code <= 75)  return "wmo_75";
+  if (code <= 82)  return "wmo_82";
+  if (code <= 86)  return "wmo_86";
+  return "wmo_99";
 }
 
 export default function Weather() {
   const { t } = useTranslation();
+  const JOURS = t("weather.days", { returnObjects: true });
+  const MOIS  = t("weather.months", { returnObjects: true });
+  const labelDate = (dateStr, i) => {
+    if (i === 0) return t("weather.today");
+    if (i === 1) return t("weather.tomorrow");
+    const d = new Date(dateStr + "T12:00:00");
+    return `${Array.isArray(JOURS) ? JOURS[d.getDay()] : ""} ${d.getDate()} ${Array.isArray(MOIS) ? MOIS[d.getMonth()] : ""}`;
+  };
   const [days, setDays]       = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(false);
@@ -96,7 +94,7 @@ export default function Weather() {
         {loading && (
           <div className="flex justify-center py-16">
             <p className="font-body text-sm text-[#0891B2]/50 tracking-[0.2em] uppercase animate-pulse">
-              Chargement…
+              {t("weather.loading")}
             </p>
           </div>
         )}
@@ -105,7 +103,7 @@ export default function Weather() {
         {error && (
           <div className="text-center py-12">
             <p className="font-body text-sm text-[#0C4A6E]/40 tracking-wide">
-              Météo temporairement indisponible.
+              {t("weather.error")}
             </p>
           </div>
         )}
@@ -137,7 +135,7 @@ export default function Weather() {
                   <span
                     className="text-3xl md:text-4xl leading-none mb-2"
                     role="img"
-                    aria-label={wmoLabel(day.code)}
+                    aria-label={t(`weather.${wmoKey(day.code)}`)}
                   >
                     {wmoEmoji(day.code)}
                   </span>
@@ -145,7 +143,7 @@ export default function Weather() {
                   {/* Description */}
                   <p className={`text-[9px] font-body tracking-wide mb-4 leading-tight
                     ${i === 0 ? "text-[#F7F5F2]/60" : "text-[#0C4A6E]/50"}`}>
-                    {wmoLabel(day.code)}
+                    {t(`weather.${wmoKey(day.code)}`)}
                   </p>
 
                   {/* Températures */}

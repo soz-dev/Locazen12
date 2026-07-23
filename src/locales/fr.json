@@ -57,7 +57,23 @@
   },
   "weather": {
     "eyebrow": "Météo · Sète",
-    "title": "Les 15 prochains jours"
+    "title": "Les 15 prochains jours",
+    "loading": "Chargement…",
+    "error": "Météo temporairement indisponible.",
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "days": ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
+    "months": ["jan", "fév", "mar", "avr", "mai", "jun", "jul", "aoû", "sep", "oct", "nov", "déc"],
+    "wmo_0": "Ensoleillé",
+    "wmo_1": "Peu nuageux",
+    "wmo_3": "Couvert",
+    "wmo_48": "Brouillard",
+    "wmo_55": "Bruine",
+    "wmo_65": "Pluie",
+    "wmo_75": "Neige",
+    "wmo_82": "Averses",
+    "wmo_86": "Averses de neige",
+    "wmo_99": "Orage"
   },
   "sea": {
     "label": "Conditions de baignade · Sète · 7 jours",
@@ -194,12 +210,163 @@
     "cta": "Parler à un expert",
     "per_night": "/nuit"
   },
+  "hero": {
+    "voyageur": {
+      "eyebrow": "Locations · Sète",
+      "tagline": "Vivez Sète comme un local, respirez comme en vacances",
+      "cta": "Voir les locations"
+    },
+    "owner": {
+      "eyebrow": "Propriétaires · Sète",
+      "tagline": "Votre bien, entre de bonnes mains",
+      "cta": "Découvrir nos services"
+    }
+  },
+  "services": {
+    "eyebrow": "Nos engagements",
+    "title1": "Chaque détail,",
+    "title2": "pensé pour vous",
+    "items": [
+      { "title": "Suivi de vos réservations", "description": "Gestion complète de vos plannings, tarification et confirmation de réservations sur Airbnb et Booking." },
+      { "title": "Gestion des arrivées & départs", "description": "Accueil en personne de vos voyageurs, état des lieux et accompagnement tout au long du séjour." },
+      { "title": "Sérénité totale", "description": "Ménage, blanchisserie, petit entretien et gestion du logement entre les locations. Votre bien est entre de bonnes mains." }
+    ]
+  },
+  "about": {
+    "eyebrow": "À notre propos",
+    "title": "Parce que chaque voyageur mérite un vrai accueil",
+    "title_em": "un vrai accueil",
+    "p1": "Nous sommes un couple passionné, et nous prenons en charge votre bien — qu'il s'agisse de votre résidence principale ou secondaire. Nos différents métiers (hôtellerie, restauration, accompagnement et aide à la personne) nous ont permis d'acquérir les qualités requises pour assumer ces missions.",
+    "p2": "Nous avons opté pour une présence physique et non une boîte à clés, impersonnelle et non sécurisée. Être accueilli en personne change la qualité de la location.",
+    "values": [
+      { "label": "Accueil humain", "text": "Chaque voyageur est accueilli en personne, jamais une boîte à clés." },
+      { "label": "Confiance", "text": "Créée en 2019, notre expérience s'enrichit chaque année au contact des voyageurs et des propriétaires." },
+      { "label": "Sérénité", "text": "Souriants, sociables et accueillants, nous prenons à cœur notre métier et assurerons à vos clients un séjour de qualité." }
+    ]
+  },
+  "prestations": {
+    "eyebrow": "Ce que nous faisons",
+    "title": "Nos prestations",
+    "items": [
+      { "title": "Création d'annonces", "desc": "Rédaction et photos sur Airbnb & Booking" },
+      { "title": "Planification", "desc": "Gestion des plannings et tarification" },
+      { "title": "Confirmation", "desc": "Suivi et confirmation de vos réservations" },
+      { "title": "Déclaration nuitées", "desc": "Sur la plateforme dédiée" },
+      { "title": "Gestion du logement", "desc": "Durant la vacance de votre bien" },
+      { "title": "Arrivées & départs", "desc": "Présence physique, état des lieux" },
+      { "title": "Ménage", "desc": "Entre les locations, à la charge du voyageur" },
+      { "title": "Blanchisserie", "desc": "Linge frais pour chaque voyageur" },
+      { "title": "Petit entretien", "desc": "Bricolage et appel dépannage" },
+      { "title": "Guides touristiques", "desc": "Mise à disposition pour vos voyageurs" },
+      { "title": "Accompagnement", "desc": "Aide aux vacanciers durant leur séjour" }
+    ]
+  },
+  "ownerPricing": {
+    "eyebrow": "Tarifs propriétaires",
+    "title": "Des tarifs clairs, sans surprise",
+    "subtitle": "Vous avez la possibilité de combiner différentes prestations ou de choisir un pack complet, en fonction de vos besoins. Les packs sont proposés sur devis.",
+    "billing_title": "Facturation fin de mois.",
+    "billing_detail": "Le ménage et la blanchisserie sont à la charge du voyageur — vous conservez l'intégralité de vos revenus locatifs.",
+    "phase1": "Phase 1",
+    "beforeStay": "Avant le séjour",
+    "phase2": "Phase 2",
+    "duringStay": "Durant le séjour",
+    "quoteBtn": "Demander un devis",
+    "packNote": "Pack complet disponible sur devis — ex : Check-in + Check-out + ménage. Appelez-nous au 06.59.76.91.94.",
+    "before": [
+      { "label": "Gestion de réservations", "price": "15 €", "unit": "/ réservation", "detail": "Mise en ligne annonce + photos sur Airbnb & Booking, tarification, déclaration Mairie, relation hôtes jusqu'à l'arrivée, déclaration taxe de séjour." },
+      { "label": "Ménage", "price": "Forfait", "unit": "", "detail": "Tarif déterminé selon la taille et la composition de votre logement — à la charge du voyageur." },
+      { "label": "Grand lit", "price": "20 €", "unit": "", "detail": "Blanchisserie draps grand lit — à la charge du voyageur." },
+      { "label": "Petit lit", "price": "15 €", "unit": "", "detail": "Blanchisserie draps petit lit — à la charge du voyageur." },
+      { "label": "Kit serviettes", "price": "5 €", "unit": "/ personne", "detail": "Une grande + une petite serviette — à la charge du voyageur." }
+    ],
+    "during": [
+      { "label": "Check-in / Check-out", "price": "55 €", "detail": "Accueil en personne à l'arrivée et état des lieux à la sortie." },
+      { "label": "Shopping & traiteurs", "price": "Sur devis", "detail": "Courses, réservation de traiteurs et services sur-mesure." },
+      { "label": "Conciergerie durant le séjour", "price": "Incluse", "detail": "Disponibilité pour vos hôtes si nécessaire durant tout le séjour." }
+    ]
+  },
+  "tarifs_v": {
+    "eyebrow": "Tarifs voyageurs",
+    "title1": "Des services,",
+    "title2": "à votre mesure",
+    "subtitle": "Des packs peuvent être combinés selon vos besoins — contactez-nous pour un devis personnalisé.",
+    "included": "Inclus",
+    "contactBtn": "Nous contacter",
+    "packNote": "Pack complet disponible sur devis — ex : Check-in + Check-out + ménage.",
+    "services": [
+      {
+        "name": "Accueil",
+        "tagline": "Arrivée & départ",
+        "price": "55",
+        "unit": "€",
+        "features": [
+          "Check-in en personne à l'arrivée",
+          "État des lieux à l'entrée",
+          "Remise des clés et présentation du logement",
+          "Check-out et contrôle à la sortie",
+          "Conciergerie disponible durant tout le séjour"
+        ]
+      },
+      {
+        "name": "Ménage",
+        "tagline": "Entre chaque location",
+        "price": "Sur forfait",
+        "unit": "",
+        "features": [
+          "Nettoyage complet du logement",
+          "Forfait déterminé selon la superficie",
+          "Et la composition de votre bien",
+          "Réalisé entre chaque location",
+          "À la charge du voyageur"
+        ]
+      },
+      {
+        "name": "Blanchisserie",
+        "tagline": "Linge frais à chaque séjour",
+        "price": "dès 5",
+        "unit": "€",
+        "features": [
+          "Grand lit : 20 €",
+          "Petit lit : 15 €",
+          "Kit serviettes : 5 € / personne",
+          "Grande + petite serviette incluses",
+          "À la charge du voyageur"
+        ]
+      }
+    ]
+  },
   "sete": {
     "eyebrow1": "Sète",
     "title1": "La Venise du Languedoc",
     "eyebrow2": "À faire",
     "title2": "Explorez Sète",
-    "eyebrow3": "Georges Brassens",
-    "title3": "Né à Sète"
+    "nearby": "À proximité",
+    "activities": [
+      { "category": "Plages & Nature", "items": [
+        { "name": "Plages de la Corniche", "detail": "12 km de sable fin" },
+        { "name": "Étang de Thau", "detail": "Flamants roses & huîtres" },
+        { "name": "Mont Saint-Clair", "detail": "Panorama à 183 m" },
+        { "name": "Le Lido", "detail": "Cordon littoral entre mer et étang" }
+      ]},
+      { "category": "Culture & Patrimoine", "items": [
+        { "name": "Cimetière Marin", "detail": "Brassens, Paul Valéry" },
+        { "name": "Musée Paul Valéry", "detail": "Art méditerranéen" },
+        { "name": "MIAM", "detail": "Arts Modestes contemporains" },
+        { "name": "Maison Brassens", "detail": "Musée du chansonnier sétois" }
+      ]},
+      { "category": "Gastronomie", "items": [
+        { "name": "Tielle sétoise", "detail": "Tourte aux poulpes, spécialité locale" },
+        { "name": "Huîtres de Thau", "detail": "Dégustation au bord de l'étang" },
+        { "name": "Macarons de Sète", "detail": "Douceur moelleuse depuis 1809" },
+        { "name": "Terrasses sur les quais", "detail": "Restaurants le long des canaux" }
+      ]},
+      { "category": "Sports & Activités", "items": [
+        { "name": "Joutes languedociennes", "detail": "Sport traditionnel estival" },
+        { "name": "Voile & Nautisme", "detail": "École de voile, location de bateaux" },
+        { "name": "Vélo sur le Lido", "detail": "Piste cyclable face à la mer" },
+        { "name": "Kayak & Paddle", "detail": "Canaux et lagune de Thau" }
+      ]}
+    ]
   }
 }

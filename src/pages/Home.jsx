@@ -27,6 +27,7 @@ const SETE_AERIAL    = "https://images.unsplash.com/photo-1507525428034-b723cf96
 const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=80";
 
 export default function Home() {
+  const { t } = useTranslation();
   const [visitorType, setVisitorType] = useState(null);
 
   useEffect(() => {
@@ -71,9 +72,9 @@ export default function Home() {
               image={SETE_AERIAL}
               wordTop="Séjour"
               wordBottom="Sète"
-              eyebrow="Locations · Sète"
-              tagline="Vivez Sète comme un local, respirez comme en vacances"
-              ctaLabel="Voir les locations"
+              eyebrow={t("hero.voyageur.eyebrow")}
+              tagline={t("hero.voyageur.tagline")}
+              ctaLabel={t("hero.voyageur.cta")}
               ctaHref="#locations"
               visitorType="voyageur"
             />
@@ -102,9 +103,9 @@ export default function Home() {
               image={BED_IMMACULATE}
               wordTop="Conciergerie"
               wordBottom="Sète"
-              eyebrow="Propriétaires · Sète"
-              tagline="Votre bien, entre de bonnes mains"
-              ctaLabel="Découvrir nos services"
+              eyebrow={t("hero.owner.eyebrow")}
+              tagline={t("hero.owner.tagline")}
+              ctaLabel={t("hero.owner.cta")}
               ctaHref="#services"
               visitorType="proprietaire"
             />

@@ -57,7 +57,23 @@
   },
   "weather": {
     "eyebrow": "Weather · Sète",
-    "title": "The next 15 days"
+    "title": "The next 15 days",
+    "loading": "Loading…",
+    "error": "Weather temporarily unavailable.",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "wmo_0": "Sunny",
+    "wmo_1": "Partly cloudy",
+    "wmo_3": "Overcast",
+    "wmo_48": "Foggy",
+    "wmo_55": "Drizzle",
+    "wmo_65": "Rain",
+    "wmo_75": "Snow",
+    "wmo_82": "Showers",
+    "wmo_86": "Snow showers",
+    "wmo_99": "Thunderstorm"
   },
   "sea": {
     "label": "Swimming conditions · Sète · 7 days",
@@ -194,12 +210,163 @@
     "cta": "Speak to an expert",
     "per_night": "/night"
   },
+  "hero": {
+    "voyageur": {
+      "eyebrow": "Rentals · Sète",
+      "tagline": "Experience Sète like a local, breathe like you're on holiday",
+      "cta": "View our rentals"
+    },
+    "owner": {
+      "eyebrow": "Property owners · Sète",
+      "tagline": "Your property, in good hands",
+      "cta": "Discover our services"
+    }
+  },
+  "services": {
+    "eyebrow": "Our commitments",
+    "title1": "Every detail,",
+    "title2": "crafted for you",
+    "items": [
+      { "title": "Booking management", "description": "Complete management of your calendar, pricing and reservation confirmation on Airbnb and Booking." },
+      { "title": "Check-in & check-out", "description": "Personal welcome of your guests, property inspection and support throughout their stay." },
+      { "title": "Total peace of mind", "description": "Cleaning, laundry, minor maintenance and property management between stays. Your property is in safe hands." }
+    ]
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Because every traveller deserves a real welcome",
+    "title_em": "a real welcome",
+    "p1": "We are a passionate couple who take charge of your property — whether it is your primary or secondary residence. Our backgrounds in hospitality, catering, and personal care have given us the skills needed to carry out these responsibilities.",
+    "p2": "We chose a personal physical presence over an impersonal key safe. Being greeted in person genuinely elevates the quality of the stay.",
+    "values": [
+      { "label": "Human welcome", "text": "Every guest is welcomed in person — never a key safe." },
+      { "label": "Trust", "text": "Founded in 2019, our experience grows richer every year through our guests and property owners." },
+      { "label": "Peace of mind", "text": "Warm, social and welcoming, we take our work to heart and ensure your guests enjoy a high-quality stay." }
+    ]
+  },
+  "prestations": {
+    "eyebrow": "What we do",
+    "title": "Our services",
+    "items": [
+      { "title": "Listing creation", "desc": "Writing and photos on Airbnb & Booking" },
+      { "title": "Planning", "desc": "Calendar management and pricing" },
+      { "title": "Confirmation", "desc": "Booking follow-up and confirmation" },
+      { "title": "Night declarations", "desc": "On the dedicated platform" },
+      { "title": "Property management", "desc": "During periods of vacancy" },
+      { "title": "Arrivals & departures", "desc": "Physical presence, property inspection" },
+      { "title": "Cleaning", "desc": "Between stays, charged to the guest" },
+      { "title": "Laundry", "desc": "Fresh linen for every guest" },
+      { "title": "Minor maintenance", "desc": "DIY and emergency call-outs" },
+      { "title": "Tourist guides", "desc": "Provided for your guests" },
+      { "title": "Guest support", "desc": "Assistance during the stay" }
+    ]
+  },
+  "ownerPricing": {
+    "eyebrow": "Owner rates",
+    "title": "Clear pricing, no surprises",
+    "subtitle": "You can combine different services or choose a full package to suit your needs. Packages are available on request.",
+    "billing_title": "End-of-month billing.",
+    "billing_detail": "Cleaning and laundry are charged to the guest — you keep 100% of your rental income.",
+    "phase1": "Phase 1",
+    "beforeStay": "Before the stay",
+    "phase2": "Phase 2",
+    "duringStay": "During the stay",
+    "quoteBtn": "Request a quote",
+    "packNote": "Full package available on request — e.g. Check-in + Check-out + cleaning. Call us on 06.59.76.91.94.",
+    "before": [
+      { "label": "Booking management", "price": "€15", "unit": "/ booking", "detail": "Listing + photos on Airbnb & Booking, pricing, Town Hall declaration, host relations until arrival, tourist tax declaration." },
+      { "label": "Cleaning", "price": "Package", "unit": "", "detail": "Rate determined by the size and layout of your property — charged to the guest." },
+      { "label": "Double bed", "price": "€20", "unit": "", "detail": "Laundry for double bed linen — charged to the guest." },
+      { "label": "Single bed", "price": "€15", "unit": "", "detail": "Laundry for single bed linen — charged to the guest." },
+      { "label": "Towel kit", "price": "€5", "unit": "/ person", "detail": "One large + one small towel — charged to the guest." }
+    ],
+    "during": [
+      { "label": "Check-in / Check-out", "price": "€55", "detail": "Personal welcome on arrival and property inspection on departure." },
+      { "label": "Shopping & catering", "price": "On request", "detail": "Grocery runs, catering bookings and bespoke services." },
+      { "label": "Concierge during stay", "price": "Included", "detail": "Available for your guests whenever needed throughout the stay." }
+    ]
+  },
+  "tarifs_v": {
+    "eyebrow": "Guest rates",
+    "title1": "Services,",
+    "title2": "tailored to you",
+    "subtitle": "Packages can be combined to suit your needs — contact us for a personalised quote.",
+    "included": "Included",
+    "contactBtn": "Contact us",
+    "packNote": "Full package available on request — e.g. Check-in + Check-out + cleaning.",
+    "services": [
+      {
+        "name": "Welcome",
+        "tagline": "Arrival & departure",
+        "price": "55",
+        "unit": "€",
+        "features": [
+          "Personal check-in on arrival",
+          "Property inspection at entry",
+          "Key handover and property walkthrough",
+          "Check-out and final inspection",
+          "Concierge available throughout the stay"
+        ]
+      },
+      {
+        "name": "Cleaning",
+        "tagline": "Between each stay",
+        "price": "Package rate",
+        "unit": "",
+        "features": [
+          "Full property clean",
+          "Package rate based on size",
+          "And layout of your property",
+          "Carried out between each stay",
+          "Charged to the guest"
+        ]
+      },
+      {
+        "name": "Laundry",
+        "tagline": "Fresh linen every stay",
+        "price": "from €5",
+        "unit": "",
+        "features": [
+          "Double bed: €20",
+          "Single bed: €15",
+          "Towel kit: €5 / person",
+          "Large + small towel included",
+          "Charged to the guest"
+        ]
+      }
+    ]
+  },
   "sete": {
     "eyebrow1": "Sète",
     "title1": "The Venice of the Languedoc",
     "eyebrow2": "Things to do",
     "title2": "Explore Sète",
-    "eyebrow3": "Georges Brassens",
-    "title3": "Born in Sète"
+    "nearby": "Nearby",
+    "activities": [
+      { "category": "Beaches & Nature", "items": [
+        { "name": "Corniche beaches", "detail": "12 km of fine sand" },
+        { "name": "Étang de Thau", "detail": "Flamingos & oysters" },
+        { "name": "Mont Saint-Clair", "detail": "Panoramic view at 183 m" },
+        { "name": "Le Lido", "detail": "Coastal strip between sea and lagoon" }
+      ]},
+      { "category": "Culture & Heritage", "items": [
+        { "name": "Cimetière Marin", "detail": "Brassens, Paul Valéry" },
+        { "name": "Musée Paul Valéry", "detail": "Mediterranean art" },
+        { "name": "MIAM", "detail": "Contemporary modest arts" },
+        { "name": "Maison Brassens", "detail": "Museum of the Sète singer" }
+      ]},
+      { "category": "Gastronomy", "items": [
+        { "name": "Tielle sétoise", "detail": "Octopus pie, local speciality" },
+        { "name": "Thau oysters", "detail": "Tasting by the lagoon" },
+        { "name": "Sète macarons", "detail": "Soft delicacy since 1809" },
+        { "name": "Quayside terraces", "detail": "Restaurants along the canals" }
+      ]},
+      { "category": "Sports & Activities", "items": [
+        { "name": "Languedoc jousting", "detail": "Traditional summer sport" },
+        { "name": "Sailing & Watersports", "detail": "Sailing school, boat hire" },
+        { "name": "Cycling on the Lido", "detail": "Cycle path facing the sea" },
+        { "name": "Kayak & Paddle", "detail": "Canals and Thau lagoon" }
+      ]}
+    ]
   }
 }

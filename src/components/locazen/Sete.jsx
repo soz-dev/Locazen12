@@ -64,6 +64,9 @@ const NEARBY = [
 
 export default function Sete() {
   const { t } = useTranslation();
+  const activities = t("sete.activities", { returnObjects: true });
+  const ACTIVITY_ICONS = [Waves, Landmark, Utensils, Bike];
+  const ACTIVITY_ACCENTS = ["#38BDF8", "#C4A96B", "#F59E0B", "#34D399"];
   const { scrollYProgress } = useScroll();
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
@@ -124,8 +127,9 @@ export default function Sete() {
 
           {/* Grille 4 catégories */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-            {ACTIVITIES.map((cat, i) => {
-              const Icon = cat.icon;
+            {Array.isArray(activities) && activities.map((cat, i) => {
+              const Icon = ACTIVITY_ICONS[i] ?? Waves;
+              const accent = ACTIVITY_ACCENTS[i] ?? "#38BDF8";
               return (
                 <motion.div
                   key={cat.category}
@@ -137,15 +141,15 @@ export default function Sete() {
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
-                    style={{ backgroundColor: `${cat.accent}18` }}
+                    style={{ backgroundColor: `${accent}18` }}
                   >
-                    <Icon size={20} style={{ color: cat.accent }} />
+                    <Icon size={20} style={{ color: accent }} />
                   </div>
                   <h4 className="font-heading text-base font-light text-[#1A2535] mb-4 leading-snug">
                     {cat.category}
                   </h4>
                   <ul className="space-y-3">
-                    {cat.items.map((item) => (
+                    {Array.isArray(cat.items) && cat.items.map((item) => (
                       <li key={item.name}>
                         <p className="text-sm text-[#2D2D2D] font-body font-medium leading-tight">
                           {item.name}

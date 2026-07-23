@@ -2,36 +2,23 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ServiceCard from "@/components/locazen/ServiceCard";
+import { useTranslation } from "react-i18next";
 
-const KEYS_IMG   = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80";
-const ROOM_IMG   = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80";
-const TOWEL_IMG  = "https://images.unsplash.com/photo-1615529151169-7b1ff50dc7f2?auto=format&fit=crop&w=800&q=80";
-
-const services = [
-  {
-    title: "Suivi de vos réservations",
-    description: "Gestion complète de vos plannings, tarification et confirmation de réservations sur Airbnb et Booking.",
-    image: ROOM_IMG,
-    alt: "Chambre d'hôtel impeccable, lit parfaitement fait, linge blanc immaculé",
-    href: "#prestations",
-  },
-  {
-    title: "Gestion des arrivées & départs",
-    description: "Accueil en personne de vos voyageurs, état des lieux et accompagnement tout au long du séjour.",
-    image: KEYS_IMG,
-    alt: "Remise de clés professionnelle, signature de bail, accueil propriétaire",
-    href: "#apropos",
-  },
-  {
-    title: "Sérénité totale",
-    description: "Ménage, blanchisserie, petit entretien et gestion du logement entre les locations. Votre bien est entre de bonnes mains.",
-    image: TOWEL_IMG,
-    alt: "Serviettes soigneusement pliées et disposées, chambre préparée avec soin",
-    href: "#prestations",
-  },
+const IMAGES = [
+  "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1615529151169-7b1ff50dc7f2?auto=format&fit=crop&w=800&q=80",
 ];
 
 export default function Services() {
+  const { t } = useTranslation();
+  const items = t("services.items", { returnObjects: true });
+  const services = items.map((item, i) => ({
+    ...item,
+    image: IMAGES[i],
+    alt: "",
+    href: i === 0 ? "#prestations" : i === 1 ? "#apropos" : "#prestations",
+  }));
   const scrollRef = useRef(null);
 
   const scroll = (dir) => {
@@ -52,11 +39,11 @@ export default function Services() {
           className="mb-16"
         >
           <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Nos engagements
+            {t("services.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#2D2D2D] leading-tight">
-            Chaque détail,<br />
-            <span className="italic">pensé pour vous</span>
+            {t("services.title1")}<br />
+            <span className="italic">{t("services.title2")}</span>
           </h2>
         </motion.div>
 

@@ -1,24 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, Sparkles, Info } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80";
 
-const beforeStay = [
-  { label: "Gestion de réservations", price: "15 €", unit: "/ réservation", detail: "Mise en ligne annonce + photos sur Airbnb & Booking, tarification, déclaration Mairie, relation hôtes jusqu'à l'arrivée, déclaration taxe de séjour." },
-  { label: "Ménage", price: "Forfait", unit: "", detail: "Tarif déterminé selon la taille et la composition de votre logement — à la charge du voyageur." },
-  { label: "Grand lit", price: "20 €", unit: "", detail: "Blanchisserie draps grand lit — à la charge du voyageur." },
-  { label: "Petit lit", price: "15 €", unit: "", detail: "Blanchisserie draps petit lit — à la charge du voyageur." },
-  { label: "Kit serviettes", price: "5 €", unit: "/ personne", detail: "Une grande + une petite serviette — à la charge du voyageur." },
-];
-
-const duringStay = [
-  { label: "Check-in / Check-out", price: "55 €", detail: "Accueil en personne à l'arrivée et état des lieux à la sortie." },
-  { label: "Shopping & traiteurs", price: "Sur devis", detail: "Courses, réservation de traiteurs et services sur-mesure." },
-  { label: "Conciergerie durant le séjour", price: "Incluse", detail: "Disponibilité pour vos hôtes si nécessaire durant tout le séjour." },
-];
-
 export default function OwnerPricing() {
+  const { t } = useTranslation();
+  const beforeStay = t("ownerPricing.before", { returnObjects: true });
+  const duringStay = t("ownerPricing.during", { returnObjects: true });
   return (
     <section id="tarifs" className="py-24 md:py-32 bg-[#F7F5F2]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -42,18 +32,18 @@ export default function OwnerPricing() {
           </div>
           <div>
             <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
-              Tarifs propriétaires
+              {t("ownerPricing.eyebrow")}
             </p>
             <h2 className="font-heading text-4xl md:text-5xl font-light text-[#2D2D2D] leading-tight mb-6">
-              Des tarifs <span className="italic">clairs</span>,<br />sans surprise
+              {t("ownerPricing.title")}
             </h2>
             <p className="text-[#2D2D2D]/70 font-body text-base leading-relaxed mb-6">
-              Vous avez la possibilité de combiner différentes prestations ou de choisir un pack complet, en fonction de vos besoins. Les packs sont proposés sur devis.
+              {t("ownerPricing.subtitle")}
             </p>
             <div className="flex items-start gap-3 p-5 bg-[#E5E0DA]/40">
               <Sparkles size={18} className="text-[#C4A96B] flex-shrink-0 mt-0.5" />
               <p className="text-[#2D2D2D]/70 text-sm font-body">
-                <span className="font-medium text-[#2D2D2D]">Facturation fin de mois.</span> Le ménage et la blanchisserie sont à la charge du voyageur — vous conservez l'intégralité de vos revenus locatifs.
+                <span className="font-medium text-[#2D2D2D]">{t("ownerPricing.billing_title")}</span> {t("ownerPricing.billing_detail")}
               </p>
             </div>
           </div>
@@ -70,8 +60,8 @@ export default function OwnerPricing() {
             transition={{ duration: 0.7 }}
             className="bg-[#2D2D2D] p-8 md:p-10"
           >
-            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 1</p>
-            <h3 className="font-heading text-2xl font-light text-[#F7F5F2] mb-8">Avant le séjour</h3>
+            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">{t("ownerPricing.phase1")}</p>
+            <h3 className="font-heading text-2xl font-light text-[#F7F5F2] mb-8">{t("ownerPricing.beforeStay")}</h3>
             <div className="space-y-6">
               {beforeStay.map((item, i) => (
                 <motion.div
@@ -102,8 +92,8 @@ export default function OwnerPricing() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="border border-[#E5E0DA] p-8 md:p-10 flex flex-col"
           >
-            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 2</p>
-            <h3 className="font-heading text-2xl font-light text-[#2D2D2D] mb-8">Durant le séjour</h3>
+            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">{t("ownerPricing.phase2")}</p>
+            <h3 className="font-heading text-2xl font-light text-[#2D2D2D] mb-8">{t("ownerPricing.duringStay")}</h3>
             <div className="space-y-6 flex-1">
               {duringStay.map((item, i) => (
                 <motion.div
@@ -127,13 +117,13 @@ export default function OwnerPricing() {
               onClick={(e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
               className="mt-8 px-6 py-4 bg-[#2D2D2D] text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body text-center hover:bg-[#2D2D2D]/80 transition-colors duration-300 min-h-[44px] flex items-center justify-center"
             >
-              Demander un devis
+              {t("ownerPricing.quoteBtn")}
             </a>
           </motion.div>
         </div>
 
         <p className="text-center text-[#2D2D2D]/40 text-xs font-body mt-10">
-          Pack complet disponible sur devis — ex : Check-in + Check-out + ménage. Appelez-nous au 06.59.76.91.94.
+          {t("ownerPricing.packNote")}
         </p>
       </div>
     </section>

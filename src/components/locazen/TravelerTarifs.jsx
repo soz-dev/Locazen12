@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, Waves } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // V — Vacation theme: cyan ocean, amber sun, sky backgrounds
 const V = {
@@ -64,6 +65,8 @@ const services = [
 ];
 
 export default function TravelerTarifs() {
+  const { t } = useTranslation();
+  const services = t("tarifs_v.services", { returnObjects: true });
   return (
     <section id="tarifs" className={`pt-10 pb-20 md:pt-12 md:pb-28 ${V.bg}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -76,13 +79,13 @@ export default function TravelerTarifs() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <Waves size={13} className={V.accent} />
-            <p className={`text-xs tracking-[0.3em] uppercase font-body ${V.accent}`}>Tarifs voyageurs</p>
+            <p className={`text-xs tracking-[0.3em] uppercase font-body ${V.accent}`}>{t("tarifs_v.eyebrow")}</p>
           </div>
           <h2 className={`font-heading text-4xl md:text-5xl lg:text-6xl font-light ${V.title}`}>
-            Des services,<br /><span className="italic text-[#F59E0B]">à votre mesure</span>
+            {t("tarifs_v.title1")}<br /><span className="italic text-[#F59E0B]">{t("tarifs_v.title2")}</span>
           </h2>
           <p className={`mt-6 font-body text-sm max-w-md mx-auto ${V.muted}`}>
-            Des packs peuvent être combinés selon vos besoins — contactez-nous pour un devis personnalisé.
+            {t("tarifs_v.subtitle")}
           </p>
         </motion.div>
 
@@ -98,7 +101,7 @@ export default function TravelerTarifs() {
             >
               {p.highlight && (
                 <span className={`absolute top-6 right-6 px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-body ${V.badge}`}>
-                  Inclus
+                  {t("tarifs_v.included")}
                 </span>
               )}
               <h3 className={`font-heading text-3xl font-light mb-1 ${p.highlight ? "text-white" : V.title}`}>
@@ -134,13 +137,13 @@ export default function TravelerTarifs() {
                     : "border border-[#0891B2] text-[#0891B2] hover:bg-[#0891B2] hover:text-white"
                 }`}
               >
-                Nous contacter
+                {t("tarifs_v.contactBtn")}
               </a>
             </motion.div>
           ))}
         </div>
         <p className={`text-center text-xs font-body mt-10 ${V.footer}`}>
-          Pack complet disponible sur devis — ex : Check-in + Check-out + ménage.
+          {t("tarifs_v.packNote")}
         </p>
       </div>
     </section>
