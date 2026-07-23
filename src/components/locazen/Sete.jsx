@@ -66,7 +66,8 @@ export default function Sete() {
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section id="sete" className="relative overflow-hidden bg-[#2D2D2D]">
+    <>
+      <section id="sete" className="relative overflow-hidden bg-[#2D2D2D]">
 
       {/* Image plein-écran — Port de Sète */}
       <div className="relative h-[70vh] md:h-[80vh]">
@@ -100,11 +101,11 @@ export default function Sete() {
         </div>
       </div>
 
-      {/* Activités + Brassens */}
-      <div className="bg-[#2D2D2D] py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
+      </section>
 
-          {/* Titre section */}
+      {/* ── 2. Activités — fond clair ── */}
+      <section className="bg-[#F0F9FF] py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,10 +113,10 @@ export default function Sete() {
             transition={{ duration: 0.8 }}
             className="text-center mb-14"
           >
-            <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-3">
+            <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-3">
               Quoi faire à Sète
             </p>
-            <h3 className="font-heading text-3xl md:text-4xl font-light text-[#F7F5F2]">
+            <h3 className="font-heading text-3xl md:text-4xl font-light text-[#1A2535]">
               Une ville, mille{" "}
               <span className="italic">découvertes</span>
             </h3>
@@ -132,24 +133,24 @@ export default function Sete() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors duration-300"
+                  className="bg-white rounded-2xl p-6 shadow-sm border border-[#E0F2FE] hover:shadow-md transition-shadow duration-300"
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
-                    style={{ backgroundColor: `${cat.accent}25` }}
+                    style={{ backgroundColor: `${cat.accent}18` }}
                   >
                     <Icon size={20} style={{ color: cat.accent }} />
                   </div>
-                  <h4 className="font-heading text-base font-light text-[#F7F5F2] mb-4 leading-snug">
+                  <h4 className="font-heading text-base font-light text-[#1A2535] mb-4 leading-snug">
                     {cat.category}
                   </h4>
                   <ul className="space-y-3">
                     {cat.items.map((item) => (
                       <li key={item.name}>
-                        <p className="text-sm text-[#F7F5F2]/80 font-body font-medium leading-tight">
+                        <p className="text-sm text-[#2D2D2D] font-body font-medium leading-tight">
                           {item.name}
                         </p>
-                        <p className="text-xs text-[#F7F5F2]/35 font-body mt-0.5">
+                        <p className="text-xs text-[#2D2D2D]/45 font-body mt-0.5">
                           {item.detail}
                         </p>
                       </li>
@@ -166,11 +167,11 @@ export default function Sete() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="border-t border-white/10 pt-10"
+            className="border-t border-[#BFDBFE] pt-10"
           >
             <div className="flex items-center gap-2 mb-5">
-              <Clock size={14} className="text-[#F7F5F2]/35" />
-              <p className="text-[#F7F5F2]/35 text-xs tracking-[0.25em] uppercase font-body">
+              <Clock size={14} className="text-[#0891B2]/50" />
+              <p className="text-[#0891B2]/60 text-xs tracking-[0.25em] uppercase font-body">
                 À proximité
               </p>
             </div>
@@ -178,23 +179,25 @@ export default function Sete() {
               {NEARBY.map((n) => (
                 <div
                   key={n.city}
-                  className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2"
+                  className="flex items-center gap-2 bg-white border border-[#BFDBFE] rounded-full px-4 py-2"
                 >
-                  <span className="text-[#F7F5F2]/75 text-sm font-body">{n.city}</span>
-                  <span className="text-[#F7F5F2]/30 text-xs font-body">{n.time}</span>
+                  <span className="text-[#1A2535] text-sm font-body">{n.city}</span>
+                  <span className="text-[#0891B2] text-xs font-body font-medium">{n.time}</span>
                 </div>
               ))}
             </div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Citation Brassens */}
+      {/* ── 3. Brassens — fond sombre ── */}
+      <section className="bg-[#2D2D2D] py-16 md:py-24">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2 }}
-          className="max-w-3xl mx-auto px-6 text-center mt-24"
+          className="max-w-3xl mx-auto px-6 text-center"
         >
           <blockquote className="font-heading text-2xl md:text-3xl font-light text-[#F7F5F2]/80 italic leading-relaxed">
             « L'amitié n'exige rien en retour, que de l'entretien »
@@ -220,7 +223,7 @@ export default function Sete() {
             1921 — 1981 · Sète
           </p>
         </motion.div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
