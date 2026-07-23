@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Contact({ visitorType = "proprietaire" }) {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", subject: visitorType === "voyageur" ? "Demande de location" : "Demande de conciergerie", message: "" });
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
@@ -57,15 +59,13 @@ export default function Contact({ visitorType = "proprietaire" }) {
           className="mb-14 md:mb-20"
         >
           <p className={`${accentCls} text-xs tracking-[0.3em] uppercase font-body mb-4`}>
-            Nous écrire
+            {t("contact.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-6xl font-light text-[#F7F5F2] tracking-[0.05em]">
-            Contact
+            {t("contact.title")}
           </h2>
           <p className="mt-4 text-[#F7F5F2]/50 text-sm font-body max-w-md">
-            {visitorType === "voyageur"
-              ? "Une question sur nos locations ? On vous répond sous 24h."
-              : "Un projet de conciergerie ? Parlons-en."}
+            {visitorType === "voyageur" ? t("contact.subtitleVoyageur") : t("contact.subtitleOwner")}
           </p>
         </motion.div>
 
@@ -81,19 +81,19 @@ export default function Contact({ visitorType = "proprietaire" }) {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">Nom</label>
+                <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">{t("contact.name")}</label>
                 <input
                   type="text"
                   name="name"
                   value={form.name}
                   onChange={handleChange}
                   required
-                  placeholder="Votre nom"
+                  placeholder={t("contact.namePlaceholder")}
                   className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors`}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">Email</label>
+                <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">{t("contact.email")}</label>
                 <input
                   type="email"
                   name="email"
@@ -107,7 +107,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">Sujet</label>
+              <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">{t("contact.subject")}</label>
               <select
                 name="subject"
                 value={form.subject}
@@ -116,31 +116,31 @@ export default function Contact({ visitorType = "proprietaire" }) {
               >
                 {visitorType === "voyageur" ? (
                   <>
-                    <option value="Demande de location" style={{ backgroundColor: optBg }}>Demande de location</option>
-                    <option value="Disponibilités" style={{ backgroundColor: optBg }}>Disponibilités</option>
-                    <option value="Tarifs et prestations" style={{ backgroundColor: optBg }}>Tarifs et prestations</option>
-                    <option value="Autre" style={{ backgroundColor: optBg }}>Autre</option>
+                    <option value="Demande de location" style={{ backgroundColor: optBg }}>{t("contact.opt_rental")}</option>
+                    <option value="Disponibilités" style={{ backgroundColor: optBg }}>{t("contact.opt_availability")}</option>
+                    <option value="Tarifs et prestations" style={{ backgroundColor: optBg }}>{t("contact.opt_pricing")}</option>
+                    <option value="Autre" style={{ backgroundColor: optBg }}>{t("contact.opt_other")}</option>
                   </>
                 ) : (
                   <>
-                    <option value="Demande de conciergerie" style={{ backgroundColor: optBg }}>Demande de conciergerie</option>
-                    <option value="Estimation de revenus" style={{ backgroundColor: optBg }}>Estimation de revenus</option>
-                    <option value="Gestion de bien" style={{ backgroundColor: optBg }}>Gestion de bien</option>
-                    <option value="Autre" style={{ backgroundColor: optBg }}>Autre</option>
+                    <option value="Demande de conciergerie" style={{ backgroundColor: optBg }}>{t("contact.opt_concierge")}</option>
+                    <option value="Estimation de revenus" style={{ backgroundColor: optBg }}>{t("contact.opt_estimate")}</option>
+                    <option value="Gestion de bien" style={{ backgroundColor: optBg }}>{t("contact.opt_management")}</option>
+                    <option value="Autre" style={{ backgroundColor: optBg }}>{t("contact.opt_other")}</option>
                   </>
                 )}
               </select>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">Message</label>
+              <label className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/40 font-body">{t("contact.message")}</label>
               <textarea
                 name="message"
                 value={form.message}
                 onChange={handleChange}
                 required
                 rows={5}
-                placeholder="Décrivez votre projet ou votre question..."
+                placeholder={t("contact.messagePlaceholder")}
                 className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors resize-none`}
               />
             </div>
@@ -148,13 +148,13 @@ export default function Contact({ visitorType = "proprietaire" }) {
             {status === "success" && (
               <div className={`flex items-center gap-2 ${accentCls} text-sm font-body`}>
                 <CheckCircle size={16} />
-                Message envoyé — nous vous répondrons sous 24h.
+                {t("contact.success")}
               </div>
             )}
             {status === "error" && (
               <div className="flex items-center gap-2 text-red-400 text-sm font-body">
                 <AlertCircle size={16} />
-                Erreur d'envoi. Réessayez ou appelez le 06.59.76.91.94.
+                {t("contact.error")}
               </div>
             )}
 
@@ -164,7 +164,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
               className={`flex items-center justify-center gap-2 ${btnCls} disabled:opacity-50 py-4 text-xs tracking-[0.2em] uppercase font-body transition-colors duration-300 min-h-[44px]`}
             >
               <Send size={13} />
-              {status === "sending" ? "Envoi en cours…" : "Envoyer le message"}
+              {status === "sending" ? t("contact.sending") : t("contact.send")}
             </button>
           </motion.form>
 
@@ -177,24 +177,24 @@ export default function Contact({ visitorType = "proprietaire" }) {
             className="flex flex-col gap-8 pt-2"
           >
             <div>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Téléphone</p>
+              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">{t("contact.phone")}</p>
               <a href="tel:0659769194" className={`text-[#F7F5F2]/80 ${hoverLink} transition-colors font-body text-sm`}>
                 06.59.76.91.94
               </a>
             </div>
             <div>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Email</p>
+              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">{t("contact.emailLabel")}</p>
               <a href="mailto:soza@live.fr" className={`text-[#F7F5F2]/80 ${hoverLink} transition-colors font-body text-sm`}>
                 soza@live.fr
               </a>
             </div>
             <div>
-              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Localisation</p>
+              <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">{t("contact.location")}</p>
               <p className="text-[#F7F5F2]/80 font-body text-sm">34, rue Lucien Salette — 34200 Sète</p>
             </div>
             <div className="mt-4 pt-8 border-t border-[#F7F5F2]/10">
               <p className="text-[#F7F5F2]/30 text-xs font-body leading-relaxed">
-                Disponible 7j/7 pour accompagner voyageurs et propriétaires. Réponse garantie sous 24h.
+                {t("contact.availability")}
               </p>
             </div>
           </motion.div>

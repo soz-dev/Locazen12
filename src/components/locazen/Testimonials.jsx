@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const TESTIMONIALS = [
   {
@@ -30,6 +31,7 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
+  const { t } = useTranslation();
   return (
     <section className="py-24 md:py-32 bg-[#0C4A6E]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -41,11 +43,11 @@ export default function Testimonials() {
           className="mb-16"
         >
           <p className="text-[#38BDF8] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Ils nous ont fait confiance
+            {t("testimonials.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#F7F5F2] leading-tight">
-            Ce que disent<br />
-            <span className="italic text-[#F59E0B]">nos voyageurs</span>
+            {t("testimonials.title1")}<br />
+            <span className="italic text-[#F59E0B]">{t("testimonials.title2")}</span>
           </h2>
         </motion.div>
 

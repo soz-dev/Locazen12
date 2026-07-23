@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Waves, Thermometer, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const API_URL =
   "https://marine-api.open-meteo.com/v1/marine?latitude=43.4045&longitude=3.6978&daily=wave_height_max,sea_surface_temperature_max&timezone=Europe%2FParis&forecast_days=7";
@@ -15,6 +16,7 @@ function waveInfo(h) {
 }
 
 export default function SeaConditions() {
+  const { t } = useTranslation();
   const [days, setDays] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,7 +45,7 @@ export default function SeaConditions() {
         <div className="flex items-center gap-2 mb-5">
           <Waves size={14} className="text-white/60" />
           <p className="text-white/60 text-[10px] tracking-[0.3em] uppercase font-body">
-            Conditions de baignade · Sète · 7 jours
+              {t("sea.label")}
           </p>
         </div>
 
@@ -66,7 +68,7 @@ export default function SeaConditions() {
                       }`}
                     >
                       <p className={`text-[10px] font-body tracking-wider uppercase ${isToday ? "text-white" : "text-white/50"}`}>
-                        {isToday ? "Auj." : DAYS_FR[d.date.getDay()]}
+                        {isToday ? t("sea.today") : DAYS_FR[d.date.getDay()]}
                       </p>
                       <div
                         className="w-2.5 h-2.5 rounded-full"
@@ -89,10 +91,10 @@ export default function SeaConditions() {
 
             <div className="flex flex-wrap gap-5 mt-5">
               {[
-                { label: "Calme ≤ 0.3m", dot: "#10B981" },
-                { label: "Légère ≤ 0.7m", dot: "#38BDF8" },
-                { label: "Agitée ≤ 1.5m", dot: "#F59E0B" },
-                { label: "Forte > 1.5m",  dot: "#EF4444" },
+                { label: t("sea.calm_range"),  dot: "#10B981" },
+                { label: t("sea.light_range"), dot: "#38BDF8" },
+                { label: t("sea.rough_range"), dot: "#F59E0B" },
+                { label: t("sea.strong_range"),dot: "#EF4444" },
               ].map((l) => (
                 <div key={l.label} className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: l.dot }} />

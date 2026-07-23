@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const TODAY = new Date("2026-07-23");
 
@@ -62,6 +63,7 @@ function countdown(dateStart) {
 }
 
 export default function EventsAgenda() {
+  const { t } = useTranslation();
   return (
     <section id="agenda" className="py-24 md:py-32 bg-[#F0F9FF]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -75,14 +77,14 @@ export default function EventsAgenda() {
           <div className="flex items-center gap-2 mb-4">
             <Calendar size={14} className="text-[#0891B2]" />
             <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body">
-              Agenda
+              {t("agenda.eyebrow")}
             </p>
           </div>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#0C4A6E] leading-tight">
-            Événements à Sète
+            {t("agenda.title")}
           </h2>
           <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body">
-            Vivez Sète au rythme de ses fêtes et traditions.
+            {t("agenda.subtitle")}
           </p>
         </motion.div>
 

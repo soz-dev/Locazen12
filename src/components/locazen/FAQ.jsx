@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const FAQS = {
   voyageur: [
@@ -89,9 +90,10 @@ function FAQItem({ item, isOpen, onToggle, isProprio }) {
 }
 
 export default function FAQ({ visitorType }) {
+  const { t } = useTranslation();
   const [openIdx, setOpenIdx] = useState(null);
   const isProprio = visitorType === "proprietaire";
-  const items = FAQS[visitorType] ?? FAQS.voyageur;
+  const items = t(isProprio ? "faq.owner" : "faq.traveler", { returnObjects: true });
 
   return (
     <section id="faq" className={`py-24 md:py-32 ${isProprio ? "bg-[#F7F5F2]" : "bg-[#F0F9FF]"}`}>
@@ -104,15 +106,15 @@ export default function FAQ({ visitorType }) {
           className="mb-12"
         >
           <p className={`text-xs tracking-[0.3em] uppercase font-body mb-4 ${isProprio ? "text-[#C4A96B]" : "text-[#0891B2]"}`}>
-            Questions fréquentes
+            {t("faq.eyebrow")}
           </p>
           <h2 className={`font-heading text-4xl md:text-5xl font-light leading-tight ${isProprio ? "text-[#1A2535]" : "text-[#0C4A6E]"}`}>
-            FAQ
+            {t("faq.title")}
           </h2>
         </motion.div>
 
         <div className={`border-t ${isProprio ? "border-[#1A2535]/12" : "border-[#0891B2]/12"}`}>
-          {items.map((item, i) => (
+          {Array.isArray(items) && items.map((item, i) => (
             <FAQItem
               key={i}
               item={item}

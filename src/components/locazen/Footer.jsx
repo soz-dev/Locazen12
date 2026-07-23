@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer({ visitorType = "proprietaire" }) {
+  const { t } = useTranslation();
   const isVoyageur = visitorType === "voyageur";
   const footerBg  = isVoyageur ? "bg-[#F0F9FF]"            : "bg-[#F7F5F2]";
   const brandTint = isVoyageur ? "text-[#0C4A6E]/[0.06]"   : "text-[#2D2D2D]/[0.06]";
@@ -37,15 +39,14 @@ export default function Footer({ visitorType = "proprietaire" }) {
               LOCAZEN 12
             </p>
             <p className="text-[#2D2D2D]/50 text-sm font-body">
-              Service de Conciergerie à Sète.<br />
-              L'art de l'accueil, en personne.
+              {t("footer.tagline")}
             </p>
           </div>
 
           {/* Navigation */}
           <div>
             <p className="text-xs tracking-[0.2em] uppercase text-[#2D2D2D]/40 mb-4 font-body">
-              Navigation
+              {t("footer.navigation")}
             </p>
             <div className="flex flex-col gap-3">
               {[
@@ -68,7 +69,7 @@ export default function Footer({ visitorType = "proprietaire" }) {
           {/* Contact */}
           <div>
             <p className="text-xs tracking-[0.2em] uppercase text-[#2D2D2D]/40 mb-4 font-body">
-              Contact
+              {t("footer.contactLabel")}
             </p>
             <div className="flex flex-col gap-4">
               <a
@@ -95,16 +96,16 @@ export default function Footer({ visitorType = "proprietaire" }) {
           {/* Hours / CTA */}
           <div>
             <p className="text-xs tracking-[0.2em] uppercase text-[#2D2D2D]/40 mb-4 font-body">
-              Nous contacter
+              {t("footer.ctaLabel")}
             </p>
             <p className="text-[#2D2D2D]/60 text-sm font-body mb-6">
-              Un projet de location saisonnière ? Nous serions ravis d'en discuter avec vous.
+              {t("footer.ctaText")}
             </p>
             <a
               href="tel:0659769194"
               className={`inline-flex items-center justify-center px-6 py-3 ${btnCls} text-xs tracking-[0.2em] uppercase font-body transition-colors duration-300 min-h-[44px]`}
             >
-              Appelez-nous
+              {t("footer.callUs")}
             </a>
           </div>
         </div>
@@ -112,14 +113,14 @@ export default function Footer({ visitorType = "proprietaire" }) {
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[#2D2D2D]/30 text-xs font-body">
-            © {new Date().getFullYear()} LocaZen — Conciergerie Sète. Tous droits réservés.
+            {t("footer.copyright", { year: new Date().getFullYear() })}
           </p>
           <div className="flex gap-6">
             <a href="#accueil" className={`text-[#2D2D2D]/30 text-xs ${hoverLink} transition-colors font-body`}>
-              Mentions légales
+              {t("footer.legal")}
             </a>
             <a href="#accueil" className={`text-[#2D2D2D]/30 text-xs ${hoverLink} transition-colors font-body`}>
-              Politique de confidentialité
+              {t("footer.privacy")}
             </a>
           </div>
         </div>

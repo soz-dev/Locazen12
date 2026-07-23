@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Search, Sparkles, CalendarCheck, Banknote } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const STEPS = [
   {
@@ -30,6 +31,8 @@ const STEPS = [
 ];
 
 export default function HowItWorks() {
+  const { t } = useTranslation();
+  const steps = t("howItWorks.steps", { returnObjects: true });
   return (
     <section id="comment" className="py-24 md:py-32 bg-[#F7F5F2]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -40,9 +43,9 @@ export default function HowItWorks() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">Notre processus</p>
+          <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">{t("howItWorks.eyebrow")}</p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#1A2535] leading-tight">
-            Comment ça marche ?
+            {t("howItWorks.title")}
           </h2>
         </motion.div>
 
@@ -62,8 +65,8 @@ export default function HowItWorks() {
               <div className="w-10 h-10 flex items-center justify-center bg-[#1A2535] mb-5">
                 <s.Icon size={18} className="text-[#C4A96B]" />
               </div>
-              <h3 className="font-heading text-xl font-light text-[#1A2535] mb-3">{s.title}</h3>
-              <p className="text-[#1A2535]/55 text-sm font-body leading-relaxed">{s.desc}</p>
+              <h3 className="font-heading text-xl font-light text-[#1A2535] mb-3">{steps[i]?.title ?? s.title}</h3>
+              <p className="text-[#1A2535]/55 text-sm font-body leading-relaxed">{steps[i]?.desc ?? s.desc}</p>
               {i < STEPS.length - 1 && (
                 <div className="hidden lg:block absolute top-10 left-[calc(100%+12px)] w-full h-px bg-[#C4A96B]/20" />
               )}

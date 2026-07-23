@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const PROPERTY_TYPES = [
   { key: "studio", label: "Studio", pricePerNight: 75, avgNights: 5 },
@@ -8,6 +9,7 @@ const PROPERTY_TYPES = [
 ];
 
 export default function RevenueSimulator() {
+  const { t } = useTranslation();
   const [weeks, setWeeks] = useState(24);
   const [propKey, setPropKey] = useState("t2");
 
@@ -26,13 +28,13 @@ export default function RevenueSimulator() {
           className="mb-12"
         >
           <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Simulation
+            {t("simulator.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#F7F5F2] leading-tight">
-            Simulez vos revenus
+            {t("simulator.title")}
           </h2>
           <p className="mt-4 text-[#F7F5F2]/40 text-sm font-body">
-            Basé sur les performances moyennes de nos biens à Sète.
+            {t("simulator.subtitle")}
           </p>
         </motion.div>
 
@@ -48,7 +50,7 @@ export default function RevenueSimulator() {
             {/* Type de bien */}
             <div>
               <p className="text-xs tracking-[0.2em] uppercase font-body text-[#F7F5F2]/40 mb-4">
-                Type de bien
+                {t("simulator.type")}
               </p>
               <div className="space-y-3">
                 {PROPERTY_TYPES.map((p) => (
@@ -85,7 +87,7 @@ export default function RevenueSimulator() {
             <div>
               <div className="flex justify-between items-center mb-5">
                 <p className="text-xs tracking-[0.2em] uppercase font-body text-[#F7F5F2]/40">
-                  Semaines louées / an
+                {t("simulator.weeks_label")}
                 </p>
                 <span className="font-heading text-3xl font-light text-[#C4A96B]">
                   {weeks}
@@ -117,7 +119,7 @@ export default function RevenueSimulator() {
           >
             <div className="border border-[#F7F5F2]/10 p-7">
               <p className="text-[#F7F5F2]/40 text-xs font-body tracking-[0.2em] uppercase mb-3">
-                Revenus bruts estimés / mois
+                {t("simulator.monthly")}
               </p>
               <p className="font-heading text-4xl font-light text-[#F7F5F2]">
                 {monthlyGross.toLocaleString("fr-FR")}€
@@ -126,13 +128,13 @@ export default function RevenueSimulator() {
 
             <div className="bg-[#C4A96B] p-7">
               <p className="text-[#1A2535]/55 text-xs font-body tracking-[0.2em] uppercase mb-3">
-                Revenus bruts estimés / an
+                {t("simulator.annual")}
               </p>
               <p className="font-heading text-5xl font-light text-[#1A2535]">
                 {annualGross.toLocaleString("fr-FR")}€
               </p>
               <p className="text-[#1A2535]/45 text-xs font-body mt-3 leading-relaxed">
-                Hors frais de gestion Locazen — voir tarifs ci-dessus.
+                {t("simulator.note")}
               </p>
             </div>
 
@@ -142,7 +144,7 @@ export default function RevenueSimulator() {
               }
               className="w-full py-4 border border-[#F7F5F2]/25 text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#F7F5F2]/10 transition-colors min-h-[44px]"
             >
-              Parler à un expert
+              {t("simulator.cta")}
             </button>
           </motion.div>
         </div>

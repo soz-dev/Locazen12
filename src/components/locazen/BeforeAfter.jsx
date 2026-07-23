@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const PROPERTIES = [
   {
@@ -23,6 +24,7 @@ const PROPERTIES = [
 ];
 
 function PropertyCard({ prop, index }) {
+  const { t } = useTranslation();
   const [showAfter, setShowAfter] = useState(false);
 
   return (
@@ -43,7 +45,7 @@ function PropertyCard({ prop, index }) {
             showAfter ? "bg-[#C4A96B] text-white" : "bg-[#1A2535]/80 text-[#F7F5F2]/70"
           }`}
         >
-          {showAfter ? "Après" : "Avant"}
+          {showAfter ? t("beforeAfter.after") : t("beforeAfter.before")}
         </div>
       </div>
 
@@ -58,7 +60,7 @@ function PropertyCard({ prop, index }) {
               : "border border-[#F7F5F2]/15 text-[#F7F5F2]/35 hover:border-[#F7F5F2]/30"
           }`}
         >
-          Avant
+          {t("beforeAfter.before")}
         </button>
         <button
           onClick={() => setShowAfter(true)}
@@ -68,7 +70,7 @@ function PropertyCard({ prop, index }) {
               : "border border-[#C4A96B]/30 text-[#C4A96B]/60 hover:border-[#C4A96B] hover:text-[#C4A96B]"
           }`}
         >
-          Après
+          {t("beforeAfter.after")}
         </button>
       </div>
     </motion.div>
@@ -76,6 +78,7 @@ function PropertyCard({ prop, index }) {
 }
 
 export default function BeforeAfter() {
+  const { t } = useTranslation();
   return (
     <section id="transformations" className="py-24 md:py-32 bg-[#1A2535]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -87,13 +90,13 @@ export default function BeforeAfter() {
           className="mb-16"
         >
           <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Nos transformations
+            {t("beforeAfter.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#F7F5F2] leading-tight">
-            Avant / Après
+            {t("beforeAfter.title")}
           </h2>
           <p className="mt-4 text-[#F7F5F2]/45 text-sm font-body max-w-xl leading-relaxed">
-            Découvrez comment Locazen transforme un bien ordinaire en location qui fait rêver les voyageurs.
+            {t("beforeAfter.subtitle")}
           </p>
         </motion.div>
 

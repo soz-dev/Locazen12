@@ -2,17 +2,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Image } from "@/components/ui/image";
 import { Plane, Home as HomeIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SETE_AERIAL    = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80";
 const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80";
 
 export default function SelectionScreen({ onSelect }) {
+  const { t } = useTranslation();
   const choices = [
     {
       type: "voyageur",
       icon: Plane,
-      title: "Je suis voyageur",
-      subtitle: "Je cherche une location pour mes vacances à Sète",
+      title: t("selection.traveler.title"),
+      subtitle: t("selection.traveler.subtitle"),
+      cta: t("selection.traveler.cta"),
       image: SETE_AERIAL,
       alt: "Vue aérienne du port de Sète au coucher du soleil",
       hoverBg: "group-hover:bg-[#0891B2]",
@@ -20,8 +23,9 @@ export default function SelectionScreen({ onSelect }) {
     {
       type: "proprietaire",
       icon: HomeIcon,
-      title: "Je suis propriétaire",
-      subtitle: "Je cherche une conciergerie pour mon bien",
+      title: t("selection.owner.title"),
+      subtitle: t("selection.owner.subtitle"),
+      cta: t("selection.owner.cta"),
       image: BED_IMMACULATE,
       alt: "Chambre impeccable avec draps blancs et serviettes pliées",
       hoverBg: "group-hover:bg-[#C4A96B]",
@@ -54,7 +58,7 @@ export default function SelectionScreen({ onSelect }) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-6 text-[#2D2D2D]/60 text-base md:text-lg font-body max-w-md mx-auto"
         >
-          Pour commencer, dites-nous qui vous êtes
+          {t("selection.prompt")}
         </motion.p>
       </div>
 
@@ -85,7 +89,7 @@ export default function SelectionScreen({ onSelect }) {
                 </h2>
                 <p className="text-[#F7F5F2]/70 text-sm font-body mb-5">{c.subtitle}</p>
                 <span className="inline-flex items-center gap-2 text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body">
-                  Entrer
+                  {c.cta}
                   <span className="transition-transform duration-500 group-hover:translate-x-2">→</span>
                 </span>
               </div>

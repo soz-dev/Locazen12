@@ -1,0 +1,205 @@
+{
+  "selection": {
+    "welcome": "Welcome",
+    "prompt": "To get started, tell us who you are",
+    "traveler": { "title": "I'm a traveler", "subtitle": "I'm looking for a rental for my holiday in Sète", "cta": "Enter" },
+    "owner":   { "title": "I'm a property owner", "subtitle": "I'm looking for concierge management for my property", "cta": "Enter" }
+  },
+  "navbar": {
+    "switch": "Switch",
+    "traveler": "Traveler",
+    "owner": "Owner",
+    "travelerLinks": [
+      { "label": "Home",     "href": "#accueil"    },
+      { "label": "Rentals",  "href": "#locations"  },
+      { "label": "Rates",    "href": "#tarifs"     },
+      { "label": "Sète",     "href": "#sete"       },
+      { "label": "Contact",  "href": "#contact"    }
+    ],
+    "ownerLinks": [
+      { "label": "Home",         "href": "#accueil"     },
+      { "label": "Services",     "href": "#services"    },
+      { "label": "About",        "href": "#apropos"     },
+      { "label": "Offerings",    "href": "#prestations" },
+      { "label": "Rates",        "href": "#tarifs"      },
+      { "label": "Contact",      "href": "#contact"     }
+    ]
+  },
+  "rentals": {
+    "eyebrow": "Our rentals",
+    "title1": "Stay in Sète,",
+    "title2": "like a local",
+    "placeholder": "Preview of our property types — availability on request.",
+    "contact": "Contact us",
+    "viewListing": "View listing",
+    "bed": "bedroom",
+    "beds": "bedrooms",
+    "bath": "bath",
+    "guests": "guests"
+  },
+  "testimonials": {
+    "eyebrow": "They trusted us",
+    "title1": "What our",
+    "title2": "guests say"
+  },
+  "map": {
+    "eyebrow": "Location",
+    "title": "Sète, within reach",
+    "subtitle": "Our properties are in the heart of Sète — beaches, harbour, restaurants and cultural sites just minutes away.",
+    "categories": {
+      "logement": "Our rentals",
+      "plage": "Beaches",
+      "port": "Harbour / Canal",
+      "culture": "Culture",
+      "gastro": "Food & Drink",
+      "nature": "Nature"
+    }
+  },
+  "weather": {
+    "eyebrow": "Weather · Sète",
+    "title": "The next 15 days"
+  },
+  "sea": {
+    "label": "Swimming conditions · Sète · 7 days",
+    "today": "Today",
+    "calm": "Calm",
+    "light": "Light",
+    "rough": "Rough",
+    "strong": "Strong",
+    "calm_range": "Calm ≤ 0.3m",
+    "light_range": "Light ≤ 0.7m",
+    "rough_range": "Rough ≤ 1.5m",
+    "strong_range": "Strong > 1.5m"
+  },
+  "agenda": {
+    "eyebrow": "Events",
+    "title": "Events in Sète",
+    "subtitle": "Experience Sète through its festivals and traditions.",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "in_days": "In {{count}} days",
+    "in_months": "In {{count}} months"
+  },
+  "tarifs_v": {
+    "eyebrow": "Rates",
+    "title1": "Clear,",
+    "title2": "transparent pricing"
+  },
+  "calculator": {
+    "eyebrow": "Estimate",
+    "title": "Calculate your stay",
+    "subtitle": "Indicative price — contact us for an exact quote and availability.",
+    "duration": "Length of stay",
+    "night": "night",
+    "nights": "nights",
+    "rental": "Property",
+    "guests_max": "guests max",
+    "summary": "Summary",
+    "per_night": "/night",
+    "cleaning": "Cleaning fee",
+    "total": "Estimated total",
+    "cta": "Request a quote",
+    "disclaimer": "Indicative price. Final price confirmed at booking."
+  },
+  "faq": {
+    "eyebrow": "Frequently asked questions",
+    "title": "FAQ",
+    "traveler": [
+      { "q": "How can I book?", "a": "You can book directly via our Airbnb listings by clicking 'View listing', or contact us using the form below for a direct booking." },
+      { "q": "Are pets allowed?", "a": "It depends on the property. Pet policy is specified in each listing. Feel free to contact us for more details." },
+      { "q": "What is the cancellation policy?", "a": "Our policy is flexible. Cancellation conditions vary by booking platform and are always clearly stated before confirmation." },
+      { "q": "What are the check-in and check-out times?", "a": "Check-in is from 4pm, check-out by 11am. Flexible times may be arranged based on availability." },
+      { "q": "Is bed linen provided?", "a": "Yes, clean sheets and towels are included in all our properties at no extra charge." }
+    ],
+    "owner": [
+      { "q": "How much do your services cost?", "a": "Our packages and rates are detailed in the section above. We offer several service levels to suit your needs." },
+      { "q": "Can I still use my property personally?", "a": "Absolutely. You retain full control of your calendar — just let us know your blocked dates in advance." },
+      { "q": "How do you handle damages?", "a": "We carry out an inventory check at each checkout. Security deposits are managed via the platforms, and we handle any disputes." },
+      { "q": "Which platforms do you list on?", "a": "We manage your listings on Airbnb, Booking.com and Abritel, optimising pricing and content to maximise occupancy." },
+      { "q": "How long does onboarding take?", "a": "We can typically begin managing your property within 2 weeks of signing the management agreement." }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Contact",
+    "traveler_sub": "A question about our rentals? We reply within 24h.",
+    "owner_sub": "A concierge project in mind? Let's talk.",
+    "subtitleVoyageur": "A question about our rentals? We reply within 24h.",
+    "subtitleOwner": "A concierge project in mind? Let's talk.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "name_placeholder": "Your name",
+    "email": "Email",
+    "email_label": "Email",
+    "emailLabel": "Email",
+    "email_contact": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "messagePlaceholder": "Describe your project or question...",
+    "message_placeholder": "Your message...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent — we will reply within 24h.",
+    "error": "Error sending. Please retry or call 06.59.76.91.94.",
+    "phone": "Phone",
+    "phone_label": "Phone",
+    "location": "Location",
+    "availability": "Available 7 days a week to assist travellers and owners. Reply guaranteed within 24h.",
+    "opt_rental": "Rental enquiry",
+    "opt_availability": "Availability",
+    "opt_pricing": "Pricing & services",
+    "opt_other": "Other",
+    "opt_concierge": "Concierge enquiry",
+    "opt_estimate": "Revenue estimate",
+    "opt_management": "Property management"
+  },
+  "footer": {
+    "tagline": "Seasonal rental concierge in Sète.\nThe art of hospitality, in person.",
+    "nav": "Navigation",
+    "navigation": "Navigation",
+    "contactLabel": "Contact",
+    "ctaLabel": "Get in touch",
+    "ctaText": "A seasonal rental project? We'd love to discuss it with you.",
+    "callUs": "Call us",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "copyright": "© {{year}} LocaZen — Concierge Sète. All rights reserved."
+  },
+  "howItWorks": {
+    "eyebrow": "Our process",
+    "title": "How does it work?",
+    "steps": [
+      { "title": "Free assessment", "desc": "We visit your property and estimate its rental potential — with no commitment from you." },
+      { "title": "Full management", "desc": "Professional cleaning, linen provided, quality photos, optimised listing and guest welcome." },
+      { "title": "Booking management", "desc": "We manage your listings on Airbnb, Booking and Abritel to maximise occupancy." },
+      { "title": "Your income, effortlessly", "desc": "Monthly transparent payouts, regular reports. You enjoy the returns — we handle everything." }
+    ]
+  },
+  "beforeAfter": {
+    "eyebrow": "Our transformations",
+    "title": "Before / After",
+    "subtitle": "See how Locazen turns an ordinary property into a rental that travellers dream about.",
+    "before": "Before",
+    "after": "After"
+  },
+  "simulator": {
+    "eyebrow": "Simulation",
+    "title": "Estimate your income",
+    "subtitle": "Based on the average performance of our properties in Sète.",
+    "type": "Property type",
+    "weeks_label": "Weeks rented / year",
+    "monthly": "Estimated gross income / month",
+    "annual": "Estimated gross income / year",
+    "note": "Excluding Locazen management fees — see rates above.",
+    "cta": "Speak to an expert",
+    "per_night": "/night"
+  },
+  "sete": {
+    "eyebrow1": "Sète",
+    "title1": "The Venice of the Languedoc",
+    "eyebrow2": "Things to do",
+    "title2": "Explore Sète",
+    "eyebrow3": "Georges Brassens",
+    "title3": "Born in Sète"
+  }
+}

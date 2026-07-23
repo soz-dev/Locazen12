@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Droplets } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SETE_LAT = 43.4045;
 const SETE_LON = 3.6978;
@@ -42,6 +43,7 @@ function labelDate(dateStr, i) {
 }
 
 export default function Weather() {
+  const { t } = useTranslation();
   const [days, setDays]       = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState(false);
@@ -83,10 +85,10 @@ export default function Weather() {
         >
           <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-4 flex items-center gap-2">
             <MapPin size={12} />
-            Météo · Sète
+            {t("weather.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#0C4A6E] leading-tight">
-            Les 15 <span className="italic">prochains jours</span>
+            {t("weather.title")}
           </h2>
         </motion.div>
 

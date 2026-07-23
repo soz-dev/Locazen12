@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useTranslation } from "react-i18next";
 
 const SETE_CENTER = [43.4045, 3.6978];
 
@@ -30,6 +31,7 @@ const POIS = [
 ];
 
 export default function MapSete() {
+  const { t } = useTranslation();
   return (
     <section id="carte" className="bg-white">
       <motion.div
@@ -40,13 +42,13 @@ export default function MapSete() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-16 pt-20 pb-10 md:pt-28 md:pb-12">
           <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Localisation
+            {t("map.eyebrow")}
           </p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#0C4A6E] leading-tight">
-            Sète, à portée de main
+            {t("map.title")}
           </h2>
           <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body max-w-xl">
-            Nos logements sont au cœur de Sète — plages, port, restaurants et sites culturels à quelques minutes à pied.
+            {t("map.subtitle")}
           </p>
         </div>
 

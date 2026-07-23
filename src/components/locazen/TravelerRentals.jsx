@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Star, Loader2, ExternalLink, Waves, Sun, Coffee } from "lucide-react";
 import { getAmenity } from "@/components/locazen/amenities";
 import { fetchRentals } from "@/lib/rentalsApi";
+import { useTranslation } from "react-i18next";
 
 const PLACEHOLDER_RENTALS = [
   {
@@ -44,6 +45,7 @@ const PLACEHOLDER_RENTALS = [
 ];
 
 export default function TravelerRentals() {
+  const { t } = useTranslation();
   const [rentals, setRentals] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -68,15 +70,15 @@ export default function TravelerRentals() {
         >
           <div className="flex items-center gap-2 mb-4">
             <Waves size={14} className="text-[#0891B2]" />
-            <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body">Nos locations</p>
+            <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body">{t("rentals.eyebrow")}</p>
           </div>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#0C4A6E] leading-tight">
-            Séjournez à Sète,<br />
-            <span className="italic text-[#F59E0B]">comme un local</span>
+            {t("rentals.title1")}<br />
+            <span className="italic text-[#F59E0B]">{t("rentals.title2")}</span>
           </h2>
           {rentals.length === 0 && !loading && (
             <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body">
-              Aperçu de nos types de biens — disponibilités sur demande.
+              {t("rentals.placeholder")}
             </p>
           )}
         </motion.div>
@@ -159,7 +161,7 @@ export default function TravelerRentals() {
                     onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-[#0891B2] text-[#0891B2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0891B2] hover:text-white transition-colors duration-300 min-h-[44px]"
                   >
-                    Nous contacter
+                    {t("rentals.contact")}
                   </button>
                   {r.airbnb_url && (
                     <a
@@ -168,7 +170,7 @@ export default function TravelerRentals() {
                       rel="noopener noreferrer"
                       className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0891B2] text-white text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0C4A6E] transition-colors duration-300 min-h-[44px]"
                     >
-                      Voir l'annonce <ExternalLink size={13} />
+                      {t("rentals.viewListing")} <ExternalLink size={13} />
                     </a>
                   )}
                 </div>

@@ -2,27 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X, Phone, Repeat, Lock, Eye, EyeOff } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n";
 
 const ADMIN_PASSWORD = "SohanKahyl9434";
 
-const travelerLinks = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "Locations", href: "#locations" },
-  { label: "Tarifs", href: "#tarifs" },
-  { label: "Sète", href: "#sete" },
-  { label: "Contact", href: "#contact" },
-];
-
-const ownerLinks = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "Services", href: "#services" },
-  { label: "À propos", href: "#apropos" },
-  { label: "Prestations", href: "#prestations" },
-  { label: "Tarifs", href: "#tarifs" },
-  { label: "Contact", href: "#contact" },
-];
+const travelerLinks = [];
+const ownerLinks = [];
 
 export default function Navbar({ visitorType, onSwitch }) {
+  const { t } = useTranslation();
+  const [lang, setLang] = useState(i18n.language?.startsWith("en") ? "en" : "fr");
+  const toggleLang = () => {
+    const next = lang === "fr" ? "en" : "fr";
+    setLang(next);
+    i18n.changeLanguage(next);
+  };
+  const links = visitorType === "voyageur" ? t("navbar.travelerLinks", { returnObjects: true }) : t("navbar.ownerLinks", { returnObjects: true });
+  const modeLabel = visitorType === "voyageur" ? t("navbar.traveler") : t("navbar.owner");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -30,9 +27,6 @@ export default function Navbar({ visitorType, onSwitch }) {
   const [adminErr, setAdminErr] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
-
-  const links = visitorType === "voyageur" ? travelerLinks : ownerLinks;
-  const modeLabel = visitorType === "voyageur" ? "Voyageur" : "Propriétaire";
 
   const handleLogoClick = (e) => {
     e.preventDefault();
@@ -114,7 +108,7 @@ export default function Navbar({ visitorType, onSwitch }) {
               aria-label="Changer de profil"
             >
               <Repeat size={13} />
-              <span className="text-[10px] tracking-[0.15em] uppercase font-body">Changer</span>
+              <span className="text-[10px] tracking-[0.15em] uppercase font-body">{t("navbar.switch")}</span>
             </button>
             <a
               href="tel:0659769194"
@@ -123,6 +117,13 @@ export default function Navbar({ visitorType, onSwitch }) {
               <Phone size={13} />
               06.59.76.91.94
             </a>
+            <button
+              onClick={toggleLang}
+              className={`hidden md:flex items-center transition-colors min-h-[44px] px-2 text-[10px] tracking-[0.15em] uppercase font-body ${mutedColor}`}
+              aria-label="Changer de langue"
+            >
+              {lang === "fr" ? "EN" : "FR"}
+            </button>
             <button
               onClick={openAdminModal}
               className={`hidden md:flex items-center gap-1 transition-colors min-h-[44px] px-1 ${adminColor}`}

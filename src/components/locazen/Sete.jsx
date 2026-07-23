@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { MapPin, Waves, Landmark, Utensils, Bike, Clock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const SETE_PORT =
   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80";
@@ -62,6 +63,7 @@ const NEARBY = [
 ];
 
 export default function Sete() {
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll();
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
@@ -90,12 +92,11 @@ export default function Sete() {
             <div className="flex items-center gap-2 mb-4">
               <MapPin size={16} className="text-[#8E9B90]" />
               <p className="text-[#F7F5F2]/60 text-xs tracking-[0.3em] uppercase font-body">
-                Ville de Sète
+                {t("sete.eyebrow1")}
               </p>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#F7F5F2] leading-tight">
-              À proximité<br />
-              <span className="italic">de tout</span>
+              {t("sete.title1")}
             </h2>
           </motion.div>
         </div>
@@ -114,11 +115,10 @@ export default function Sete() {
             className="text-center mb-14"
           >
             <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-3">
-              Quoi faire à Sète
+              {t("sete.eyebrow2")}
             </p>
             <h3 className="font-heading text-3xl md:text-4xl font-light text-[#1A2535]">
-              Une ville, mille{" "}
-              <span className="italic">découvertes</span>
+              {t("sete.title2")}
             </h3>
           </motion.div>
 
@@ -172,7 +172,7 @@ export default function Sete() {
             <div className="flex items-center gap-2 mb-5">
               <Clock size={14} className="text-[#0891B2]/50" />
               <p className="text-[#0891B2]/60 text-xs tracking-[0.25em] uppercase font-body">
-                À proximité
+                {t("sete.nearby")}
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

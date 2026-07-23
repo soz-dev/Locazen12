@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Moon, ChevronUp, ChevronDown, Loader2 } from "lucide-react";
 import { fetchRentals } from "@/lib/rentalsApi";
+import { useTranslation } from "react-i18next";
 
 const PLACEHOLDER_RENTALS = [
   { id: "p1", name: "Appartement Vue Port",      type: "T2 · Centre-ville",  price: 95,  guests: 2 },
@@ -12,6 +13,7 @@ const PLACEHOLDER_RENTALS = [
 const CLEANING_FEE = 50;
 
 export default function StayCalculator() {
+  const { t } = useTranslation();
   const [nights, setNights]       = useState(7);
   const [selectedId, setSelectedId] = useState(null);
   const [rentals, setRentals]     = useState([]);
@@ -44,12 +46,12 @@ export default function StayCalculator() {
           transition={{ duration: 0.8 }}
           className="mb-12"
         >
-          <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-4">Estimation</p>
+          <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-4">{t("calculator.eyebrow")}</p>
           <h2 className="font-heading text-4xl md:text-5xl font-light text-[#0C4A6E] leading-tight">
-            Calculez votre séjour
+            {t("calculator.title")}
           </h2>
           <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body">
-            Tarif indicatif — contactez-nous pour un devis précis et les disponibilités.
+            {t("calculator.subtitle")}
           </p>
         </motion.div>
 
@@ -68,7 +70,7 @@ export default function StayCalculator() {
             >
               <div>
                 <p className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-body text-[#0C4A6E]/55 mb-5">
-                  <Moon size={12} />Durée du séjour
+                  <Moon size={12} />{t("calculator.duration")}
                 </p>
                 <div className="flex items-center gap-4">
                   <button onClick={() => change(-1)} className="w-10 h-10 border border-[#E0F2FE] text-[#0891B2] flex items-center justify-center hover:bg-[#E0F2FE] transition-colors">
@@ -78,12 +80,12 @@ export default function StayCalculator() {
                   <button onClick={() => change(1)} className="w-10 h-10 border border-[#E0F2FE] text-[#0891B2] flex items-center justify-center hover:bg-[#E0F2FE] transition-colors">
                     <ChevronUp size={18} />
                   </button>
-                  <span className="text-sm font-body text-[#0C4A6E]/40">nuit{nights > 1 ? "s" : ""}</span>
+                  <span className="text-sm font-body text-[#0C4A6E]/40">{nights > 1 ? t("calculator.nights") : t("calculator.night")}</span>
                 </div>
               </div>
 
               <div>
-                <p className="text-xs tracking-[0.2em] uppercase font-body text-[#0C4A6E]/55 mb-4">Logement</p>
+                <p className="text-xs tracking-[0.2em] uppercase font-body text-[#0C4A6E]/55 mb-4">{t("calculator.rental")}</p>
                 <div className="space-y-3">
                   {rentals.map((r) => (
                     <button
@@ -97,12 +99,12 @@ export default function StayCalculator() {
                         <p className={`text-sm font-body ${selectedId === r.id ? "text-[#0C4A6E]" : "text-[#0C4A6E]/60"}`}>{r.name}</p>
                         {r.type && (
                           <p className="text-[10px] text-[#0C4A6E]/35 font-body mt-0.5">
-                            {r.type}{r.guests ? ` · ${r.guests} voyageurs max` : ""}
+                            {r.type}{r.guests ? ` · ${r.guests} ${t("calculator.guests_max")}` : ""}
                           </p>
                         )}
                       </div>
                       <span className={`font-heading text-lg font-light ${selectedId === r.id ? "text-[#0891B2]" : "text-[#0C4A6E]/30"}`}>
-                        {r.price}€<span className="text-[10px] font-body font-normal text-[#0C4A6E]/30">/nuit</span>
+                        {r.price}€<span className="text-[10px] font-body font-normal text-[#0C4A6E]/30">{t("calculator.per_night")}</span>
                       </span>
                     </button>
                   ))}
@@ -117,18 +119,18 @@ export default function StayCalculator() {
               transition={{ duration: 0.7 }}
               className="bg-[#0C4A6E] p-10 flex flex-col gap-6"
             >
-              <p className="text-[#38BDF8]/60 text-xs tracking-[0.3em] uppercase font-body">Récapitulatif</p>
+              <p className="text-[#38BDF8]/60 text-xs tracking-[0.3em] uppercase font-body">{t("calculator.summary")}</p>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-[#F7F5F2]/55 text-sm font-body">{selected?.price}€ × {nights} nuit{nights > 1 ? "s" : ""}</span>
+                  <span className="text-[#F7F5F2]/55 text-sm font-body">{selected?.price}€ × {nights} {nights > 1 ? t("calculator.nights") : t("calculator.night")}</span>
                   <span className="text-[#F7F5F2] font-heading text-xl font-light">{accommodation.toLocaleString("fr-FR")}€</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-[#F7F5F2]/55 text-sm font-body">Frais de ménage</span>
+                  <span className="text-[#F7F5F2]/55 text-sm font-body">{t("calculator.cleaning")}</span>
                   <span className="text-[#F7F5F2] font-heading text-xl font-light">{CLEANING_FEE}€</span>
                 </div>
                 <div className="border-t border-[#F7F5F2]/15 pt-5 flex justify-between items-end">
-                  <span className="text-[#F7F5F2]/70 text-sm font-body">Total estimé</span>
+                  <span className="text-[#F7F5F2]/70 text-sm font-body">{t("calculator.total")}</span>
                   <span className="font-heading text-5xl font-light text-[#F59E0B]">{total.toLocaleString("fr-FR")}€</span>
                 </div>
               </div>
@@ -136,10 +138,10 @@ export default function StayCalculator() {
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="w-full py-4 bg-[#0891B2] text-white text-xs tracking-[0.2em] uppercase font-body hover:bg-[#38BDF8] transition-colors min-h-[44px]"
               >
-                Demander un devis
+                {t("calculator.cta")}
               </button>
               <p className="text-[#F7F5F2]/25 text-[10px] font-body text-center leading-relaxed">
-                Tarif indicatif. Prix définitif confirmé lors de la réservation.
+                {t("calculator.disclaimer")}
               </p>
             </motion.div>
           </div>
