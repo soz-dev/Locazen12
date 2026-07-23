@@ -113,6 +113,24 @@ export default {
       return json({ deleted: id }, 200, origin);
     }
 
+    // GET /settings — public
+    if (request.method === "GET" && path === "/settings") {
+      const { results } = await env.DB.prepare("SELECT key, value FROM settings").all();
+      const obj = Object.fromEntries(results.map((r) => [r.key, r.value]));
+      return json(obj, 200, origin);
+    }
+
+    // PUT /settings/:key — protégé
+    if (request.method === "PUT" && path.startsWith("/settings/")) {
+      if (!isAuthorized(request, env)) return json({ error: "Unauthorized" }, 401, origin);
+      const key = path.split("/")[2];
+      const body = await request.json();
+      await env.DB.prepare(
+        "INSERT INTO settings (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value=excluded.value"
+      ).bind(key, String(body.value)).run();
+      return json({ key, value: body.value }, 200, origin);
+    }
+
     return json({ error: "Not found" }, 404, origin);
   },
 };

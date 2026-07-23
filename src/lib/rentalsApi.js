@@ -40,3 +40,19 @@ export async function deleteRental(id) {
   if (!res.ok) throw new Error("Erreur lors de la suppression");
   return res.json();
 }
+
+export async function fetchSettings() {
+  const res = await fetch(`${API_URL}/settings`);
+  if (!res.ok) return {};
+  return res.json();
+}
+
+export async function updateSetting(key, value) {
+  const res = await fetch(`${API_URL}/settings/${key}`, {
+    method: "PUT",
+    headers: authHeaders,
+    body: JSON.stringify({ value }),
+  });
+  if (!res.ok) throw new Error("Erreur lors de la mise à jour du paramètre");
+  return res.json();
+}

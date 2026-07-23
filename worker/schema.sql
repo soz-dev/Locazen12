@@ -16,3 +16,8 @@ CREATE TABLE IF NOT EXISTS rentals (
   lng         REAL,
   created_at  TEXT NOT NULL DEFAULT ''
 );
+
+CREATE TABLE IF NOT EXISTS settings (
+  key   TEXT PRIMARY KEY,
+  value TEXT NOT NULL DEFAULT ''
+);

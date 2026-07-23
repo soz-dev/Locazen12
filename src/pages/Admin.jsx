@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plus, Pencil, Trash2, Loader2, ArrowLeft } from "lucide-react";
+import { Plus, Pencil, Trash2, Loader2, ArrowLeft, Wrench } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-import { fetchRentals, createRental, updateRental, deleteRental } from "@/lib/rentalsApi";
+import { fetchRentals, createRental, updateRental, deleteRental, fetchSettings, updateSetting } from "@/lib/rentalsApi";
 import { AMENITIES, getAmenity } from "@/components/locazen/amenities";
 import RentalForm from "@/components/locazen/RentalForm";
 
@@ -12,16 +12,35 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
+  const [maintenance, setMaintenance] = useState(false);
+  const [maintenanceLoading, setMaintenanceLoading] = useState(false);
   const { toast } = useToast();
 
   const isAdmin = sessionStorage.getItem("locazen_admin") === "true";
 
   useEffect(() => {
-    fetchRentals()
-      .then(setRentals)
+    Promise.all([fetchRentals(), fetchSettings()])
+      .then(([list, settings]) => {
+        setRentals(list);
+        setMaintenance(settings.maintenance === "true");
+      })
       .catch(() => toast({ title: "Erreur de chargement", variant: "destructive" }))
       .finally(() => setLoading(false));
   }, []);
+
+  const toggleMaintenance = async () => {
+    setMaintenanceLoading(true);
+    try {
+      const next = !maintenance;
+      await updateSetting("maintenance", String(next));
+      setMaintenance(next);
+      toast({ title: next ? "Maintenance activée" : "Maintenance désactivée" });
+    } catch {
+      toast({ title: "Erreur", variant: "destructive" });
+    } finally {
+      setMaintenanceLoading(false);
+    }
+  };
 
   const openCreate = () => { setEditing(null); setShowForm(true); };
   const openEdit = (r) => { setEditing(r); setShowForm(true); };
@@ -77,15 +96,31 @@ export default function Admin() {
           <p className="text-[#2D2D2D]/50 text-sm font-body">
             {rentals.length} location{rentals.length > 1 ? "s" : ""}
           </p>
-          {isAdmin && (
-            <button
-              onClick={openCreate}
-              className="flex items-center gap-2 px-6 py-3 bg-[#8E9B90] text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#7a8a7c] transition-colors min-h-[44px]"
-            >
-              <Plus size={16} />
-              Ajouter
-            </button>
-          )}
+          <div className="flex items-center gap-3">
+            {isAdmin && (
+              <button
+                onClick={toggleMaintenance}
+                disabled={maintenanceLoading}
+                className={`flex items-center gap-2 px-4 py-3 text-xs tracking-[0.2em] uppercase font-body transition-colors min-h-[44px] border ${
+                  maintenance
+                    ? "bg-amber-500 border-amber-500 text-white hover:bg-amber-600"
+                    : "border-[#E5E0DA] text-[#2D2D2D]/60 hover:border-[#8E9B90]"
+                }`}
+              >
+                {maintenanceLoading ? <Loader2 size={14} className="animate-spin" /> : <Wrench size={14} />}
+                {maintenance ? "Maintenance ON" : "Maintenance OFF"}
+              </button>
+            )}
+            {isAdmin && (
+              <button
+                onClick={openCreate}
+                className="flex items-center gap-2 px-6 py-3 bg-[#8E9B90] text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#7a8a7c] transition-colors min-h-[44px]"
+              >
+                <Plus size={16} />
+                Ajouter
+              </button>
+            )}
+          </div>
         </div>
 
         {loading ? (
