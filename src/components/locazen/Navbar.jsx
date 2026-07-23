@@ -89,11 +89,11 @@ export default function Navbar({ visitorType, onSwitch }) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={handleLogoClick} className={`font-heading text-2xl tracking-[0.2em] font-light min-h-[44px] transition-colors duration-500 ${logoColor}`}>
-              LOCAZEN
+          <div className="flex flex-col items-start">
+            <button onClick={handleLogoClick} className={`font-heading text-2xl tracking-[0.2em] font-light leading-none min-h-[auto] transition-colors duration-500 ${logoColor}`}>
+              LOCAZEN 12
             </button>
-            <span className={`hidden md:inline px-2 py-1 text-[10px] tracking-[0.2em] uppercase font-body transition-all duration-500 ${badgeStyle}`}>
+            <span className={`px-2 py-0.5 text-[9px] tracking-[0.2em] uppercase font-body transition-all duration-500 ${badgeStyle}`}>
               {modeLabel}
             </span>
           </div>
