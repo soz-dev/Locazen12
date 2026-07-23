@@ -38,9 +38,11 @@ const AuthenticatedApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
-        <Route path="/locazen-admin" element={<Admin />} />
-      </Route>
+      <Route path="/locazen-admin" element={
+        sessionStorage.getItem("locazen_admin") === "true"
+          ? <Admin />
+          : <Navigate to="/" replace />
+      } />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
