@@ -1,9 +1,8 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Image } from "@/components/ui/image";
 import { MapPin } from "lucide-react";
 
-const SETE_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/6f1338bee_generated_95fe0ab6.png";
+const SETE_IMG = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80";
 
 export default function Sete() {
   const { scrollYProgress } = useScroll();
@@ -14,11 +13,10 @@ export default function Sete() {
       {/* Full-bleed image */}
       <div className="relative h-[70vh] md:h-[80vh]">
         <motion.div style={{ y: imgY }} className="absolute inset-0 scale-105">
-          <Image
+          <img
             src={SETE_IMG}
             alt="Le port de Sète au coucher du soleil, reflets dorés sur les canaux méditerranéens"
             className="w-full h-full object-cover"
-            fittingType="fill"
           />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/80 via-[#2D2D2D]/30 to-transparent" />
@@ -51,6 +49,23 @@ export default function Sete() {
         </div>
       </div>
 
+      {/* Brassens quote */}
+      <div className="bg-[#2D2D2D] py-16 md:py-20">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+          className="max-w-3xl mx-auto px-6 text-center"
+        >
+          <blockquote className="font-heading text-2xl md:text-3xl font-light text-[#F7F5F2]/80 italic leading-relaxed">
+            « L'amitié n'exige rien en retour, que de l'entretien »
+          </blockquote>
+          <p className="mt-6 text-[#8E9B90] text-sm tracking-[0.2em] uppercase font-body">
+            Georges Brassens
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 }
