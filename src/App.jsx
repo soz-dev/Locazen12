@@ -7,6 +7,13 @@ import ScrollToTop from '@/components/ScrollToTop';
 import Home from '@/pages/Home';
 import Admin from '@/pages/Admin';
 
+function AdminGuard() {
+  if (sessionStorage.getItem("locazen_admin") === "true") {
+    return <Admin />;
+  }
+  return <Navigate to="/" replace />;
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClientInstance}>
@@ -14,11 +21,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/locazen-admin" element={
-            sessionStorage.getItem("locazen_admin") === "true"
-              ? <Admin />
-              : <Navigate to="/" replace />
-          } />
+          <Route path="/locazen-admin" element={<AdminGuard />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
