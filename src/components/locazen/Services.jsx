@@ -13,18 +13,21 @@ const services = [
     description: "Gestion complète de vos plannings, tarification et confirmation de réservations sur Airbnb et Booking.",
     image: ROOM_IMG,
     alt: "Intérieur lumineux d'un appartement méditerranéen avec draps blancs et lumière naturelle",
+    href: "#prestations",
   },
   {
     title: "Gestion des arrivées & départs",
     description: "Accueil en personne de vos voyageurs, état des lieux et accompagnement tout au long du séjour.",
     image: KEYS_IMG,
     alt: "Main élégante posant une clé en laiton sur du lin blanc avec une branche d'olivier",
+    href: "#apropos",
   },
   {
     title: "Sérénité totale",
     description: "Ménage, blanchisserie, petit entretien et gestion du logement entre les locations. Votre bien est entre de bonnes mains.",
     image: STONES_IMG,
     alt: "Pierres de rivière en équilibre dans une lumière dorée matinale, atmosphère zen",
+    href: "#prestations",
   },
 ];
 
@@ -83,7 +86,7 @@ export default function Services() {
         >
           {services.map((s, i) => (
             <div key={i} className="snap-start">
-              <ServiceCard {...s} index={i} />
+              <ServiceCard {...s} index={i} href={s.href} />
             </div>
           ))}
         </div>
