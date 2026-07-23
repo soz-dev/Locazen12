@@ -40,7 +40,12 @@
   "testimonials": {
     "eyebrow": "They trusted us",
     "title1": "What our",
-    "title2": "guests say"
+    "title2": "guests say",
+    "items": [
+      { "name": "Marie D.", "location": "Paris", "text": "Beautiful apartment with a view of the harbour. Everything was immaculate on arrival — clean linen, fully equipped kitchen. We'll be back next year!", "initials": "MD" },
+      { "name": "Thomas & Emma", "location": "Lyon", "text": "The welcome was perfect and the property was exactly as shown in the photos — maybe even better. Sète is an incredible city, and we were perfectly located.", "initials": "TE" },
+      { "name": "Julien B.", "location": "Bordeaux", "text": "The best rental experience I've ever had. Communication was excellent, no issues at all during the stay. I recommend without the slightest hesitation.", "initials": "JB" }
+    ]
   },
   "map": {
     "eyebrow": "Location",
@@ -94,7 +99,13 @@
     "today": "Today",
     "tomorrow": "Tomorrow",
     "in_days": "In {{count}} days",
-    "in_months": "In {{count}} months"
+    "in_months": "In {{count}} months",
+    "events": [
+      { "name": "Fêtes de la Saint-Louis", "dates": "23 – 27 Aug 2026", "type": "Nautical jousting", "desc": "The largest nautical jousting tournament in France. Fireworks, concerts and entertainment along the canals of Sète.", "lieu": "Sète canals" },
+      { "name": "Fête de la Mer", "dates": "September 2026", "type": "Tradition", "desc": "Blessing of the fishing boats, procession at sea and lively festivities throughout the weekend.", "lieu": "Sète harbour" },
+      { "name": "Les Langues de Renard", "dates": "October 2026", "type": "Festival", "desc": "Alternative and experimental music festival in the heart of Sète, featuring local and international artists.", "lieu": "Sète" },
+      { "name": "Christmas Market", "dates": "December 2026", "type": "Market", "desc": "Traditional craft market with local produce, regional wines and Sète makers.", "lieu": "Town centre" }
+    ]
   },
   "tarifs_v": {
     "eyebrow": "Rates",

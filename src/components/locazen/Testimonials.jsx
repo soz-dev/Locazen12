@@ -32,6 +32,7 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   const { t } = useTranslation();
+  const items = t("testimonials.items", { returnObjects: true });
   return (
     <section className="py-24 md:py-32 bg-[#0C4A6E]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -52,9 +53,9 @@ export default function Testimonials() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {TESTIMONIALS.map((t, i) => (
+          {Array.isArray(items) && items.map((item, i) => (
             <motion.div
-              key={t.id}
+              key={item.initials}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -63,18 +64,18 @@ export default function Testimonials() {
             >
               <Quote size={22} className="text-[#38BDF8]/35 mb-5" />
               <p className="text-[#F7F5F2]/75 text-sm font-body leading-relaxed flex-1 mb-7">
-                "{t.text}"
+                "{item.text}"
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-[#0891B2] flex items-center justify-center shrink-0">
-                  <span className="text-white text-xs font-body tracking-wider">{t.initials}</span>
+                  <span className="text-white text-xs font-body tracking-wider">{item.initials}</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-[#F7F5F2] text-sm font-body">{t.name}</p>
-                  <p className="text-[#F7F5F2]/40 text-xs font-body">{t.location}</p>
+                  <p className="text-[#F7F5F2] text-sm font-body">{item.name}</p>
+                  <p className="text-[#F7F5F2]/40 text-xs font-body">{item.location}</p>
                 </div>
                 <div className="flex gap-0.5">
-                  {Array.from({ length: t.rating }).map((_, j) => (
+                  {Array.from({ length: 5 }).map((_, j) => (
                     <Star key={j} size={11} className="text-[#F59E0B] fill-[#F59E0B]" />
                   ))}
                 </div>

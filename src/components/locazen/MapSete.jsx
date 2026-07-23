@@ -96,7 +96,7 @@ export default function MapSete() {
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: cat.color }}
                 />
-                <span className="text-[11px] font-body text-[#0C4A6E]/45">{cat.label}</span>
+                <span className="text-[11px] font-body text-[#0C4A6E]/45">{t(`map.categories.${key}`)}</span>
               </div>
             ))}
           </div>

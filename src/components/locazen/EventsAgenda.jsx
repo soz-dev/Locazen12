@@ -52,18 +52,19 @@ const EVENTS = [
   },
 ];
 
-function countdown(dateStart) {
+function countdown(dateStart, t) {
   const diff = Math.ceil((dateStart - TODAY) / (1000 * 60 * 60 * 24));
   if (diff < 0) return null;
-  if (diff === 0) return "Aujourd'hui";
-  if (diff === 1) return "Demain";
-  if (diff < 30) return `Dans ${diff} jours`;
+  if (diff === 0) return t("agenda.today");
+  if (diff === 1) return t("agenda.tomorrow");
+  if (diff < 30) return t("agenda.in_days", { count: diff });
   const months = Math.floor(diff / 30);
-  return `Dans ${months} mois`;
+  return t("agenda.in_months", { count: months });
 }
 
 export default function EventsAgenda() {
   const { t } = useTranslation();
+  const events = t("agenda.events", { returnObjects: true });
   return (
     <section id="agenda" className="py-24 md:py-32 bg-[#F0F9FF]">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
@@ -89,30 +90,33 @@ export default function EventsAgenda() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {EVENTS.map((e, i) => {
-            const cd = countdown(e.dateStart);
+          {Array.isArray(events) && events.map((e, i) => {
+            const dateStart = new Date(EVENTS[i]?.dateStart ?? TODAY);
+            const cd = countdown(dateStart, t);
+            const highlight = EVENTS[i]?.highlight ?? false;
+            const typeBg = EVENTS[i]?.typeBg ?? "#0891B2";
             return (
               <motion.div
-                key={e.id}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 className={`bg-white p-7 border ${
-                  e.highlight ? "border-[#0891B2]/30" : "border-[#E0F2FE]"
+                  highlight ? "border-[#0891B2]/30" : "border-[#E0F2FE]"
                 }`}
               >
                 <div className="flex items-start justify-between gap-4 mb-4">
                   <span
                     className="px-2.5 py-1 text-[10px] tracking-[0.2em] uppercase font-body text-white"
-                    style={{ backgroundColor: e.typeBg }}
+                    style={{ backgroundColor: typeBg }}
                   >
                     {e.type}
                   </span>
                   {cd && (
                     <span
                       className={`text-xs font-body ${
-                        e.highlight ? "text-[#0891B2] font-medium" : "text-[#0C4A6E]/35"
+                        highlight ? "text-[#0891B2] font-medium" : "text-[#0C4A6E]/35"
                       }`}
                     >
                       {cd}
