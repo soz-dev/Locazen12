@@ -154,15 +154,24 @@ export default function TravelerRentals() {
                   {r.guests != null && <span>{r.guests} voyageurs</span>}
                 </div>
 
-                <a
-                  href={r.airbnb_url || "#contact"}
-                  target={r.airbnb_url ? "_blank" : "_self"}
-                  rel="noopener noreferrer"
-                  onClick={!r.airbnb_url ? (e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); } : undefined}
-                  className="mt-5 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0891B2] text-white text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0C4A6E] transition-colors duration-300 min-h-[44px]"
-                >
-                  {r.airbnb_url ? (<>Réserver <ExternalLink size={13} /></>) : "Nous contacter"}
-                </a>
+                <div className="mt-5 flex gap-3">
+                  <button
+                    onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 border border-[#0891B2] text-[#0891B2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0891B2] hover:text-white transition-colors duration-300 min-h-[44px]"
+                  >
+                    Nous contacter
+                  </button>
+                  {r.airbnb_url && (
+                    <a
+                      href={r.airbnb_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#0891B2] text-white text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0C4A6E] transition-colors duration-300 min-h-[44px]"
+                    >
+                      Voir l'annonce <ExternalLink size={13} />
+                    </a>
+                  )}
+                </div>
               </motion.div>
             ))}
           </div>
