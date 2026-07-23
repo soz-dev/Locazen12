@@ -11,6 +11,7 @@ import Footer from "@/components/locazen/Footer";
 import TravelerRentals from "@/components/locazen/TravelerRentals";
 import TravelerTarifs from "@/components/locazen/TravelerTarifs";
 import OwnerPricing from "@/components/locazen/OwnerPricing";
+import Contact from "@/components/locazen/Contact";
 
 const SETE_AERIAL = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/19bec1b47_generated_b8bfc10c.png";
 const BED_IMMACULATE = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/c34b497c7_generated_image.png";
@@ -68,6 +69,7 @@ export default function Home() {
             <TravelerRentals />
             <TravelerTarifs />
             <Sete />
+            <Contact visitorType="voyageur" />
             <Footer />
           </motion.div>
         ) : (
@@ -92,6 +94,7 @@ export default function Home() {
             <Prestations />
             <OwnerPricing />
             <Sete />
+            <Contact visitorType="proprietaire" />
             <Footer />
           </motion.div>
         )}

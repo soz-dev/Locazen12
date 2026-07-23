@@ -65,6 +65,20 @@ export default function Navbar({ visitorType, onSwitch }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const logoColor   = scrolled ? "text-[#2D2D2D]"       : "text-[#F7F5F2]";
+  const badgeStyle  = scrolled
+    ? "bg-[#8E9B90]/15 text-[#8E9B90]"
+    : "bg-[#F7F5F2]/20 text-[#F7F5F2]/90";
+  const linkColor   = scrolled
+    ? "text-[#2D2D2D]/70 hover:text-[#2D2D2D]"
+    : "text-[#F7F5F2]/80 hover:text-[#F7F5F2]";
+  const mutedColor  = scrolled
+    ? "text-[#2D2D2D]/60 hover:text-[#2D2D2D]"
+    : "text-[#F7F5F2]/70 hover:text-[#F7F5F2]";
+  const adminColor  = scrolled
+    ? "text-[#2D2D2D]/30 hover:text-[#2D2D2D]/60"
+    : "text-[#F7F5F2]/30 hover:text-[#F7F5F2]/60";
+
   return (
     <>
       <nav
@@ -75,49 +89,49 @@ export default function Navbar({ visitorType, onSwitch }) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button onClick={handleLogoClick} className="font-heading text-2xl tracking-[0.2em] font-light text-[#2D2D2D] min-h-[44px]">
+          <div className="flex items-center gap-3">
+            <button onClick={handleLogoClick} className={`font-heading text-2xl tracking-[0.2em] font-light min-h-[44px] transition-colors duration-500 ${logoColor}`}>
               LOCAZEN
             </button>
-            <span className="hidden md:inline px-3 py-1 bg-[#8E9B90]/10 text-[#8E9B90] text-[10px] tracking-[0.2em] uppercase font-body">
+            <span className={`hidden md:inline px-2 py-1 text-[10px] tracking-[0.2em] uppercase font-body transition-all duration-500 ${badgeStyle}`}>
               {modeLabel}
             </span>
           </div>
 
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm font-body tracking-[0.1em] uppercase text-[#2D2D2D]/70 hover:text-[#2D2D2D] transition-colors duration-300"
+                className={`text-xs font-body tracking-[0.1em] uppercase transition-colors duration-300 ${linkColor}`}
               >
                 {l.label}
               </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 lg:gap-3">
             <button
               onClick={onSwitch}
-              className="hidden md:flex items-center gap-2 text-[#8E9B90] hover:text-[#2D2D2D] transition-colors min-h-[44px] px-2"
+              className={`hidden md:flex items-center gap-1.5 transition-colors min-h-[44px] px-2 ${mutedColor}`}
               aria-label="Changer de profil"
             >
-              <Repeat size={14} />
-              <span className="text-xs tracking-[0.15em] uppercase font-body">Changer</span>
+              <Repeat size={13} />
+              <span className="text-[10px] tracking-[0.15em] uppercase font-body">Changer</span>
             </button>
             <a
               href="tel:0659769194"
-              className="hidden md:flex items-center gap-2 text-sm tracking-wide text-[#8E9B90] hover:text-[#2D2D2D] transition-colors"
+              className={`hidden lg:flex items-center gap-2 text-xs tracking-wide transition-colors ${mutedColor}`}
             >
-              <Phone size={14} />
+              <Phone size={13} />
               06.59.76.91.94
             </a>
             <button
               onClick={openAdminModal}
-              className="hidden md:flex items-center gap-1.5 text-[#2D2D2D]/30 hover:text-[#2D2D2D]/60 transition-colors min-h-[44px] px-2"
+              className={`hidden md:flex items-center gap-1 transition-colors min-h-[44px] px-1 ${adminColor}`}
               aria-label="Accès administration"
             >
-              <Lock size={13} />
+              <Lock size={12} />
               <span className="text-[10px] tracking-[0.15em] uppercase font-body">Admin</span>
             </button>
 
@@ -126,7 +140,7 @@ export default function Navbar({ visitorType, onSwitch }) {
               className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Ouvrir le menu"
             >
-              <Menu size={24} className="text-[#2D2D2D]" />
+              <Menu size={24} className={scrolled ? "text-[#2D2D2D]" : "text-[#F7F5F2]"} />
             </button>
           </div>
         </div>

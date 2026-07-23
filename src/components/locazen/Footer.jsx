@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#F7F5F2] pt-24 md:pt-32 pb-8">
+    <footer className="bg-[#F7F5F2] pt-24 md:pt-32 pb-8">
       {/* Massive brand name */}
       <div className="overflow-hidden mb-16 md:mb-24">
         <motion.h2
