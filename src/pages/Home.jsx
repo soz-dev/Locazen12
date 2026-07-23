@@ -70,7 +70,7 @@ export default function Home() {
             <TravelerTarifs />
             <Sete />
             <Contact visitorType="voyageur" />
-            <Footer />
+            <Footer visitorType="voyageur" />
           </motion.div>
         ) : (
           <motion.div
@@ -95,7 +95,7 @@ export default function Home() {
             <OwnerPricing />
             <Sete />
             <Contact visitorType="proprietaire" />
-            <Footer />
+            <Footer visitorType="proprietaire" />
           </motion.div>
         )}
       </AnimatePresence>

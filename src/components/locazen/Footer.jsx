@@ -2,9 +2,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin } from "lucide-react";
 
-export default function Footer() {
+export default function Footer({ visitorType = "proprietaire" }) {
+  const isVoyageur = visitorType === "voyageur";
+  const footerBg  = isVoyageur ? "bg-[#F0F9FF]"            : "bg-[#F7F5F2]";
+  const brandTint = isVoyageur ? "text-[#0C4A6E]/[0.06]"   : "text-[#2D2D2D]/[0.06]";
+  const divider   = isVoyageur ? "border-[#BAE6FD]"         : "border-[#E5E0DA]";
+  const brandName = isVoyageur ? "text-[#0C4A6E]"           : "text-[#2D2D2D]";
+  const hoverLink = isVoyageur ? "hover:text-[#0891B2]"     : "hover:text-[#C4A96B]";
+  const btnCls    = isVoyageur
+    ? "bg-[#0891B2] text-white hover:bg-[#0369A1]"
+    : "bg-[#1A2535] text-[#F7F5F2] hover:bg-[#C4A96B] hover:text-[#1A2535]";
+
   return (
-    <footer className="bg-[#F7F5F2] pt-24 md:pt-32 pb-8">
+    <footer className={`${footerBg} pt-24 md:pt-32 pb-8`}>
       {/* Massive brand name */}
       <div className="overflow-hidden mb-16 md:mb-24">
         <motion.h2
@@ -12,19 +22,19 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="font-heading text-[6rem] md:text-[10rem] lg:text-[14rem] font-light text-[#2D2D2D]/[0.06] leading-none text-center tracking-[0.1em] select-none whitespace-nowrap"
+          className={`font-heading text-[6rem] md:text-[10rem] lg:text-[14rem] font-light ${brandTint} leading-none text-center tracking-[0.1em] select-none whitespace-nowrap`}
         >
-          LOCAZEN
+          LOCAZEN 12
         </motion.h2>
       </div>
 
       {/* Footer grid */}
       <div className="max-w-7xl mx-auto px-6 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-16 border-b border-[#E5E0DA]">
+        <div className={`grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 pb-16 border-b ${divider}`}>
           {/* Brand */}
           <div>
-            <p className="font-heading text-xl tracking-[0.15em] text-[#2D2D2D] mb-3">
-              LOCAZEN
+            <p className={`font-heading text-xl tracking-[0.15em] ${brandName} mb-3`}>
+              LOCAZEN 12
             </p>
             <p className="text-[#2D2D2D]/50 text-sm font-body">
               Service de Conciergerie à Sète.<br />
@@ -47,7 +57,7 @@ export default function Footer() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="text-[#2D2D2D]/60 text-sm hover:text-[#8E9B90] transition-colors font-body"
+                  className={`text-[#2D2D2D]/60 text-sm ${hoverLink} transition-colors font-body`}
                 >
                   {l.label}
                 </a>
@@ -63,14 +73,14 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <a
                 href="tel:0659769194"
-                className="flex items-center gap-3 text-[#2D2D2D]/60 text-sm hover:text-[#8E9B90] transition-colors font-body"
+                className={`flex items-center gap-3 text-[#2D2D2D]/60 text-sm ${hoverLink} transition-colors font-body`}
               >
                 <Phone size={14} />
                 06.59.76.91.94
               </a>
               <a
                 href="mailto:myriamboum34@gmail.com"
-                className="flex items-center gap-3 text-[#2D2D2D]/60 text-sm hover:text-[#8E9B90] transition-colors font-body"
+                className={`flex items-center gap-3 text-[#2D2D2D]/60 text-sm ${hoverLink} transition-colors font-body`}
               >
                 <Mail size={14} />
                 myriamboum34@gmail.com
@@ -92,7 +102,7 @@ export default function Footer() {
             </p>
             <a
               href="tel:0659769194"
-              className="inline-block px-6 py-3 bg-[#8E9B90] text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#7a8a7c] transition-colors duration-300 min-h-[44px] flex items-center justify-center"
+              className={`inline-flex items-center justify-center px-6 py-3 ${btnCls} text-xs tracking-[0.2em] uppercase font-body transition-colors duration-300 min-h-[44px]`}
             >
               Appelez-nous
             </a>
@@ -105,10 +115,10 @@ export default function Footer() {
             © {new Date().getFullYear()} LocaZen — Conciergerie Sète. Tous droits réservés.
           </p>
           <div className="flex gap-6">
-            <a href="#accueil" className="text-[#2D2D2D]/30 text-xs hover:text-[#8E9B90] transition-colors font-body">
+            <a href="#accueil" className={`text-[#2D2D2D]/30 text-xs ${hoverLink} transition-colors font-body`}>
               Mentions légales
             </a>
-            <a href="#accueil" className="text-[#2D2D2D]/30 text-xs hover:text-[#8E9B90] transition-colors font-body">
+            <a href="#accueil" className={`text-[#2D2D2D]/30 text-xs ${hoverLink} transition-colors font-body`}>
               Politique de confidentialité
             </a>
           </div>

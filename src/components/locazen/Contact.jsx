@@ -37,8 +37,16 @@ export default function Contact({ visitorType = "proprietaire" }) {
     }
   };
 
+  const isVoyageur = visitorType === "voyageur";
+  const sectionBg  = isVoyageur ? "bg-[#0C4A6E]" : "bg-[#1A2535]";
+  const accentCls  = isVoyageur ? "text-[#38BDF8]" : "text-[#C4A96B]";
+  const focusCls   = isVoyageur ? "focus:border-[#38BDF8]" : "focus:border-[#C4A96B]";
+  const optBg      = isVoyageur ? "#0C4A6E" : "#1A2535";
+  const btnCls     = isVoyageur ? "bg-[#0891B2] hover:bg-[#0369A1] text-white" : "bg-[#C4A96B] hover:bg-[#B8965A] text-[#1A2535]";
+  const hoverLink  = isVoyageur ? "hover:text-[#38BDF8]" : "hover:text-[#C4A96B]";
+
   return (
-    <section id="contact" className="bg-[#2D2D2D] py-24 md:py-32 px-6">
+    <section id="contact" className={`${sectionBg} py-24 md:py-32 px-6`}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
@@ -48,7 +56,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
           transition={{ duration: 0.8 }}
           className="mb-14 md:mb-20"
         >
-          <p className="text-[#8E9B90] text-xs tracking-[0.3em] uppercase font-body mb-4">
+          <p className={`${accentCls} text-xs tracking-[0.3em] uppercase font-body mb-4`}>
             Nous écrire
           </p>
           <h2 className="font-heading text-4xl md:text-6xl font-light text-[#F7F5F2] tracking-[0.05em]">
@@ -81,7 +89,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
                   onChange={handleChange}
                   required
                   placeholder="Votre nom"
-                  className="bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 focus:border-[#8E9B90] outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors"
+                  className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors`}
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -93,7 +101,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
                   onChange={handleChange}
                   required
                   placeholder="votre@email.com"
-                  className="bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 focus:border-[#8E9B90] outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors"
+                  className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors`}
                 />
               </div>
             </div>
@@ -104,21 +112,21 @@ export default function Contact({ visitorType = "proprietaire" }) {
                 name="subject"
                 value={form.subject}
                 onChange={handleChange}
-                className="bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 focus:border-[#8E9B90] outline-none px-4 py-3 text-sm text-[#F7F5F2] font-body transition-colors appearance-none cursor-pointer"
+                className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] font-body transition-colors appearance-none cursor-pointer`}
               >
                 {visitorType === "voyageur" ? (
                   <>
-                    <option value="Demande de location" className="bg-[#2D2D2D]">Demande de location</option>
-                    <option value="Disponibilités" className="bg-[#2D2D2D]">Disponibilités</option>
-                    <option value="Tarifs et prestations" className="bg-[#2D2D2D]">Tarifs et prestations</option>
-                    <option value="Autre" className="bg-[#2D2D2D]">Autre</option>
+                    <option value="Demande de location" style={{ backgroundColor: optBg }}>Demande de location</option>
+                    <option value="Disponibilités" style={{ backgroundColor: optBg }}>Disponibilités</option>
+                    <option value="Tarifs et prestations" style={{ backgroundColor: optBg }}>Tarifs et prestations</option>
+                    <option value="Autre" style={{ backgroundColor: optBg }}>Autre</option>
                   </>
                 ) : (
                   <>
-                    <option value="Demande de conciergerie" className="bg-[#2D2D2D]">Demande de conciergerie</option>
-                    <option value="Estimation de revenus" className="bg-[#2D2D2D]">Estimation de revenus</option>
-                    <option value="Gestion de bien" className="bg-[#2D2D2D]">Gestion de bien</option>
-                    <option value="Autre" className="bg-[#2D2D2D]">Autre</option>
+                    <option value="Demande de conciergerie" style={{ backgroundColor: optBg }}>Demande de conciergerie</option>
+                    <option value="Estimation de revenus" style={{ backgroundColor: optBg }}>Estimation de revenus</option>
+                    <option value="Gestion de bien" style={{ backgroundColor: optBg }}>Gestion de bien</option>
+                    <option value="Autre" style={{ backgroundColor: optBg }}>Autre</option>
                   </>
                 )}
               </select>
@@ -133,12 +141,12 @@ export default function Contact({ visitorType = "proprietaire" }) {
                 required
                 rows={5}
                 placeholder="Décrivez votre projet ou votre question..."
-                className="bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 focus:border-[#8E9B90] outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors resize-none"
+                className={`bg-[#F7F5F2]/5 border border-[#F7F5F2]/10 ${focusCls} outline-none px-4 py-3 text-sm text-[#F7F5F2] placeholder-[#F7F5F2]/25 font-body transition-colors resize-none`}
               />
             </div>
 
             {status === "success" && (
-              <div className="flex items-center gap-2 text-[#8E9B90] text-sm font-body">
+              <div className={`flex items-center gap-2 ${accentCls} text-sm font-body`}>
                 <CheckCircle size={16} />
                 Message envoyé — nous vous répondrons sous 24h.
               </div>
@@ -153,7 +161,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="flex items-center justify-center gap-2 bg-[#8E9B90] hover:bg-[#7a8a7c] disabled:opacity-50 text-[#F7F5F2] py-4 text-xs tracking-[0.2em] uppercase font-body transition-colors duration-300 min-h-[44px]"
+              className={`flex items-center justify-center gap-2 ${btnCls} disabled:opacity-50 py-4 text-xs tracking-[0.2em] uppercase font-body transition-colors duration-300 min-h-[44px]`}
             >
               <Send size={13} />
               {status === "sending" ? "Envoi en cours…" : "Envoyer le message"}
@@ -170,13 +178,13 @@ export default function Contact({ visitorType = "proprietaire" }) {
           >
             <div>
               <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Téléphone</p>
-              <a href="tel:0659769194" className="text-[#F7F5F2]/80 hover:text-[#8E9B90] transition-colors font-body text-sm">
+              <a href="tel:0659769194" className={`text-[#F7F5F2]/80 ${hoverLink} transition-colors font-body text-sm`}>
                 06.59.76.91.94
               </a>
             </div>
             <div>
               <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Email</p>
-              <a href="mailto:soza@live.fr" className="text-[#F7F5F2]/80 hover:text-[#8E9B90] transition-colors font-body text-sm">
+              <a href="mailto:soza@live.fr" className={`text-[#F7F5F2]/80 ${hoverLink} transition-colors font-body text-sm`}>
                 soza@live.fr
               </a>
             </div>
