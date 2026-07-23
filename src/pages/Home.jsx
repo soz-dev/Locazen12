@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import SelectionScreen from "@/components/locazen/SelectionScreen";
 import Navbar from "@/components/locazen/Navbar";
 import Hero from "@/components/locazen/Hero";
