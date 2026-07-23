@@ -76,8 +76,8 @@ export default function Home() {
             <Testimonials />
             <Weather />
             <TravelerTarifs />
-            <FAQ visitorType="voyageur" />
             <Sete />
+            <FAQ visitorType="voyageur" />
             <Contact visitorType="voyageur" />
             <Footer visitorType="voyageur" />
           </motion.div>
@@ -105,8 +105,8 @@ export default function Home() {
             <BeforeAfter />
             <Prestations />
             <OwnerPricing />
-            <FAQ visitorType="proprietaire" />
             <Sete />
+            <FAQ visitorType="proprietaire" />
             <Contact visitorType="proprietaire" />
             <Footer visitorType="proprietaire" />
           </motion.div>
