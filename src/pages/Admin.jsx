@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Plus, Pencil, Trash2, Loader2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
-
-const STORAGE_KEY = "locazen_rentals";
-const loadFromStorage = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch { return []; } };
-const saveToStorage = (d) => localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+import { fetchRentals, createRental, updateRental, deleteRental } from "@/lib/rentalsApi";
 import { AMENITIES, getAmenity } from "@/components/locazen/amenities";
 import RentalForm from "@/components/locazen/RentalForm";
 
 export default function Admin() {
   const [rentals, setRentals] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
   const { toast } = useToast();
@@ -20,34 +17,42 @@ export default function Admin() {
   const isAdmin = sessionStorage.getItem("locazen_admin") === "true";
 
   useEffect(() => {
-    setRentals(loadFromStorage());
+    fetchRentals()
+      .then(setRentals)
+      .catch(() => toast({ title: "Erreur de chargement", variant: "destructive" }))
+      .finally(() => setLoading(false));
   }, []);
 
   const openCreate = () => { setEditing(null); setShowForm(true); };
   const openEdit = (r) => { setEditing(r); setShowForm(true); };
 
-  const handleSave = (payload) => {
-    const current = loadFromStorage();
-    let updated;
-    if (editing) {
-      updated = current.map((r) => r.id === editing.id ? { ...payload, id: editing.id } : r);
-      toast({ title: "Location mise à jour" });
-    } else {
-      updated = [...current, { ...payload, id: Date.now().toString() }];
-      toast({ title: "Location ajoutée" });
+  const handleSave = async (payload) => {
+    try {
+      if (editing) {
+        const updated = await updateRental(editing.id, payload);
+        setRentals((prev) => prev.map((r) => r.id === editing.id ? { ...r, ...payload } : r));
+        toast({ title: "Location mise à jour" });
+      } else {
+        const created = await createRental(payload);
+        setRentals((prev) => [created, ...prev]);
+        toast({ title: "Location ajoutée" });
+      }
+    } catch {
+      toast({ title: "Erreur lors de la sauvegarde", variant: "destructive" });
     }
-    saveToStorage(updated);
-    setRentals(updated);
     setShowForm(false);
     setEditing(null);
   };
 
-  const handleDelete = (r) => {
+  const handleDelete = async (r) => {
     if (!confirm(`Supprimer « ${r.name} » ?`)) return;
-    const updated = loadFromStorage().filter((x) => x.id !== r.id);
-    saveToStorage(updated);
-    setRentals(updated);
-    toast({ title: "Location supprimée" });
+    try {
+      await deleteRental(r.id);
+      setRentals((prev) => prev.filter((x) => x.id !== r.id));
+      toast({ title: "Location supprimée" });
+    } catch {
+      toast({ title: "Erreur lors de la suppression", variant: "destructive" });
+    }
   };
 
   return (

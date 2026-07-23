@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Star, Loader2, ExternalLink, Waves, Sun, Coffee } from "lucide-react";
 import { getAmenity } from "@/components/locazen/amenities";
+import { fetchRentals } from "@/lib/rentalsApi";
 
 const PLACEHOLDER_RENTALS = [
   {
@@ -47,13 +48,10 @@ export default function TravelerRentals() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem("locazen_rentals") || "[]");
-      setRentals(stored);
-    } catch {
-      setRentals([]);
-    }
-    setLoading(false);
+    fetchRentals()
+      .then(setRentals)
+      .catch(() => setRentals([]))
+      .finally(() => setLoading(false));
   }, []);
 
   const displayRentals = rentals.length > 0 ? rentals : PLACEHOLDER_RENTALS;
