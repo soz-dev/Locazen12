@@ -101,7 +101,7 @@ export default function TravelerRentals() {
                 <div className="relative aspect-[4/5] overflow-hidden mb-5">
                   <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
                     {r.image ? (
-                      <img src={r.image} alt={r.name} className="w-full h-full object-cover" />
+                      <img src={r.image} alt={r.name} className="w-full h-full object-cover" style={{ objectPosition: `center ${r.imageY ?? 50}%` }} />
                     ) : (
                       <div className="w-full h-full bg-[#DBEAFE]" />
                     )}

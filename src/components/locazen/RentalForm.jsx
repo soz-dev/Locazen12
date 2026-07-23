@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Image as ImageIcon, X, Upload, Loader2 } from "lucide-react";
+import { Image as ImageIcon, X, Upload, Loader2, ChevronUp, ChevronDown } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { AMENITIES } from "@/components/locazen/amenities";
 
 const empty = {
   name: "", type: "", price: "", beds: 1, baths: 1, guests: 2,
-  rating: 4.8, image: "", amenities: [], airbnb_url: "",
+  rating: 4.8, image: "", imageY: 50, amenities: [], airbnb_url: "",
 };
 
 export default function RentalForm({ rental, onSave, onClose }) {
@@ -89,11 +89,40 @@ export default function RentalForm({ rental, onSave, onClose }) {
           <div>
             <label className={labelCls}>Photo</label>
             {form.image ? (
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img src={form.image} alt="Aperçu" className="w-full h-full object-cover" />
-                <button type="button" onClick={() => set("image", "")} className="absolute top-2 right-2 p-2 bg-[#2D2D2D]/80 text-[#F7F5F2] min-w-[44px] min-h-[44px] flex items-center justify-center">
-                  <X size={16} />
-                </button>
+              <div>
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={form.image}
+                    alt="Aperçu"
+                    className="w-full h-full object-cover transition-all duration-200"
+                    style={{ objectPosition: `center ${form.imageY ?? 50}%` }}
+                  />
+                  <button type="button" onClick={() => set("image", "")} className="absolute top-2 right-2 p-2 bg-[#2D2D2D]/80 text-[#F7F5F2] min-w-[44px] min-h-[44px] flex items-center justify-center">
+                    <X size={16} />
+                  </button>
+                </div>
+                {/* Slider de recadrage vertical */}
+                <div className="mt-3 flex items-center gap-3">
+                  <button type="button" onClick={() => set("imageY", Math.max(0, (form.imageY ?? 50) - 5))} className="p-1 text-[#2D2D2D]/50 hover:text-[#2D2D2D] transition-colors">
+                    <ChevronUp size={18} />
+                  </button>
+                  <div className="flex-1 flex flex-col gap-1">
+                    <input
+                      type="range" min={0} max={100} step={1}
+                      value={form.imageY ?? 50}
+                      onChange={(e) => set("imageY", Number(e.target.value))}
+                      className="w-full accent-[#2D2D2D] h-1 cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[10px] text-[#2D2D2D]/35 font-body tracking-[0.1em] uppercase">
+                      <span>Haut</span>
+                      <span>Recadrage vertical</span>
+                      <span>Bas</span>
+                    </div>
+                  </div>
+                  <button type="button" onClick={() => set("imageY", Math.min(100, (form.imageY ?? 50) + 5))} className="p-1 text-[#2D2D2D]/50 hover:text-[#2D2D2D] transition-colors">
+                    <ChevronDown size={18} />
+                  </button>
+                </div>
               </div>
             ) : (
               <label className={`flex flex-col items-center justify-center aspect-[16/10] border border-dashed border-[#E5E0DA] cursor-pointer hover:border-[#8E9B90] transition-colors ${uploading ? "opacity-50" : ""}`}>
