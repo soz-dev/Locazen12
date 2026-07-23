@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, Phone, Repeat } from "lucide-react";
+import { Menu, X, Phone, Repeat, Lock, Eye, EyeOff } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const ADMIN_PASSWORD = "SohanKahyl9434";
 
 const travelerLinks = [
   { label: "Accueil", href: "#accueil" },
@@ -23,27 +25,38 @@ const ownerLinks = [
 export default function Navbar({ visitorType, onSwitch }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
+  const [adminPwd, setAdminPwd] = useState("");
+  const [adminErr, setAdminErr] = useState(false);
+  const [showPwd, setShowPwd] = useState(false);
   const navigate = useNavigate();
-  const clickCount = useRef(0);
-  const clickTimer = useRef(null);
 
   const links = visitorType === "voyageur" ? travelerLinks : ownerLinks;
   const modeLabel = visitorType === "voyageur" ? "Voyageur" : "Propriétaire";
 
   const handleLogoClick = (e) => {
     e.preventDefault();
-    clickCount.current += 1;
-    if (clickTimer.current) clearTimeout(clickTimer.current);
-    if (clickCount.current >= 5) {
-      clickCount.current = 0;
+    const el = document.getElementById("accueil");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const openAdminModal = () => {
+    setAdminPwd("");
+    setAdminErr(false);
+    setShowPwd(false);
+    setOpen(false);
+    setAdminOpen(true);
+  };
+
+  const submitAdminPwd = (e) => {
+    e.preventDefault();
+    if (adminPwd === ADMIN_PASSWORD) {
+      setAdminOpen(false);
       navigate("/locazen-admin");
-      return;
+    } else {
+      setAdminErr(true);
+      setAdminPwd("");
     }
-    clickTimer.current = setTimeout(() => {
-      clickCount.current = 0;
-      const el = document.getElementById("accueil");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 600);
   };
 
   useEffect(() => {
@@ -99,6 +112,14 @@ export default function Navbar({ visitorType, onSwitch }) {
               <Phone size={14} />
               06.59.76.91.94
             </a>
+            <button
+              onClick={openAdminModal}
+              className="hidden md:flex items-center gap-1.5 text-[#2D2D2D]/30 hover:text-[#2D2D2D]/60 transition-colors min-h-[44px] px-2"
+              aria-label="Accès administration"
+            >
+              <Lock size={13} />
+              <span className="text-[10px] tracking-[0.15em] uppercase font-body">Admin</span>
+            </button>
 
             <button
               onClick={() => setOpen(true)}
@@ -161,7 +182,90 @@ export default function Navbar({ visitorType, onSwitch }) {
                 <Phone size={16} />
                 06.59.76.91.94
               </motion.a>
+              <motion.button
+                onClick={openAdminModal}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="mt-2 flex items-center gap-2 text-[#2D2D2D]/30 hover:text-[#2D2D2D]/60 transition-colors"
+              >
+                <Lock size={14} />
+                <span className="text-xs tracking-[0.15em] uppercase font-body">Admin</span>
+              </motion.button>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Modal mot de passe admin */}
+      <AnimatePresence>
+        {adminOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center bg-[#2D2D2D]/50 backdrop-blur-sm px-6"
+            onClick={(e) => { if (e.target === e.currentTarget) setAdminOpen(false); }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ duration: 0.25 }}
+              className="bg-[#F7F5F2] w-full max-w-sm p-8 shadow-2xl relative"
+            >
+              <button
+                onClick={() => setAdminOpen(false)}
+                className="absolute top-4 right-4 p-1 text-[#2D2D2D]/40 hover:text-[#2D2D2D] transition-colors"
+                aria-label="Fermer"
+              >
+                <X size={18} />
+              </button>
+
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-9 h-9 flex items-center justify-center bg-[#2D2D2D]">
+                  <Lock size={15} className="text-[#F7F5F2]" />
+                </div>
+                <div>
+                  <h2 className="font-heading text-lg font-light tracking-[0.1em] text-[#2D2D2D]">Administration</h2>
+                  <p className="text-[10px] tracking-[0.15em] uppercase text-[#8E9B90] font-body">Accès restreint</p>
+                </div>
+              </div>
+
+              <form onSubmit={submitAdminPwd} className="flex flex-col gap-4">
+                <div className="relative">
+                  <input
+                    type={showPwd ? "text" : "password"}
+                    value={adminPwd}
+                    onChange={(e) => { setAdminPwd(e.target.value); setAdminErr(false); }}
+                    placeholder="Mot de passe"
+                    autoFocus
+                    className={`w-full bg-white border px-4 py-3 text-sm font-body text-[#2D2D2D] outline-none pr-10 transition-colors ${
+                      adminErr ? "border-red-400" : "border-[#2D2D2D]/20 focus:border-[#2D2D2D]/60"
+                    }`}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPwd((v) => !v)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#2D2D2D]/40 hover:text-[#2D2D2D]/70"
+                    tabIndex={-1}
+                  >
+                    {showPwd ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                </div>
+
+                {adminErr && (
+                  <p className="text-red-500 text-xs font-body tracking-wide">Mot de passe incorrect.</p>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full bg-[#2D2D2D] text-[#F7F5F2] py-3 text-xs tracking-[0.2em] uppercase font-body hover:bg-[#2D2D2D]/80 transition-colors"
+                >
+                  Accéder
+                </button>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
