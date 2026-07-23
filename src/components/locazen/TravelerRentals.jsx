@@ -13,7 +13,7 @@ const PLACEHOLDER_RENTALS = [
     price: 95,
     rating: "4.9",
     beds: 1, baths: 1, guests: 2,
-    amenities: [],
+    amenities: ["wifi", "ac", "terrace", "tv"],
     airbnb_url: null,
     badge: "Vue port",
   },
@@ -25,7 +25,7 @@ const PLACEHOLDER_RENTALS = [
     price: 75,
     rating: "4.8",
     beds: null, baths: 1, guests: 2,
-    amenities: [],
+    amenities: ["wifi", "terrace", "kitchen", "ac"],
     airbnb_url: null,
     badge: "Plage à 5 min",
   },
@@ -37,7 +37,7 @@ const PLACEHOLDER_RENTALS = [
     price: 175,
     rating: "5.0",
     beds: 3, baths: 2, guests: 6,
-    amenities: [],
+    amenities: ["wifi", "pool", "parking", "washer", "ac"],
     airbnb_url: null,
     badge: "Coup de cœur",
   },
@@ -123,26 +123,25 @@ export default function TravelerRentals() {
                   </div>
                 </div>
 
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-heading text-2xl font-light text-[#0C4A6E] mb-1">{r.name}</h3>
-                    {r.type && (
-                      <p className="flex items-center gap-1.5 text-[#0C4A6E]/50 text-sm font-body">
-                        <MapPin size={12} className="text-[#0891B2]" />
-                        {r.type}
-                      </p>
-                    )}
-                  </div>
+                <div>
+                  <h3 className="font-heading text-2xl font-light text-[#0C4A6E] mb-1">{r.name}</h3>
+                  {r.type && (
+                    <p className="flex items-center gap-1.5 text-[#0C4A6E]/50 text-sm font-body mb-3">
+                      <MapPin size={12} className="text-[#0891B2]" />
+                      {r.type}
+                    </p>
+                  )}
                   {r.amenities?.length > 0 && (
-                    <div className="flex gap-2">
-                      {r.amenities.slice(0, 3).map((key) => {
+                    <div className="flex flex-wrap gap-1.5">
+                      {r.amenities.slice(0, 5).map((key) => {
                         const a = getAmenity(key);
                         if (!a) return null;
                         const Icon = a.Icon;
                         return (
-                          <div key={key} className="w-8 h-8 flex items-center justify-center border border-[#BAE6FD]">
-                            <Icon size={13} className="text-[#0891B2]" />
-                          </div>
+                          <span key={key} className="flex items-center gap-1 px-2 py-1 bg-[#E0F2FE] text-[#0891B2] text-[10px] font-body tracking-wide">
+                            <Icon size={10} />
+                            {a.label}
+                          </span>
                         );
                       })}
                     </div>
