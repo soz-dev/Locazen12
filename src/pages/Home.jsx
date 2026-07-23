@@ -69,8 +69,8 @@ export default function Home() {
               visitorType="voyageur"
             />
             <TravelerRentals />
-            <TravelerTarifs />
             <Weather />
+            <TravelerTarifs />
             <Sete />
             <Contact visitorType="voyageur" />
             <Footer visitorType="voyageur" />

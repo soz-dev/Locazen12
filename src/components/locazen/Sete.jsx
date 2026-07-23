@@ -1,8 +1,230 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { MapPin, Waves, Landmark, Utensils, Bike, Clock } from "lucide-react";
 
-const SETE_IMG = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80";
+const SETE_PORT =
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80";
+
+const ACTIVITIES = [
+  {
+    icon: Waves,
+    category: "Plages & Nature",
+    accent: "#38BDF8",
+    items: [
+      { name: "Plages de la Corniche", detail: "12 km de sable fin" },
+      { name: "Étang de Thau", detail: "Flamants roses & huîtres" },
+      { name: "Mont Saint-Clair", detail: "Panorama à 183 m" },
+      { name: "Le Lido", detail: "Cordon littoral entre mer et étang" },
+    ],
+  },
+  {
+    icon: Landmark,
+    category: "Culture & Patrimoine",
+    accent: "#C4A96B",
+    items: [
+      { name: "Cimetière Marin", detail: "Brassens, Paul Valéry" },
+      { name: "Musée Paul Valéry", detail: "Art méditerranéen" },
+      { name: "MIAM", detail: "Arts Modestes contemporains" },
+      { name: "Maison Brassens", detail: "Musée du chansonnier sétois" },
+    ],
+  },
+  {
+    icon: Utensils,
+    category: "Gastronomie",
+    accent: "#F59E0B",
+    items: [
+      { name: "Tielle sétoise", detail: "Tourte aux poulpes, spécialité locale" },
+      { name: "Huîtres de Thau", detail: "Dégustation au bord de l'étang" },
+      { name: "Macarons de Sète", detail: "Douceur moelleuse depuis 1809" },
+      { name: "Terrasses sur les quais", detail: "Restaurants le long des canaux" },
+    ],
+  },
+  {
+    icon: Bike,
+    category: "Sports & Activités",
+    accent: "#34D399",
+    items: [
+      { name: "Joutes languedociennes", detail: "Sport traditionnel estival" },
+      { name: "Voile & Nautisme", detail: "École de voile, location de bateaux" },
+      { name: "Vélo sur le Lido", detail: "Piste cyclable face à la mer" },
+      { name: "Kayak & Paddle", detail: "Canaux et lagune de Thau" },
+    ],
+  },
+];
+
+const NEARBY = [
+  { city: "Montpellier", time: "30 min" },
+  { city: "Cap d'Agde", time: "20 min" },
+  { city: "Aigues-Mortes", time: "45 min" },
+  { city: "Béziers", time: "30 min" },
+  { city: "Nîmes", time: "1 h" },
+  { city: "Carcassonne", time: "1 h 30" },
+];
+
+export default function Sete() {
+  const { scrollYProgress } = useScroll();
+  const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+
+  return (
+    <section id="sete" className="relative overflow-hidden bg-[#2D2D2D]">
+
+      {/* Image plein-écran — Port de Sète */}
+      <div className="relative h-[70vh] md:h-[80vh]">
+        <motion.div style={{ y: imgY }} className="absolute inset-0 scale-105">
+          <img
+            src={SETE_PORT}
+            alt="Le port de Sète, cœur maritime de la ville sur l'Étang de Thau"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/80 via-[#2D2D2D]/30 to-transparent" />
+
+        <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <MapPin size={16} className="text-[#8E9B90]" />
+              <p className="text-[#F7F5F2]/60 text-xs tracking-[0.3em] uppercase font-body">
+                Ville de Sète
+              </p>
+            </div>
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#F7F5F2] leading-tight">
+              À proximité<br />
+              <span className="italic">de tout</span>
+            </h2>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Activités + Brassens */}
+      <div className="bg-[#2D2D2D] py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* Titre section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-14"
+          >
+            <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-3">
+              Quoi faire à Sète
+            </p>
+            <h3 className="font-heading text-3xl md:text-4xl font-light text-[#F7F5F2]">
+              Une ville, mille{" "}
+              <span className="italic">découvertes</span>
+            </h3>
+          </motion.div>
+
+          {/* Grille 4 catégories */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+            {ACTIVITIES.map((cat, i) => {
+              const Icon = cat.icon;
+              return (
+                <motion.div
+                  key={cat.category}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors duration-300"
+                >
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
+                    style={{ backgroundColor: `${cat.accent}25` }}
+                  >
+                    <Icon size={20} style={{ color: cat.accent }} />
+                  </div>
+                  <h4 className="font-heading text-base font-light text-[#F7F5F2] mb-4 leading-snug">
+                    {cat.category}
+                  </h4>
+                  <ul className="space-y-3">
+                    {cat.items.map((item) => (
+                      <li key={item.name}>
+                        <p className="text-sm text-[#F7F5F2]/80 font-body font-medium leading-tight">
+                          {item.name}
+                        </p>
+                        <p className="text-xs text-[#F7F5F2]/35 font-body mt-0.5">
+                          {item.detail}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* À proximité */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="border-t border-white/10 pt-10"
+          >
+            <div className="flex items-center gap-2 mb-5">
+              <Clock size={14} className="text-[#F7F5F2]/35" />
+              <p className="text-[#F7F5F2]/35 text-xs tracking-[0.25em] uppercase font-body">
+                À proximité
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              {NEARBY.map((n) => (
+                <div
+                  key={n.city}
+                  className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2"
+                >
+                  <span className="text-[#F7F5F2]/75 text-sm font-body">{n.city}</span>
+                  <span className="text-[#F7F5F2]/30 text-xs font-body">{n.time}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Citation Brassens */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+          className="max-w-3xl mx-auto px-6 text-center mt-24"
+        >
+          <blockquote className="font-heading text-2xl md:text-3xl font-light text-[#F7F5F2]/80 italic leading-relaxed">
+            « L'amitié n'exige rien en retour, que de l'entretien »
+          </blockquote>
+          <p className="mt-6 text-[#8E9B90] text-sm tracking-[0.2em] uppercase font-body">
+            Georges Brassens
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="mt-16 max-w-[260px] mx-auto px-6"
+        >
+          <img
+            src="https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file/Brassens-StudioHarcourt-1957.png&width=600"
+            alt="Portrait de Georges Brassens par Studio Harcourt, 1957"
+            className="w-full opacity-80"
+          />
+          <p className="mt-4 text-center text-[#F7F5F2]/30 text-[10px] tracking-[0.25em] uppercase font-body">
+            1921 — 1981 · Sète
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 
 export default function Sete() {
   const { scrollYProgress } = useScroll();
