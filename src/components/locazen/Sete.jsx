@@ -115,51 +115,73 @@ export default function Sete() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-14"
+            className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
           >
-            <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-3">
-              {t("sete.eyebrow2")}
+            <div>
+              <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-3">
+                {t("sete.eyebrow2")}
+              </p>
+              <h3 className="font-heading text-3xl md:text-5xl font-light text-[#1A2535] leading-tight">
+                {t("sete.title2")}
+              </h3>
+            </div>
+            <p className="text-[#0C4A6E]/35 text-sm font-body max-w-xs leading-relaxed hidden md:block">
+              {t("sete.subtitle") || "Découvrez la Venise du Languedoc à travers ses trésors."}
             </p>
-            <h3 className="font-heading text-3xl md:text-4xl font-light text-[#1A2535]">
-              {t("sete.title2")}
-            </h3>
           </motion.div>
 
-          {/* Grille 4 catégories */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          {/* Bandes éditoriales */}
+          <div className="mb-14 divide-y divide-[#0C4A6E]/8">
             {Array.isArray(activities) && activities.map((cat, i) => {
               const Icon = ACTIVITY_ICONS[i] ?? Waves;
               const accent = ACTIVITY_ACCENTS[i] ?? "#38BDF8";
               return (
                 <motion.div
                   key={cat.category}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="bg-white rounded-2xl p-6 shadow-sm border border-[#E0F2FE] hover:shadow-md transition-shadow duration-300"
+                  transition={{ duration: 0.7, delay: i * 0.1 }}
+                  className="group grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 md:gap-16 py-10 hover:bg-white/70 transition-colors duration-500 rounded-xl px-4 -mx-4"
                 >
-                  <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center mb-5"
-                    style={{ backgroundColor: `${accent}18` }}
-                  >
-                    <Icon size={20} style={{ color: accent }} />
+                  {/* Colonne gauche — numéro + catégorie */}
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="w-[3px] h-16 rounded-full mt-0.5 flex-shrink-0"
+                      style={{ backgroundColor: accent }}
+                    />
+                    <div>
+                      <span
+                        className="text-[10px] tracking-[0.35em] uppercase font-body block"
+                        style={{ color: accent }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h4 className="font-heading text-2xl md:text-3xl font-light text-[#0C4A6E] leading-tight mt-1">
+                        {cat.category}
+                      </h4>
+                    </div>
                   </div>
-                  <h4 className="font-heading text-base font-light text-[#1A2535] mb-4 leading-snug">
-                    {cat.category}
-                  </h4>
-                  <ul className="space-y-3">
+
+                  {/* Colonne droite — items */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-6 self-center">
                     {Array.isArray(cat.items) && cat.items.map((item) => (
-                      <li key={item.name}>
-                        <p className="text-sm text-[#2D2D2D] font-body font-medium leading-tight">
-                          {item.name}
-                        </p>
-                        <p className="text-xs text-[#2D2D2D]/45 font-body mt-0.5">
-                          {item.detail}
-                        </p>
-                      </li>
+                      <div key={item.name} className="flex items-start gap-2.5">
+                        <span
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-[5px]"
+                          style={{ backgroundColor: accent }}
+                        />
+                        <div>
+                          <p className="text-sm text-[#0C4A6E] font-body font-semibold leading-tight">
+                            {item.name}
+                          </p>
+                          <p className="text-[11px] text-[#0C4A6E]/40 font-body mt-0.5 leading-snug">
+                            {item.detail}
+                          </p>
+                        </div>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </motion.div>
               );
             })}
