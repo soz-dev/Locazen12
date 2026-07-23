@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Image as ImageIcon, X, Upload, Loader2 } from "lucide-react";
-import { base44 } from "@/api/base44Client";
 import { useToast } from "@/components/ui/use-toast";
 import { AMENITIES } from "@/components/locazen/amenities";
 
@@ -27,19 +26,18 @@ export default function RentalForm({ rental, onSave, onClose }) {
     }));
   };
 
-  const handleUpload = async (e) => {
+  const handleUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setUploading(true);
-    try {
-      const { file_url } = await base44.integrations.Core.UploadFile({ file });
-      set("image", file_url);
-      toast({ title: "Photo ajoutée" });
-    } catch (err) {
-      toast({ title: "Erreur lors de l'envi", variant: "destructive" });
-    } finally {
-      setUploading(false);
+    if (file.size > 3 * 1024 * 1024) {
+      toast({ title: "Image trop lourde (max 3 Mo)", variant: "destructive" });
+      return;
     }
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = () => { set("image", reader.result); setUploading(false); };
+    reader.onerror = () => { toast({ title: "Erreur de lecture", variant: "destructive" }); setUploading(false); };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {

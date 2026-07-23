@@ -1,68 +1,53 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plus, Pencil, Trash2, Loader2, ArrowLeft, Lock } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { Plus, Pencil, Trash2, Loader2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+
+const STORAGE_KEY = "locazen_rentals";
+const loadFromStorage = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch { return []; } };
+const saveToStorage = (d) => localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
 import { AMENITIES, getAmenity } from "@/components/locazen/amenities";
 import RentalForm from "@/components/locazen/RentalForm";
 
 export default function Admin() {
-  const [user, setUser] = useState(null);
   const [rentals, setRentals] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState(null);
   const { toast } = useToast();
 
-  const load = async () => {
-    setLoading(true);
-    try {
-      const data = await base44.entities.Rental.list();
-      setRentals(data);
-    } catch (err) {
-      toast({ title: "Impossible de charger les locations", variant: "destructive" });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const isAdmin = sessionStorage.getItem("locazen_admin") === "true";
 
   useEffect(() => {
-    base44.auth.me().then(setUser).catch(() => setUser(null));
-    load();
+    setRentals(loadFromStorage());
   }, []);
-
-  const isAdmin = user?.role === "admin";
 
   const openCreate = () => { setEditing(null); setShowForm(true); };
   const openEdit = (r) => { setEditing(r); setShowForm(true); };
 
-  const handleSave = async (payload) => {
-    try {
-      if (editing) {
-        await base44.entities.Rental.update(editing.id, payload);
-        toast({ title: "Location mise à jour" });
-      } else {
-        await base44.entities.Rental.create(payload);
-        toast({ title: "Location ajoutée" });
-      }
-      setShowForm(false);
-      setEditing(null);
-      load();
-    } catch (err) {
-      toast({ title: "Action réservée à l'administrateur", variant: "destructive" });
+  const handleSave = (payload) => {
+    const current = loadFromStorage();
+    let updated;
+    if (editing) {
+      updated = current.map((r) => r.id === editing.id ? { ...payload, id: editing.id } : r);
+      toast({ title: "Location mise à jour" });
+    } else {
+      updated = [...current, { ...payload, id: Date.now().toString() }];
+      toast({ title: "Location ajoutée" });
     }
+    saveToStorage(updated);
+    setRentals(updated);
+    setShowForm(false);
+    setEditing(null);
   };
 
-  const handleDelete = async (r) => {
+  const handleDelete = (r) => {
     if (!confirm(`Supprimer « ${r.name} » ?`)) return;
-    try {
-      await base44.entities.Rental.delete(r.id);
-      toast({ title: "Location supprimée" });
-      load();
-    } catch (err) {
-      toast({ title: "Suppression impossible", variant: "destructive" });
-    }
+    const updated = loadFromStorage().filter((x) => x.id !== r.id);
+    saveToStorage(updated);
+    setRentals(updated);
+    toast({ title: "Location supprimée" });
   };
 
   return (
@@ -83,15 +68,6 @@ export default function Admin() {
       </header>
 
       <main className="max-w-6xl mx-auto px-6 md:px-10 py-10">
-        {!isAdmin && user && (
-          <div className="flex items-center gap-3 p-5 bg-[#E5E0DA]/50 border border-[#E5E0DA] mb-8">
-            <Lock size={18} className="text-[#2D2D2D]/50" />
-            <p className="text-[#2D2D2D]/60 text-sm font-body">
-              Accès en lecture seule. Seul un administrateur peut modifier les locations.
-            </p>
-          </div>
-        )}
-
         <div className="flex items-center justify-between mb-8">
           <p className="text-[#2D2D2D]/50 text-sm font-body">
             {rentals.length} location{rentals.length > 1 ? "s" : ""}

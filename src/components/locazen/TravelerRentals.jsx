@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Star, Loader2, ExternalLink, Waves, Sun, Coffee } from "lucide-react";
-import { base44 } from "@/api/base44Client";
 import { getAmenity } from "@/components/locazen/amenities";
 
 const PLACEHOLDER_RENTALS = [
@@ -48,10 +47,13 @@ export default function TravelerRentals() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    base44.entities.Rental.list()
-      .then(setRentals)
-      .catch(() => setRentals([]))
-      .finally(() => setLoading(false));
+    try {
+      const stored = JSON.parse(localStorage.getItem("locazen_rentals") || "[]");
+      setRentals(stored);
+    } catch {
+      setRentals([]);
+    }
+    setLoading(false);
   }, []);
 
   const displayRentals = rentals.length > 0 ? rentals : PLACEHOLDER_RENTALS;
