@@ -10,6 +10,7 @@ import Sete from "@/components/locazen/Sete";
 import Footer from "@/components/locazen/Footer";
 import TravelerRentals from "@/components/locazen/TravelerRentals";
 import TravelerTarifs from "@/components/locazen/TravelerTarifs";
+import Weather from "@/components/locazen/Weather";
 import OwnerPricing from "@/components/locazen/OwnerPricing";
 import Contact from "@/components/locazen/Contact";
 
@@ -69,6 +70,7 @@ export default function Home() {
             />
             <TravelerRentals />
             <TravelerTarifs />
+            <Weather />
             <Sete />
             <Contact visitorType="voyageur" />
             <Footer visitorType="voyageur" />
