@@ -17,6 +17,8 @@ import HowItWorks from "@/components/locazen/HowItWorks";
 import BeforeAfter from "@/components/locazen/BeforeAfter";
 import Testimonials from "@/components/locazen/Testimonials";
 import FAQ from "@/components/locazen/FAQ";
+import StayCalculator from "@/components/locazen/StayCalculator";
+import RevenueSimulator from "@/components/locazen/RevenueSimulator";
 
 const SETE_AERIAL    = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80";
 const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=80";
@@ -76,6 +78,7 @@ export default function Home() {
             <Testimonials />
             <Weather />
             <TravelerTarifs />
+            <StayCalculator />
             <Sete />
             <FAQ visitorType="voyageur" />
             <Contact visitorType="voyageur" />
@@ -105,6 +108,7 @@ export default function Home() {
             <BeforeAfter />
             <Prestations />
             <OwnerPricing />
+            <RevenueSimulator />
             <Sete />
             <FAQ visitorType="proprietaire" />
             <Contact visitorType="proprietaire" />
