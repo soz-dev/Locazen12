@@ -8,6 +8,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import Home from '@/pages/Home';
 import Admin from '@/pages/Admin';
 import Maintenance from '@/pages/Maintenance';
+import ErrorBoundary from '@/components/ErrorBoundary';
 import { fetchSettings } from '@/lib/rentalsApi';
 
 function AdminGuard() {
@@ -56,7 +57,9 @@ function App() {
     <QueryClientProvider client={queryClientInstance}>
       <Router basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
-        <AppContent />
+        <ErrorBoundary>
+          <AppContent />
+        </ErrorBoundary>
       </Router>
       <Toaster />
     </QueryClientProvider>
