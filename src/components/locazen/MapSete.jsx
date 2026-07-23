@@ -6,32 +6,39 @@ import { useTranslation } from "react-i18next";
 
 const SETE_CENTER = [43.4045, 3.6978];
 
-const CATEGORIES = {
-  logement: { label: "Nos logements", color: "#0C4A6E" },
-  plage:    { label: "Plages",         color: "#38BDF8" },
-  port:     { label: "Port / Canal",   color: "#0891B2" },
-  culture:  { label: "Culture",        color: "#F59E0B" },
-  gastro:   { label: "Gastronomie",    color: "#10B981" },
-  nature:   { label: "Nature",         color: "#34D399" },
+const CAT_COLORS = {
+  logement: "#0C4A6E",
+  plage:    "#38BDF8",
+  port:     "#0891B2",
+  culture:  "#F59E0B",
+  gastro:   "#10B981",
+  nature:   "#34D399",
 };
 
-const POIS = [
-  { name: "Nos logements — Centre Sète",  lat: 43.4045, lng: 3.6978, cat: "logement", desc: "Zone de nos logements, au cœur de la ville." },
-  { name: "Plage de la Corniche",          lat: 43.3905, lng: 3.6743, cat: "plage",    desc: "La grande plage de sable fin de Sète." },
-  { name: "Plage du Lazaret",              lat: 43.3978, lng: 3.6840, cat: "plage",    desc: "Plage calme côté étang de Thau." },
-  { name: "Plage de la Plagette",          lat: 43.3952, lng: 3.6815, cat: "plage",    desc: "Petite plage appréciée des locaux." },
-  { name: "Port de Sète",                  lat: 43.4028, lng: 3.6990, cat: "port",     desc: "Premier port de pêche de Méditerranée." },
-  { name: "Quai du Maroc (joutes)",        lat: 43.4048, lng: 3.7012, cat: "port",     desc: "Lieu des joutes nautiques et animations estivales." },
-  { name: "Cimetière Marin",              lat: 43.4011, lng: 3.6948, cat: "culture",  desc: "Vue panoramique, immortalisé par Paul Valéry." },
-  { name: "Musée Paul Valéry",            lat: 43.4022, lng: 3.6960, cat: "culture",  desc: "Musée dédié au poète sétois et à son œuvre." },
-  { name: "Mont Saint-Clair",             lat: 43.3985, lng: 3.6878, cat: "culture",  desc: "Point de vue à 175m, panorama 360°." },
-  { name: "Les Halles de Sète",           lat: 43.4064, lng: 3.6995, cat: "gastro",   desc: "Marché couvert, produits frais locaux chaque matin." },
-  { name: "Quai du Général Durand",       lat: 43.4052, lng: 3.7008, cat: "gastro",   desc: "Restaurants de poissons et fruits de mer." },
-  { name: "Étang de Thau",               lat: 43.4220, lng: 3.6060, cat: "nature",   desc: "Étang à huîtres et moules, paysage unique." },
+const POIS_BASE = [
+  { nameKey: "poi_0",  lat: 43.4045, lng: 3.6978, cat: "logement" },
+  { nameKey: "poi_1",  lat: 43.3905, lng: 3.6743, cat: "plage"    },
+  { nameKey: "poi_2",  lat: 43.3978, lng: 3.6840, cat: "plage"    },
+  { nameKey: "poi_3",  lat: 43.3952, lng: 3.6815, cat: "plage"    },
+  { nameKey: "poi_4",  lat: 43.4028, lng: 3.6990, cat: "port"     },
+  { nameKey: "poi_5",  lat: 43.4048, lng: 3.7012, cat: "port"     },
+  { nameKey: "poi_6",  lat: 43.4011, lng: 3.6948, cat: "culture"  },
+  { nameKey: "poi_7",  lat: 43.4022, lng: 3.6960, cat: "culture"  },
+  { nameKey: "poi_8",  lat: 43.3985, lng: 3.6878, cat: "culture"  },
+  { nameKey: "poi_9",  lat: 43.4064, lng: 3.6995, cat: "gastro"   },
+  { nameKey: "poi_10", lat: 43.4052, lng: 3.7008, cat: "gastro"   },
+  { nameKey: "poi_11", lat: 43.4220, lng: 3.6060, cat: "nature"   },
 ];
 
 export default function MapSete() {
   const { t } = useTranslation();
+  const poisData = t("map.pois", { returnObjects: true });
+  const CATEGORIES = Object.fromEntries(
+    Object.entries(CAT_COLORS).map(([k, color]) => [k, { label: t(`map.categories.${k}`), color }])
+  );
+  const POIS = Array.isArray(poisData)
+    ? POIS_BASE.map((p, i) => ({ ...p, name: poisData[i]?.name ?? "", desc: poisData[i]?.desc ?? "" }))
+    : POIS_BASE;
   return (
     <section id="carte" className="bg-white">
       <motion.div

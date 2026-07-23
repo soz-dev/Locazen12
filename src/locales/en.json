@@ -58,7 +58,21 @@
       "culture": "Culture",
       "gastro": "Food & Drink",
       "nature": "Nature"
-    }
+    },
+    "pois": [
+      { "name": "Our rentals — Sète centre",     "desc": "Location of our properties, in the heart of the city." },
+      { "name": "Plage de la Corniche",           "desc": "Sète's main fine-sand beach." },
+      { "name": "Plage du Lazaret",               "desc": "Quiet beach on the Thau lagoon side." },
+      { "name": "Plage de la Plagette",           "desc": "Small beach popular with locals." },
+      { "name": "Port de Sète",                   "desc": "Mediterranean's leading fishing port." },
+      { "name": "Quai du Maroc (jousting)",       "desc": "Home of the nautical jousting tournaments and summer events." },
+      { "name": "Cimetière Marin",               "desc": "Panoramic viewpoint, immortalised by Paul Valéry." },
+      { "name": "Musée Paul Valéry",             "desc": "Museum dedicated to the Sète poet and his work." },
+      { "name": "Mont Saint-Clair",              "desc": "Viewpoint at 175m, 360° panorama." },
+      { "name": "Les Halles de Sète",            "desc": "Covered market, fresh local produce every morning." },
+      { "name": "Quai du Général Durand",        "desc": "Fish and seafood restaurants." },
+      { "name": "Étang de Thau",                "desc": "Oyster and mussel lagoon, unique landscape." }
+    ]
   },
   "weather": {
     "eyebrow": "Weather · Sète",

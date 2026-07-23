@@ -58,7 +58,21 @@
       "culture": "Culture",
       "gastro": "Gastronomie",
       "nature": "Nature"
-    }
+    },
+    "pois": [
+      { "name": "Nos logements — Centre Sète",  "desc": "Zone de nos logements, au cœur de la ville." },
+      { "name": "Plage de la Corniche",          "desc": "La grande plage de sable fin de Sète." },
+      { "name": "Plage du Lazaret",              "desc": "Plage calme côté étang de Thau." },
+      { "name": "Plage de la Plagette",          "desc": "Petite plage appréciée des locaux." },
+      { "name": "Port de Sète",                  "desc": "Premier port de pêche de Méditerranée." },
+      { "name": "Quai du Maroc (joutes)",        "desc": "Lieu des joutes nautiques et animations estivales." },
+      { "name": "Cimetière Marin",              "desc": "Vue panoramique, immortalisé par Paul Valéry." },
+      { "name": "Musée Paul Valéry",            "desc": "Musée dédié au poète sétois et à son œuvre." },
+      { "name": "Mont Saint-Clair",             "desc": "Point de vue à 175m, panorama 360°." },
+      { "name": "Les Halles de Sète",           "desc": "Marché couvert, produits frais locaux chaque matin." },
+      { "name": "Quai du Général Durand",       "desc": "Restaurants de poissons et fruits de mer." },
+      { "name": "Étang de Thau",               "desc": "Étang à huîtres et moules, paysage unique." }
+    ]
   },
   "weather": {
     "eyebrow": "Météo · Sète",
