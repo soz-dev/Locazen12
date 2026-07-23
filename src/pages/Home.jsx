@@ -13,6 +13,10 @@ import TravelerTarifs from "@/components/locazen/TravelerTarifs";
 import Weather from "@/components/locazen/Weather";
 import OwnerPricing from "@/components/locazen/OwnerPricing";
 import Contact from "@/components/locazen/Contact";
+import HowItWorks from "@/components/locazen/HowItWorks";
+import BeforeAfter from "@/components/locazen/BeforeAfter";
+import Testimonials from "@/components/locazen/Testimonials";
+import FAQ from "@/components/locazen/FAQ";
 
 const SETE_AERIAL    = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80";
 const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=80";
@@ -69,8 +73,10 @@ export default function Home() {
               visitorType="voyageur"
             />
             <TravelerRentals />
+            <Testimonials />
             <Weather />
             <TravelerTarifs />
+            <FAQ visitorType="voyageur" />
             <Sete />
             <Contact visitorType="voyageur" />
             <Footer visitorType="voyageur" />
@@ -94,9 +100,12 @@ export default function Home() {
               visitorType="proprietaire"
             />
             <Services />
+            <HowItWorks />
             <About />
+            <BeforeAfter />
             <Prestations />
             <OwnerPricing />
+            <FAQ visitorType="proprietaire" />
             <Sete />
             <Contact visitorType="proprietaire" />
             <Footer visitorType="proprietaire" />
