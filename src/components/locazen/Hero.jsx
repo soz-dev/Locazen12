@@ -11,7 +11,11 @@ export default function Hero({
   tagline = "L'art de l'accueil, en personne",
   ctaLabel = "Découvrir nos services",
   ctaHref = "#services",
+  visitorType = "proprietaire",
 }) {
+  const ctaBtnCls = visitorType === "voyageur"
+    ? "bg-[#0891B2] hover:bg-[#0369A1] text-[#F7F5F2]"
+    : "bg-[#C4A96B] hover:bg-[#B8965A] text-[#1A2535]";
   const { scrollY } = useScroll();
   const imgY = useTransform(scrollY, [0, 800], [0, 150]);
   const opacity = useTransform(scrollY, [0, 600], [1, 0]);
@@ -70,7 +74,7 @@ export default function Hero({
             href={ctaHref}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="inline-block mt-8 px-10 py-4 bg-[#8E9B90] text-[#F7F5F2] text-sm tracking-[0.2em] uppercase font-body hover:bg-[#7a8a7c] transition-colors duration-500 min-h-[44px]"
+            className={`inline-block mt-8 px-10 py-4 ${ctaBtnCls} text-sm tracking-[0.2em] uppercase font-body transition-colors duration-500 min-h-[44px]`}
           >
             {ctaLabel}
           </motion.a>

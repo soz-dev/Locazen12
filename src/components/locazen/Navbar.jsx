@@ -66,26 +66,22 @@ export default function Navbar({ visitorType, onSwitch }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const logoColor   = scrolled ? "text-[#2D2D2D]"       : "text-[#F7F5F2]";
+  const isVoyageur  = visitorType === "voyageur";
+  const scrolledBg  = isVoyageur ? "bg-[#0C4A6E]/95" : "bg-[#1A2535]/95";
+  const logoColor   = "text-[#F7F5F2]";
   const badgeStyle  = scrolled
-    ? "bg-[#8E9B90]/15 text-[#8E9B90]"
+    ? (isVoyageur ? "bg-[#0891B2]/30 text-[#38BDF8]" : "bg-[#C4A96B]/20 text-[#C4A96B]")
     : "bg-[#F7F5F2]/20 text-[#F7F5F2]/90";
-  const linkColor   = scrolled
-    ? "text-[#2D2D2D]/70 hover:text-[#2D2D2D]"
-    : "text-[#F7F5F2]/80 hover:text-[#F7F5F2]";
-  const mutedColor  = scrolled
-    ? "text-[#2D2D2D]/60 hover:text-[#2D2D2D]"
-    : "text-[#F7F5F2]/70 hover:text-[#F7F5F2]";
-  const adminColor  = scrolled
-    ? "text-[#2D2D2D]/30 hover:text-[#2D2D2D]/60"
-    : "text-[#F7F5F2]/30 hover:text-[#F7F5F2]/60";
+  const linkColor   = "text-[#F7F5F2]/80 hover:text-[#F7F5F2]";
+  const mutedColor  = "text-[#F7F5F2]/60 hover:text-[#F7F5F2]";
+  const adminColor  = "text-[#F7F5F2]/30 hover:text-[#F7F5F2]/60";
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
-            ? "bg-[#F7F5F2]/95 backdrop-blur-md shadow-sm py-3"
+            ? `${scrolledBg} backdrop-blur-md shadow-sm py-3`
             : "bg-transparent py-6"
         }`}
       >
@@ -141,7 +137,7 @@ export default function Navbar({ visitorType, onSwitch }) {
               className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Ouvrir le menu"
             >
-              <Menu size={24} className={scrolled ? "text-[#2D2D2D]" : "text-[#F7F5F2]"} />
+              <Menu size={24} className="text-[#F7F5F2]" />
             </button>
           </div>
         </div>
@@ -172,7 +168,7 @@ export default function Navbar({ visitorType, onSwitch }) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.07, duration: 0.4 }}
-                  className="font-heading text-3xl font-light tracking-[0.15em] text-[#2D2D2D] hover:text-[#8E9B90] transition-colors"
+                  className={`font-heading text-3xl font-light tracking-[0.15em] text-[#2D2D2D] ${isVoyageur ? "hover:text-[#0891B2]" : "hover:text-[#C4A96B]"} transition-colors`}
                 >
                   {l.label}
                 </motion.a>
@@ -182,7 +178,7 @@ export default function Navbar({ visitorType, onSwitch }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="mt-4 flex items-center gap-2 text-[#8E9B90]"
+                className={`mt-4 flex items-center gap-2 ${isVoyageur ? "text-[#0891B2]" : "text-[#C4A96B]"}`}
               >
                 <Repeat size={16} />
                 <span className="text-sm tracking-[0.15em] uppercase font-body">Changer de profil</span>

@@ -40,10 +40,10 @@ export default function OwnerPricing() {
                 fittingType="fill"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#8E9B90]/15 -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#C4A96B]/15 -z-10" />
           </div>
           <div>
-            <p className="text-[#8E9B90] text-xs tracking-[0.3em] uppercase font-body mb-4">
+            <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
               Tarifs propriétaires
             </p>
             <h2 className="font-heading text-4xl md:text-5xl font-light text-[#2D2D2D] leading-tight mb-6">
@@ -53,7 +53,7 @@ export default function OwnerPricing() {
               Vous avez la possibilité de combiner différentes prestations ou de choisir un pack complet, en fonction de vos besoins. Les packs sont proposés sur devis.
             </p>
             <div className="flex items-start gap-3 p-5 bg-[#E5E0DA]/40">
-              <Sparkles size={18} className="text-[#8E9B90] flex-shrink-0 mt-0.5" />
+              <Sparkles size={18} className="text-[#C4A96B] flex-shrink-0 mt-0.5" />
               <p className="text-[#2D2D2D]/70 text-sm font-body">
                 <span className="font-medium text-[#2D2D2D]">Facturation fin de mois.</span> Le ménage et la blanchisserie sont à la charge du voyageur — vous conservez l'intégralité de vos revenus locatifs.
               </p>
@@ -72,7 +72,7 @@ export default function OwnerPricing() {
             transition={{ duration: 0.7 }}
             className="bg-[#2D2D2D] p-8 md:p-10"
           >
-            <p className="text-[#8E9B90] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 1</p>
+            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 1</p>
             <h3 className="font-heading text-2xl font-light text-[#F7F5F2] mb-8">Avant le séjour</h3>
             <div className="space-y-6">
               {beforeStay.map((item, i) => (
@@ -86,7 +86,7 @@ export default function OwnerPricing() {
                 >
                   <div className="flex items-baseline justify-between gap-4 mb-1">
                     <span className="text-sm font-body text-[#F7F5F2]/80">{item.label}</span>
-                    <span className="font-heading text-lg font-light text-[#8E9B90] whitespace-nowrap">
+                    <span className="font-heading text-lg font-light text-[#C4A96B] whitespace-nowrap">
                       {item.price}<span className="text-xs text-[#F7F5F2]/30 ml-1">{item.unit}</span>
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export default function OwnerPricing() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="border border-[#E5E0DA] p-8 md:p-10 flex flex-col"
           >
-            <p className="text-[#8E9B90] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 2</p>
+            <p className="text-[#C4A96B] text-[10px] tracking-[0.3em] uppercase font-body mb-2">Phase 2</p>
             <h3 className="font-heading text-2xl font-light text-[#2D2D2D] mb-8">Durant le séjour</h3>
             <div className="space-y-6 flex-1">
               {duringStay.map((item, i) => (

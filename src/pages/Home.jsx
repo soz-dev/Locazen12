@@ -65,6 +65,7 @@ export default function Home() {
               tagline="Vivez Sète comme un local, respirez comme en vacances"
               ctaLabel="Voir les locations"
               ctaHref="#locations"
+              visitorType="voyageur"
             />
             <TravelerRentals />
             <TravelerTarifs />
@@ -88,6 +89,7 @@ export default function Home() {
               tagline="Votre bien, entre de bonnes mains"
               ctaLabel="Découvrir nos services"
               ctaHref="#services"
+              visitorType="proprietaire"
             />
             <Services />
             <About />

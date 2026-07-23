@@ -33,8 +33,8 @@ export default function About() {
               />
             </div>
             {/* Decorative offset block */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#8E9B90]/15 -z-10" />
-            <div className="absolute -top-6 -left-6 w-20 h-20 border border-[#8E9B90]/30 -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#C4A96B]/15 -z-10" />
+            <div className="absolute -top-6 -left-6 w-20 h-20 border border-[#C4A96B]/30 -z-10" />
           </motion.div>
 
           {/* Text content */}
@@ -44,7 +44,7 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="text-[#8E9B90] text-xs tracking-[0.3em] uppercase font-body mb-4">
+            <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
               À notre propos
             </p>
             <h2 className="font-heading text-4xl md:text-5xl font-light text-[#2D2D2D] leading-tight mb-8">
@@ -69,8 +69,8 @@ export default function About() {
                   transition={{ delay: 0.3 + i * 0.1 }}
                   className="flex items-start gap-4"
                 >
-                  <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-[#8E9B90]/10">
-                    <v.icon size={18} className="text-[#8E9B90]" />
+                  <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-[#C4A96B]/10">
+                    <v.icon size={18} className="text-[#C4A96B]" />
                   </div>
                   <div>
                     <p className="font-body text-sm font-medium text-[#2D2D2D] tracking-wide">

@@ -51,7 +51,7 @@ export default function Services() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <p className="text-[#8E9B90] text-xs tracking-[0.3em] uppercase font-body mb-4">
+          <p className="text-[#C4A96B] text-xs tracking-[0.3em] uppercase font-body mb-4">
             Nos engagements
           </p>
           <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#2D2D2D] leading-tight">
