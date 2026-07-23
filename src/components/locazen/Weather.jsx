@@ -70,7 +70,7 @@ export default function Weather() {
   }, []);
 
   return (
-    <section id="meteo" className="py-24 md:py-32 bg-[#F0F9FF]">
+    <section id="meteo" className="pt-14 pb-10 md:pt-20 md:pb-12 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
 
         {/* Header */}

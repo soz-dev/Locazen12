@@ -65,7 +65,7 @@ const services = [
 
 export default function TravelerTarifs() {
   return (
-    <section id="tarifs" className={`py-24 md:py-32 ${V.bg}`}>
+    <section id="tarifs" className={`pt-10 pb-20 md:pt-12 md:pb-28 ${V.bg}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
