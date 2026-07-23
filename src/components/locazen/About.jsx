@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Image } from "@/components/ui/image";
 import { Heart, Shield, Smile } from "lucide-react";
 
-const KEYS_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/cfae5b405_generated_b4eaa100.png";
+const KEYS_IMG = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80";
 
 const values = [
   { icon: Heart, label: "Accueil humain", text: "Chaque voyageur est accueilli en personne, jamais une boîte à clés." },

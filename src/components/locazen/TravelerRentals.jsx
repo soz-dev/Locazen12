@@ -1,8 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Star, Loader2, ExternalLink } from "lucide-react";
+import { MapPin, Star, Loader2, ExternalLink, Waves, Sun, Coffee } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { getAmenity } from "@/components/locazen/amenities";
+
+const PLACEHOLDER_RENTALS = [
+  {
+    id: "p1",
+    name: "Appartement Vue Port",
+    type: "T2 · Centre-ville",
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
+    price: 95,
+    rating: "4.9",
+    beds: 1, baths: 1, guests: 2,
+    amenities: [],
+    airbnb_url: null,
+    badge: "Vue port",
+  },
+  {
+    id: "p2",
+    name: "Studio Terrasse Ensoleillée",
+    type: "Studio · Corniche",
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
+    price: 75,
+    rating: "4.8",
+    beds: null, baths: 1, guests: 2,
+    amenities: [],
+    airbnb_url: null,
+    badge: "Plage à 5 min",
+  },
+  {
+    id: "p3",
+    name: "Maison avec Piscine",
+    type: "Maison · Lazaret",
+    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
+    price: 175,
+    rating: "5.0",
+    beds: 3, baths: 2, guests: 6,
+    amenities: [],
+    airbnb_url: null,
+    badge: "Coup de cœur",
+  },
+];
 
 export default function TravelerRentals() {
   const [rentals, setRentals] = useState([]);
@@ -15,8 +54,10 @@ export default function TravelerRentals() {
       .finally(() => setLoading(false));
   }, []);
 
+  const displayRentals = rentals.length > 0 ? rentals : PLACEHOLDER_RENTALS;
+
   return (
-    <section id="locations" className="py-24 md:py-32 bg-[#F7F5F2]">
+    <section id="locations" className="py-24 md:py-32 bg-gradient-to-b from-[#F0F9FF] to-[#E0F2FE]/50">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -25,26 +66,28 @@ export default function TravelerRentals() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <p className="text-[#8E9B90] text-xs tracking-[0.3em] uppercase font-body mb-4">
-            Nos locations
-          </p>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#2D2D2D] leading-tight">
+          <div className="flex items-center gap-2 mb-4">
+            <Waves size={14} className="text-[#0891B2]" />
+            <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body">Nos locations</p>
+          </div>
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-light text-[#0C4A6E] leading-tight">
             Séjournez à Sète,<br />
-            <span className="italic">comme un local</span>
+            <span className="italic text-[#F59E0B]">comme un local</span>
           </h2>
+          {rentals.length === 0 && !loading && (
+            <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body">
+              Aperçu de nos types de biens — disponibilités sur demande.
+            </p>
+          )}
         </motion.div>
 
         {loading ? (
           <div className="flex justify-center py-20">
-            <Loader2 size={28} className="animate-spin text-[#8E9B90]" />
+            <Loader2 size={28} className="animate-spin text-[#0891B2]" />
           </div>
-        ) : rentals.length === 0 ? (
-          <p className="text-center text-[#2D2D2D]/40 font-body py-20">
-            Nos locations seront bientôt disponibles. Revenez vite !
-          </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rentals.map((r, i) => (
+            {displayRentals.map((r, i) => (
               <motion.div
                 key={r.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -58,27 +101,34 @@ export default function TravelerRentals() {
                     {r.image ? (
                       <img src={r.image} alt={r.name} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-[#E5E0DA]/50" />
+                      <div className="w-full h-full bg-[#DBEAFE]" />
                     )}
                   </div>
-                  {r.rating && (
-                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-[#F7F5F2]/90 backdrop-blur-sm flex items-center gap-1.5">
-                      <Star size={12} className="text-[#8E9B90] fill-[#8E9B90]" />
-                      <span className="text-xs font-body text-[#2D2D2D]">{r.rating}</span>
+                  {/* Badge vacances */}
+                  {r.badge && (
+                    <div className="absolute top-4 left-4 px-3 py-1.5 bg-[#F59E0B] flex items-center gap-1.5">
+                      <Sun size={11} className="text-white" />
+                      <span className="text-xs font-body text-white tracking-wide">{r.badge}</span>
                     </div>
                   )}
-                  <div className="absolute bottom-4 right-4 px-4 py-2 bg-[#2D2D2D]/80 backdrop-blur-sm">
-                    <span className="text-[#F7F5F2] font-heading text-lg">{r.price}€</span>
-                    <span className="text-[#F7F5F2]/60 text-xs font-body"> / nuit</span>
+                  {r.rating && (
+                    <div className="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm flex items-center gap-1.5">
+                      <Star size={11} className="text-[#F59E0B] fill-[#F59E0B]" />
+                      <span className="text-xs font-body text-[#0C4A6E]">{r.rating}</span>
+                    </div>
+                  )}
+                  <div className="absolute bottom-4 right-4 px-4 py-2 bg-[#0C4A6E]/85 backdrop-blur-sm">
+                    <span className="text-white font-heading text-lg">{r.price}€</span>
+                    <span className="text-white/60 text-xs font-body"> / nuit</span>
                   </div>
                 </div>
 
                 <div className="flex items-start justify-between">
                   <div>
-                    <h3 className="font-heading text-2xl font-light text-[#2D2D2D] mb-1">{r.name}</h3>
+                    <h3 className="font-heading text-2xl font-light text-[#0C4A6E] mb-1">{r.name}</h3>
                     {r.type && (
-                      <p className="flex items-center gap-1.5 text-[#2D2D2D]/50 text-sm font-body">
-                        <MapPin size={12} className="text-[#8E9B90]" />
+                      <p className="flex items-center gap-1.5 text-[#0C4A6E]/50 text-sm font-body">
+                        <MapPin size={12} className="text-[#0891B2]" />
                         {r.type}
                       </p>
                     )}
@@ -90,8 +140,8 @@ export default function TravelerRentals() {
                         if (!a) return null;
                         const Icon = a.Icon;
                         return (
-                          <div key={key} className="w-8 h-8 flex items-center justify-center border border-[#E5E0DA]">
-                            <Icon size={13} className="text-[#2D2D2D]/60" />
+                          <div key={key} className="w-8 h-8 flex items-center justify-center border border-[#BAE6FD]">
+                            <Icon size={13} className="text-[#0891B2]" />
                           </div>
                         );
                       })}
@@ -99,22 +149,21 @@ export default function TravelerRentals() {
                   )}
                 </div>
 
-                <div className="mt-4 flex gap-4 text-[#2D2D2D]/50 text-xs font-body border-t border-[#E5E0DA] pt-4">
-                  {r.beds != null && <span>{r.beds} chambres</span>}
+                <div className="mt-4 flex gap-4 text-[#0C4A6E]/40 text-xs font-body border-t border-[#BAE6FD] pt-4">
+                  {r.beds != null && <span>{r.beds} chambre{r.beds > 1 ? "s" : ""}</span>}
                   {r.baths != null && <span>{r.baths} sdb</span>}
                   {r.guests != null && <span>{r.guests} voyageurs</span>}
                 </div>
 
-                {r.airbnb_url && (
-                  <a
-                    href={r.airbnb_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#2D2D2D] text-[#F7F5F2] text-xs tracking-[0.2em] uppercase font-body hover:bg-[#8E9B90] transition-colors duration-300 min-h-[44px]"
-                  >
-                    Réserver <ExternalLink size={13} />
-                  </a>
-                )}
+                <a
+                  href={r.airbnb_url || "#contact"}
+                  target={r.airbnb_url ? "_blank" : "_self"}
+                  rel="noopener noreferrer"
+                  onClick={!r.airbnb_url ? (e) => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); } : undefined}
+                  className="mt-5 w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#0891B2] text-white text-xs tracking-[0.2em] uppercase font-body hover:bg-[#0C4A6E] transition-colors duration-300 min-h-[44px]"
+                >
+                  {r.airbnb_url ? (<>Réserver <ExternalLink size={13} /></>) : "Nous contacter"}
+                </a>
               </motion.div>
             ))}
           </div>
@@ -123,3 +172,4 @@ export default function TravelerRentals() {
     </section>
   );
 }
+

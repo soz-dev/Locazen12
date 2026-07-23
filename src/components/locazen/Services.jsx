@@ -3,30 +3,30 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ServiceCard from "@/components/locazen/ServiceCard";
 
-const KEYS_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/cfae5b405_generated_b4eaa100.png";
-const ROOM_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/913eb32e6_generated_2307dbd5.png";
-const STONES_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/206faebdc_generated_9ebe2353.png";
+const KEYS_IMG   = "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80";
+const ROOM_IMG   = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=80";
+const TOWEL_IMG  = "https://images.unsplash.com/photo-1615529151169-7b1ff50dc7f2?auto=format&fit=crop&w=800&q=80";
 
 const services = [
   {
     title: "Suivi de vos réservations",
     description: "Gestion complète de vos plannings, tarification et confirmation de réservations sur Airbnb et Booking.",
     image: ROOM_IMG,
-    alt: "Intérieur lumineux d'un appartement méditerranéen avec draps blancs et lumière naturelle",
+    alt: "Chambre d'hôtel impeccable, lit parfaitement fait, linge blanc immaculé",
     href: "#prestations",
   },
   {
     title: "Gestion des arrivées & départs",
     description: "Accueil en personne de vos voyageurs, état des lieux et accompagnement tout au long du séjour.",
     image: KEYS_IMG,
-    alt: "Main élégante posant une clé en laiton sur du lin blanc avec une branche d'olivier",
+    alt: "Remise de clés professionnelle, signature de bail, accueil propriétaire",
     href: "#apropos",
   },
   {
     title: "Sérénité totale",
     description: "Ménage, blanchisserie, petit entretien et gestion du logement entre les locations. Votre bien est entre de bonnes mains.",
-    image: STONES_IMG,
-    alt: "Pierres de rivière en équilibre dans une lumière dorée matinale, atmosphère zen",
+    image: TOWEL_IMG,
+    alt: "Serviettes soigneusement pliées et disposées, chambre préparée avec soin",
     href: "#prestations",
   },
 ];

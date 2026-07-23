@@ -13,8 +13,8 @@ import TravelerTarifs from "@/components/locazen/TravelerTarifs";
 import OwnerPricing from "@/components/locazen/OwnerPricing";
 import Contact from "@/components/locazen/Contact";
 
-const SETE_AERIAL = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/19bec1b47_generated_b8bfc10c.png";
-const BED_IMMACULATE = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/c34b497c7_generated_image.png";
+const SETE_AERIAL    = "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80";
+const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1920&q=80";
 
 export default function Home() {
   const [visitorType, setVisitorType] = useState(null);
