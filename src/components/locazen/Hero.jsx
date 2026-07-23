@@ -53,7 +53,7 @@ export default function Hero({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, ease: [0.25, 0.1, 0, 1] }}
         >
-          <h1 className="font-heading font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.05em] leading-none">
+          <h1 className="font-body font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.08em] leading-none">
             {wordTop}
           </h1>
         </motion.div>
@@ -86,7 +86,7 @@ export default function Hero({
           transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0, 1] }}
           className="self-end"
         >
-          <h1 className="font-heading font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.05em] leading-none">
+          <h1 className="font-body font-light text-[#F7F5F2] text-5xl md:text-7xl lg:text-[6rem] tracking-[0.08em] leading-none">
             {wordBottom}
           </h1>
         </motion.div>

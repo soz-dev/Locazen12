@@ -47,7 +47,7 @@ export default function StayCalculator() {
           className="mb-12"
         >
           <p className="text-[#0891B2] text-xs tracking-[0.3em] uppercase font-body mb-4">{t("calculator.eyebrow")}</p>
-          <h2 className="font-heading text-5xl md:text-6xl font-light italic text-[#0C4A6E] leading-tight">
+          <h2 className="font-heading text-4xl md:text-5xl font-light text-[#0C4A6E] leading-tight">
             {t("calculator.title")}
           </h2>
           <p className="mt-4 text-[#0C4A6E]/50 text-sm font-body">
