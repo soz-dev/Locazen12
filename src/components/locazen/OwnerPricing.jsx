@@ -1,9 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Image } from "@/components/ui/image";
 import { Check, Sparkles, Info } from "lucide-react";
 
-const BED_IMMACULATE = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5c/c34b497c7_generated_image.png";
+const BED_IMMACULATE = "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80";
 
 const beforeStay = [
   { label: "Gestion de réservations", price: "15 €", unit: "/ réservation", detail: "Mise en ligne annonce + photos sur Airbnb & Booking, tarification, déclaration Mairie, relation hôtes jusqu'à l'arrivée, déclaration taxe de séjour." },
@@ -33,11 +32,10 @@ export default function OwnerPricing() {
         >
           <div className="relative">
             <div className="relative aspect-[4/3] max-w-[500px]">
-              <Image
+              <img
                 src={BED_IMMACULATE}
                 alt="Chambre impeccable avec lit parfaitement fait, standard conciergerie professionnelle"
                 className="w-full h-full object-cover"
-                fittingType="fill"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#C4A96B]/15 -z-10" />
