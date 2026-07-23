@@ -9,7 +9,7 @@ export default function Sete() {
   const imgY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section id="sete" className="relative overflow-hidden">
+    <section id="sete" className="relative overflow-hidden bg-[#2D2D2D]">
       {/* Full-bleed image */}
       <div className="relative h-[70vh] md:h-[80vh]">
         <motion.div style={{ y: imgY }} className="absolute inset-0 scale-105">
