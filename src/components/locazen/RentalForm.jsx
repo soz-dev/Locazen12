@@ -66,7 +66,10 @@ export default function RentalForm({ rental, onSave, onClose }) {
   const labelCls = "block text-xs tracking-[0.15em] uppercase text-[#2D2D2D]/60 font-body mb-2";
 
   return (
-    <div className="fixed inset-0 z-[70] bg-[#2D2D2D]/40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div
+      className="fixed inset-0 z-[70] bg-[#2D2D2D]/40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -76,7 +79,7 @@ export default function RentalForm({ rental, onSave, onClose }) {
           <h2 className="font-heading text-2xl font-light text-[#2D2D2D]">
             {rental ? "Modifier la location" : "Nouvelle location"}
           </h2>
-          <button onClick={onClose} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Fermer">
+          <button type="button" onClick={onClose} className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Fermer">
             <X size={20} className="text-[#2D2D2D]" />
           </button>
         </div>
