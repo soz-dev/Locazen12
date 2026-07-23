@@ -92,7 +92,7 @@ export default function RentalForm({ rental, onSave, onClose }) {
   return (
     <div
       className="fixed inset-0 z-[70] bg-[#2D2D2D]/40 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+
     >
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.98 }}
