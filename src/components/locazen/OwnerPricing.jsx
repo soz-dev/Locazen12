@@ -10,7 +10,7 @@ export default function OwnerPricing() {
   const beforeStay = t("ownerPricing.before", { returnObjects: true });
   const duringStay = t("ownerPricing.during", { returnObjects: true });
   return (
-    <section id="tarifs" className="py-24 md:py-32 bg-[#F7F5F2]">
+    <section id="tarifs" className="py-24 md:py-32 bg-[#F7F5F2] border-t border-[#2D2D2D]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         {/* Header */}
         <motion.div

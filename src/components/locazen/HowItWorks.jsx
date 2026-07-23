@@ -34,7 +34,7 @@ export default function HowItWorks() {
   const { t } = useTranslation();
   const steps = t("howItWorks.steps", { returnObjects: true });
   return (
-    <section id="comment" className="py-24 md:py-32 bg-[#F7F5F2]">
+    <section id="comment" className="py-24 md:py-32 bg-[#F7F5F2] border-t border-[#2D2D2D]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

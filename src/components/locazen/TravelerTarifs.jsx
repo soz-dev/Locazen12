@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 // V — Vacation theme: cyan ocean, amber sun, sky backgrounds
 const V = {
-  bg:       "bg-white",
+  bg:       "bg-white border-t border-[#0C4A6E]/10",
   cardBg:   "bg-[#F0F9FF] border border-[#BAE6FD]",
   hlBg:     "bg-[#0C4A6E] md:-translate-y-4",
   accent:   "text-[#0891B2]",

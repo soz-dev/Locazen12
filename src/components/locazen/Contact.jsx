@@ -25,6 +25,8 @@ export default function Contact({ visitorType = "proprietaire" }) {
           Sujet: form.subject,
           Message: form.message,
           _subject: `[Locazen] ${form.subject} — ${form.name}`,
+          _replyto: form.email,
+          _template: "table",
           _captcha: "false",
         }),
       });
@@ -48,7 +50,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
   const hoverLink  = isVoyageur ? "hover:text-[#38BDF8]" : "hover:text-[#C4A96B]";
 
   return (
-    <section id="contact" className={`${sectionBg} py-24 md:py-32 px-6`}>
+      <section id="contact" className={`${sectionBg} border-t border-white/10 py-24 md:py-32 px-6`}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div

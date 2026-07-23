@@ -72,7 +72,7 @@ export default function Sete() {
 
   return (
     <>
-      <section id="sete" className="relative overflow-hidden bg-[#2D2D2D]">
+      <section id="sete" className="relative overflow-hidden bg-[#2D2D2D] border-t border-white/10">
 
       {/* Image plein-écran — Port de Sète */}
       <div className="relative h-[70vh] md:h-[80vh]">

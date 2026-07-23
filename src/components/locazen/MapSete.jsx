@@ -48,7 +48,7 @@ export default function MapSete() {
     ? POIS_BASE.map((p, i) => ({ ...p, name: poisData[i]?.name ?? "", desc: poisData[i]?.desc ?? "" }))
     : POIS_BASE;
   return (
-    <section id="carte" className="bg-white">
+      <section id="carte" className="bg-white border-t border-[#0C4A6E]/10">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

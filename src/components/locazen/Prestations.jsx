@@ -12,7 +12,7 @@ export default function Prestations() {
   const { t } = useTranslation();
   const items = t("prestations.items", { returnObjects: true });
   return (
-    <section id="prestations" className="py-24 md:py-32 bg-[#F7F5F2]">
+    <section id="prestations" className="py-24 md:py-32 bg-[#F7F5F2] border-t border-[#2D2D2D]/10">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

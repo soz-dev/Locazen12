@@ -80,7 +80,7 @@ function PropertyCard({ prop, index }) {
 export default function BeforeAfter() {
   const { t } = useTranslation();
   return (
-    <section id="transformations" className="py-24 md:py-32 bg-[#1A2535]">
+    <section id="transformations" className="py-24 md:py-32 bg-[#1A2535] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

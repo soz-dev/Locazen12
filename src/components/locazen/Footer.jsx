@@ -16,7 +16,7 @@ export default function Footer({ visitorType = "proprietaire" }) {
     : "bg-[#1A2535] text-[#F7F5F2] hover:bg-[#C4A96B] hover:text-[#1A2535]";
 
   return (
-    <footer className={`${footerBg} pt-24 md:pt-32 pb-8`}>
+    <footer className={`${footerBg} border-t ${isVoyageur ? "border-[#0C4A6E]/10" : "border-[#2D2D2D]/10"} pt-24 md:pt-32 pb-8`}>
       {/* Massive brand name */}
       <div className="overflow-hidden mb-16 md:mb-24">
         <motion.h2
