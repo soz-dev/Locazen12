@@ -60,7 +60,6 @@
       "nature": "Nature"
     },
     "pois": [
-      { "name": "Nos logements — Centre Sète",  "desc": "Zone de nos logements, au cœur de la ville." },
       { "name": "Plage de la Corniche",          "desc": "La grande plage de sable fin de Sète." },
       { "name": "Plage du Lazaret",              "desc": "Plage calme côté étang de Thau." },
       { "name": "Plage de la Plagette",          "desc": "Petite plage appréciée des locaux." },

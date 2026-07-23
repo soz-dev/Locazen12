@@ -7,15 +7,39 @@ import { AMENITIES } from "@/components/locazen/amenities";
 const empty = {
   name: "", type: "", price: "", beds: 1, baths: 1, guests: 2,
   rating: 4.8, image: "", imageY: 50, amenities: [], airbnb_url: "",
+  address: "", lat: null, lng: null,
 };
 
 export default function RentalForm({ rental, onSave, onClose }) {
   const [form, setForm] = useState(rental ? { ...empty, ...rental } : empty);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [geocoding, setGeocoding] = useState({ loading: false, ok: null, city: "" });
   const { toast } = useToast();
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+
+  const geocodeAddress = async (addr) => {
+    if (!addr.trim()) return;
+    setGeocoding({ loading: true, ok: null, city: "" });
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addr)}&limit=1&countrycodes=fr`,
+        { headers: { "Accept-Language": "fr", "User-Agent": "Locazen12/1.0" } }
+      );
+      const data = await res.json();
+      if (data.length > 0) {
+        const { lat, lon, display_name } = data[0];
+        setForm((f) => ({ ...f, lat: parseFloat(lat), lng: parseFloat(lon) }));
+        const city = display_name.split(",").slice(0, 2).join(", ");
+        setGeocoding({ loading: false, ok: true, city });
+      } else {
+        setGeocoding({ loading: false, ok: false, city: "" });
+      }
+    } catch {
+      setGeocoding({ loading: false, ok: false, city: "" });
+    }
+  };
 
   const toggleAmenity = (key) => {
     setForm((f) => ({
@@ -142,6 +166,38 @@ export default function RentalForm({ rental, onSave, onClose }) {
               <label className={labelCls}>Type / Localisation</label>
               <input className={inputCls} value={form.type} onChange={(e) => set("type", e.target.value)} placeholder="Appartement · Centre-ville" />
             </div>
+          </div>
+
+          <div>
+            <label className={labelCls}>Adresse (pour la carte)</label>
+            <div className="flex gap-2">
+              <input
+                className={inputCls + " flex-1"}
+                value={form.address}
+                onChange={(e) => set("address", e.target.value)}
+                onBlur={(e) => geocodeAddress(e.target.value)}
+                placeholder="12 Quai du Général Durand, Sète, 34200"
+              />
+              <button
+                type="button"
+                onClick={() => geocodeAddress(form.address)}
+                disabled={geocoding.loading}
+                className="px-4 py-3 bg-[#2D2D2D] text-[#F7F5F2] text-xs tracking-widest uppercase font-body hover:bg-[#C4A96B] transition-colors min-w-[52px] min-h-[44px] flex items-center justify-center"
+              >
+                {geocoding.loading ? <Loader2 size={14} className="animate-spin" /> : "OK"}
+              </button>
+            </div>
+            {geocoding.ok === true && (
+              <p className="mt-1 text-xs text-emerald-600 font-body">✓ {geocoding.city}</p>
+            )}
+            {geocoding.ok === false && (
+              <p className="mt-1 text-xs text-red-500 font-body">Adresse introuvable — vérifiez la saisie</p>
+            )}
+            {form.lat && (
+              <p className="mt-1 text-[10px] text-[#2D2D2D]/35 font-body">
+                📍 {Number(form.lat).toFixed(5)}, {Number(form.lng).toFixed(5)}
+              </p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useTranslation } from "react-i18next";
+import { fetchRentals } from "@/lib/rentalsApi";
 
 const SETE_CENTER = [43.4045, 3.6978];
 
@@ -16,8 +17,7 @@ const CAT_COLORS = {
 };
 
 const POIS_BASE = [
-  { nameKey: "poi_0",  lat: 43.4045, lng: 3.6978, cat: "logement" },
-  { nameKey: "poi_1",  lat: 43.3905, lng: 3.6743, cat: "plage"    },
+  { nameKey: "poi_0",  lat: 43.3905, lng: 3.6743, cat: "plage"    },
   { nameKey: "poi_2",  lat: 43.3978, lng: 3.6840, cat: "plage"    },
   { nameKey: "poi_3",  lat: 43.3952, lng: 3.6815, cat: "plage"    },
   { nameKey: "poi_4",  lat: 43.4028, lng: 3.6990, cat: "port"     },
@@ -32,6 +32,14 @@ const POIS_BASE = [
 
 export default function MapSete() {
   const { t } = useTranslation();
+  const [rentalPins, setRentalPins] = useState([]);
+
+  useEffect(() => {
+    fetchRentals()
+      .then((list) => setRentalPins(list.filter((r) => r.lat && r.lng)))
+      .catch(() => {});
+  }, []);
+
   const poisData = t("map.pois", { returnObjects: true });
   const CATEGORIES = Object.fromEntries(
     Object.entries(CAT_COLORS).map(([k, color]) => [k, { label: t(`map.categories.${k}`), color }])
@@ -72,14 +80,14 @@ export default function MapSete() {
             />
             {POIS.map((poi, i) => (
               <CircleMarker
-                key={i}
+                key={`poi-${i}`}
                 center={[poi.lat, poi.lng]}
-                radius={poi.cat === "logement" ? 13 : 8}
+                radius={8}
                 pathOptions={{
                   fillColor: CATEGORIES[poi.cat].color,
-                  fillOpacity: poi.cat === "logement" ? 0.95 : 0.8,
+                  fillOpacity: 0.8,
                   color: "white",
-                  weight: poi.cat === "logement" ? 2.5 : 1.5,
+                  weight: 1.5,
                 }}
               >
                 <Popup>
@@ -88,6 +96,33 @@ export default function MapSete() {
                       {poi.name}
                     </p>
                     <p style={{ fontSize: 11, color: "#666", margin: 0 }}>{poi.desc}</p>
+                  </div>
+                </Popup>
+              </CircleMarker>
+            ))}
+            {rentalPins.map((r) => (
+              <CircleMarker
+                key={`rental-${r.id}`}
+                center={[r.lat, r.lng]}
+                radius={13}
+                pathOptions={{
+                  fillColor: CAT_COLORS.logement,
+                  fillOpacity: 0.95,
+                  color: "white",
+                  weight: 2.5,
+                }}
+              >
+                <Popup>
+                  <div style={{ fontFamily: "sans-serif", minWidth: 180 }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: "#0C4A6E", marginBottom: 3 }}>
+                      {r.name}
+                    </p>
+                    {r.type && (
+                      <p style={{ fontSize: 11, color: "#888", marginBottom: 4 }}>{r.type}</p>
+                    )}
+                    <p style={{ fontSize: 12, fontWeight: 600, color: "#F59E0B", margin: 0 }}>
+                      {r.price} € / nuit
+                    </p>
                   </div>
                 </Popup>
               </CircleMarker>

@@ -11,5 +11,8 @@ CREATE TABLE IF NOT EXISTS rentals (
   imageY      INTEGER NOT NULL DEFAULT 50,
   amenities   TEXT NOT NULL DEFAULT '[]',
   airbnb_url  TEXT NOT NULL DEFAULT '',
+  address     TEXT NOT NULL DEFAULT '',
+  lat         REAL,
+  lng         REAL,
   created_at  TEXT NOT NULL DEFAULT ''
 );

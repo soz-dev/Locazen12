@@ -60,7 +60,6 @@
       "nature": "Nature"
     },
     "pois": [
-      { "name": "Our rentals — Sète centre",     "desc": "Location of our properties, in the heart of the city." },
       { "name": "Plage de la Corniche",           "desc": "Sète's main fine-sand beach." },
       { "name": "Plage du Lazaret",               "desc": "Quiet beach on the Thau lagoon side." },
       { "name": "Plage de la Plagette",           "desc": "Small beach popular with locals." },

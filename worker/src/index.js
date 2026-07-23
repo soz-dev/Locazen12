@@ -54,8 +54,8 @@ export default {
       const body = await request.json();
       const id = Date.now().toString();
       await env.DB.prepare(
-        `INSERT INTO rentals (id, name, type, price, beds, baths, guests, rating, image, imageY, amenities, airbnb_url, created_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        `INSERT INTO rentals (id, name, type, price, beds, baths, guests, rating, image, imageY, amenities, airbnb_url, address, lat, lng, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       ).bind(
         id,
         body.name,
@@ -69,6 +69,9 @@ export default {
         body.imageY ?? 50,
         JSON.stringify(body.amenities || []),
         body.airbnb_url || "",
+        body.address || "",
+        body.lat ?? null,
+        body.lng ?? null,
         new Date().toISOString()
       ).run();
       return json({ id, ...body }, 201, origin);
@@ -81,7 +84,7 @@ export default {
       const body = await request.json();
       await env.DB.prepare(
         `UPDATE rentals SET name=?, type=?, price=?, beds=?, baths=?, guests=?,
-         rating=?, image=?, imageY=?, amenities=?, airbnb_url=? WHERE id=?`
+         rating=?, image=?, imageY=?, amenities=?, airbnb_url=?, address=?, lat=?, lng=? WHERE id=?`
       ).bind(
         body.name,
         body.type || "",
@@ -94,6 +97,9 @@ export default {
         body.imageY ?? 50,
         JSON.stringify(body.amenities || []),
         body.airbnb_url || "",
+        body.address || "",
+        body.lat ?? null,
+        body.lng ?? null,
         id
       ).run();
       return json({ id, ...body }, 200, origin);
