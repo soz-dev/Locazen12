@@ -68,9 +68,16 @@ export default function Footer() {
                 <Phone size={14} />
                 06.59.76.91.94
               </a>
+              <a
+                href="mailto:myriamboum34@gmail.com"
+                className="flex items-center gap-3 text-[#2D2D2D]/60 text-sm hover:text-[#8E9B90] transition-colors font-body"
+              >
+                <Mail size={14} />
+                myriamboum34@gmail.com
+              </a>
               <div className="flex items-center gap-3 text-[#2D2D2D]/60 text-sm font-body">
                 <MapPin size={14} />
-                Centre-ville, Sète
+                34, rue Lucien Salette — 34200 Sète
               </div>
             </div>
           </div>

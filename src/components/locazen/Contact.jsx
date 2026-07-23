@@ -182,7 +182,7 @@ export default function Contact({ visitorType = "proprietaire" }) {
             </div>
             <div>
               <p className="text-[10px] tracking-[0.2em] uppercase text-[#F7F5F2]/30 font-body mb-2">Localisation</p>
-              <p className="text-[#F7F5F2]/80 font-body text-sm">Centre-ville, Sète</p>
+              <p className="text-[#F7F5F2]/80 font-body text-sm">34, rue Lucien Salette — 34200 Sète</p>
             </div>
             <div className="mt-4 pt-8 border-t border-[#F7F5F2]/10">
               <p className="text-[#F7F5F2]/30 text-xs font-body leading-relaxed">

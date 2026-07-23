@@ -7,8 +7,8 @@ const KEYS_IMG = "https://media.base44.com/images/public/6a620b18b501d049df6dbc5
 
 const values = [
   { icon: Heart, label: "Accueil humain", text: "Chaque voyageur est accueilli en personne, jamais une boîte à clés." },
-  { icon: Shield, label: "Confiance", text: "Créée en 2019, notre expérience s'enrichit chaque année." },
-  { icon: Smile, label: "Sérénité", text: "Souriants, sociables et professionnels, votre bien est entre de bonnes mains." },
+  { icon: Shield, label: "Confiance", text: "Créée en 2019, notre expérience s'enrichit chaque année au contact des voyageurs et des propriétaires." },
+  { icon: Smile, label: "Sérénité", text: "Souriants, sociables et accueillants, nous prenons à cœur notre métier et assurerons à vos clients un séjour de qualité." },
 ];
 
 export default function About() {
@@ -52,7 +52,7 @@ export default function About() {
               <span className="italic">un vrai accueil</span>
             </h2>
             <p className="text-[#2D2D2D]/70 font-body text-base leading-relaxed mb-6">
-              Nous sommes un couple passionné, et nous prenons en charge votre bien — qu'il s'agisse de votre résidence principale ou secondaire. Nos différents métiers (hôtellerie, restauration, accompagnement) nous ont permis d'acquérir les qualités requises pour assumer ces missions.
+              Nous sommes un couple passionné, et nous prenons en charge votre bien — qu'il s'agisse de votre résidence principale ou secondaire. Nos différents métiers (hôtellerie, restauration, accompagnement et aide à la personne) nous ont permis d'acquérir les qualités requises pour assumer ces missions.
             </p>
             <p className="text-[#2D2D2D]/70 font-body text-base leading-relaxed mb-12">
               Nous avons opté pour une présence physique et non une boîte à clés, impersonnelle et non sécurisée. Être accueilli en personne change la qualité de la location.
