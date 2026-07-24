@@ -47,7 +47,7 @@ export default function Hero({
         <div className="absolute inset-0 bg-gradient-to-b from-[#2D2D2D]/40 via-[#2D2D2D]/20 to-[#2D2D2D]/60" />
       </motion.div>
 
-      <motion.div style={{ opacity }} className="relative z-10 h-full flex flex-col justify-between px-6 md:px-16 py-20 md:py-28">
+      <motion.div style={{ opacity }} className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 py-20 md:py-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
