@@ -10,19 +10,23 @@
     "traveler": "Traveler",
     "owner": "Owner",
     "travelerLinks": [
-      { "label": "Home",     "href": "#accueil"    },
-      { "label": "Rentals",  "href": "#locations"  },
-      { "label": "Rates",    "href": "#tarifs"     },
-      { "label": "Sète",     "href": "#sete"       },
-      { "label": "Contact",  "href": "#contact"    }
+      { "label": "Home",     "href": "#accueil"   },
+      { "label": "Rentals",  "href": "#locations" },
+      { "label": "Map",      "href": "#carte"     },
+      { "label": "Rates",    "href": "#tarifs"    },
+      { "label": "Sète",     "href": "#sete"      },
+      { "label": "FAQ",      "href": "#faq"       },
+      { "label": "Contact",  "href": "#contact"   }
     ],
     "ownerLinks": [
-      { "label": "Home",         "href": "#accueil"     },
-      { "label": "Services",     "href": "#services"    },
-      { "label": "About",        "href": "#apropos"     },
-      { "label": "Offerings",    "href": "#prestations" },
-      { "label": "Rates",        "href": "#tarifs"      },
-      { "label": "Contact",      "href": "#contact"     }
+      { "label": "Home",      "href": "#accueil"     },
+      { "label": "Services",  "href": "#services"    },
+      { "label": "About",     "href": "#apropos"     },
+      { "label": "Offerings", "href": "#prestations" },
+      { "label": "Rates",     "href": "#tarifs"      },
+      { "label": "Sète",      "href": "#sete"        },
+      { "label": "FAQ",       "href": "#faq"         },
+      { "label": "Contact",   "href": "#contact"     }
     ]
   },
   "rentals": {
