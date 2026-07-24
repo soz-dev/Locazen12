@@ -37,7 +37,7 @@ export default function StayCalculator() {
   const change = (delta) => setNights((n) => Math.max(1, Math.min(30, n + delta)));
 
   return (
-    <section id="calculateur" className="py-24 md:py-32 bg-[#F0F9FF] border-t border-[#0C4A6E]/10">
+    <section id="calculateur" className="pt-8 pb-24 md:pt-10 md:pb-32 bg-[#F0F9FF]">
       <div className="max-w-5xl mx-auto px-6 md:px-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

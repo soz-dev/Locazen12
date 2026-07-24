@@ -40,7 +40,7 @@ export default function SeaConditions() {
   if (!loading && !days) return null;
 
   return (
-    <div className="bg-[#0891B2] border-t border-white/10 py-8 px-6 md:px-16">
+    <div className="bg-[#0891B2] py-8 px-6 md:px-16">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-2 mb-5">
           <Waves size={14} className="text-white/60" />
